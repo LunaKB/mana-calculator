@@ -1,0 +1,21 @@
+<div *ngIf="Show">
+    <div class="row">
+        <div class="col">
+            <h3>Damage Increase</h3>
+            <form>
+                <label for="damage-increase-input" class="form-label">Cost</label>
+                <input [ngModel]="DamageIncrease.Cost"
+                    class="form-control" name="damage-increase-input" id="damage-increase-input"
+                    type="number" min="1" step="1" />
+                <br>
+                <button type="button" class="btn confirm-add" (click)="setDamageIncrease()">Update</button>
+            </form>
+        </div>
+        <br>
+        <div class="col">
+            <h3>Output</h3>
+            <p *ngIf="DamageIncrease">{{DamageIncrease.getSummary()}}</p>
+        </div>
+    </div>
+    <hr>
+</div>

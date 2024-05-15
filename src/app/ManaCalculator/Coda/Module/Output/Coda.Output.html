@@ -1,0 +1,21 @@
+<div *ngIf="CodaEffects.length() > 0">
+    <h3>Codas</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Aspect</th>
+                <th>Cost</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let effect of CodaEffects.getItems()">
+                <td>{{effect.Name}}</td>
+                <td>{{effect.Aspect}}</td>
+                <td>{{effect.Cost}}</td>
+                <td>{{effect.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

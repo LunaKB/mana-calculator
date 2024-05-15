@@ -1,0 +1,22 @@
+<div class="row">
+    <h3>Primary Effect</h3>
+    <p class="error-message" *ngIf="!PrimaryEffect">No primary effect selected.</p>
+    <table class="table table-striped" *ngIf="PrimaryEffect">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Aspect</th>
+                <th>Cost</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{PrimaryEffect.Name}}</td>
+                <td>{{PrimaryEffect.Aspect}}</td>
+                <td>{{PrimaryEffect.Cost}}</td>
+                <td>{{PrimaryEffect.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

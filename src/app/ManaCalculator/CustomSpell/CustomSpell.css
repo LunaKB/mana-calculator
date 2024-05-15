@@ -1,0 +1,18 @@
+body {
+	background: #e6e6e6;
+}
+.accordion .accordion-card {
+	border: none;
+	margin-bottom: 2px;
+	border-radius: 0;
+	box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+.accordion-button-color {
+    background-color: #EFB25A;
+    color: #6B3F00;
+  }
+.accordion-button-color:not(.collapsed) {
+    background-color: #DB952E;
+    color: #6B3F00;
+}

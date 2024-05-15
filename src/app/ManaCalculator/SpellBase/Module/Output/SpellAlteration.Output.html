@@ -1,0 +1,30 @@
+<h3>Spell Alteration</h3>
+<p class="error-message" *ngIf="!SpellAlterationInfo">No spell alteration selected.</p>
+<table class="table table-striped" *ngIf="SpellAlterationInfo">
+    <tbody>
+        <tr>
+            <th>Casting Time</th>
+            <td>{{SpellAlterationInfo.CastingTime}}</td>
+        </tr>
+        <tr>
+            <th>Range</th>
+            <td>{{SpellAlterationInfo.Range}}</td>
+        </tr>
+        <tr>
+            <th># of Targets</th>
+            <td>{{SpellAlterationInfo.Target}}</td>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <td>{{SpellAlterationInfo.Area}}</td>
+        </tr>
+        <tr>
+            <th>Area Size</th>
+            <td>{{SpellAlterationInfo.AreaSize}}</td>
+        </tr>
+        <tr>
+            <th>Duration</th>
+            <td>{{SpellAlterationInfo.Duration}}</td>
+        </tr>                                                
+    </tbody>
+</table>  

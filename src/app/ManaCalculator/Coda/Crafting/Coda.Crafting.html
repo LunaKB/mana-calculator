@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h4>Codas</h4>
+        <div class="col-8">
+            <form>
+                <label for="coda-select" class="form-label">Coda</label>
+                <select class="form-select" name="coda-select" id="coda-select">
+                    <option *ngFor="let effect of CodaEffects.getItems()" (value)="effect" >{{effect.Name}}</option>
+                </select>
+                <br>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn confirm-add" (click)="addCoda()">Add</button>
+                    <button type="button" class="btn confirm-add" (click)="setPreview()">Preview</button>
+                </div>
+            </form>
+            <br>
+            <div>
+                <p *ngIf="SelectedCodaEffects.length() == 0">No codas added.</p>
+                <table class="table table-striped" *ngIf="SelectedCodaEffects.length() > 0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Aspect</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let effect of SelectedCodaEffects.getItems()">
+                            <td>{{effect.Name}}</td>
+                            <td>{{effect.Aspect}}</td>
+                            <td>{{effect.Cost}}</td>
+                            <td>{{effect.Description}}</td>
+                            <td><button type="button" class="btn confirm-remove" (click)="removeCoda(effect)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Preview</h4>
+            <p *ngIf="!PreviewEffect">No coda to preview.</p>
+            <div *ngIf="PreviewEffect">
+                <p>Name: {{PreviewEffect.Name}}</p>
+                <p>Aspect: {{PreviewEffect.Aspect}}</p>
+                <p>Cost: {{PreviewEffect.Cost}}</p>
+                <p>Description: {{PreviewEffect.Description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="Show">
+    <div class="row">
+        <div class="col">
+            <h3>Echoed</h3>
+            <p *ngIf="NonCodaEffects.length() == 0">No effects to alter.</p>
+            <div *ngIf="NonCodaEffects.length() > 0">
+                <select class="form-select" name="echoed-effect-select" id="echoed-effect-select">
+                    <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
+                </select>
+                <br>
+                <button type="button" class="btn confirm-add" (click)="updateEchoedEffect()">Update</button>
+                <br>
+                <p *ngIf="!EffectToEcho">No effect selected. Update selection.</p>
+            </div>
+        </div>
+        <br>
+        <div class="col">
+            <h3>Output</h3>
+            <p *ngIf="EffectToEcho">{{this.Echoed.getSummary()}}</p>
+        </div>
+    </div>
+    <hr>
+</div>

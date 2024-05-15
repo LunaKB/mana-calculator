@@ -1,0 +1,21 @@
+<div *ngIf="Show">
+    <div class="row">
+        <div class="col">
+            <h3>Inhibit</h3>
+            <form>
+                <label for="inhibit-ability-select" class="form-label">Select Saving Throw</label>
+                <select class="form-select" name="inhibit-ability-select" id="inhibit-ability-select">
+                    <option *ngFor="let ability  of getAbilityKeys()" (value)="ability">{{ability.valueOf()}}</option>
+                </select>
+                <br>
+                <button type="button" class="btn confirm-add" (click)="setInhibit()">Update</button>
+            </form>
+            <br>
+        </div>
+        <div class="col">
+            <h3>Output</h3>
+            <p *ngIf="Inhibit">{{Inhibit.getSummary()}}</p>
+        </div>
+    </div>
+    <hr>
+</div>

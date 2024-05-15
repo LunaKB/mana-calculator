@@ -1,0 +1,18 @@
+<h3>Spell Level</h3>
+<p class="error-message" *ngIf="!SpellLevelInfo">Spell level not set.</p>
+<table class="table table-striped" *ngIf="SpellLevelInfo">
+    <tbody>
+        <tr>
+            <th>Level</th>
+            <td>{{SpellLevelInfo.SpellLevel}}</td>
+        </tr>
+        <tr>
+            <th>Base Damage (Single Target)</th>
+            <td>{{SpellLevelInfo.SingleTargetDamage}}{{SpellLevelInfo.SingleTargetDie}}</td>
+        </tr>
+        <tr>
+            <th>Base Damage (Multiple Targets)</th>
+            <td>{{SpellLevelInfo.MultipleTargetDamage}}{{SpellLevelInfo.MultipleTargetDie}}</td>
+        </tr>                                               
+    </tbody>
+</table>  

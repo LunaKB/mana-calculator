@@ -1,0 +1,19 @@
+<h3>Spell Level Table</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Character Level</th>
+            <th>Maximum Effect Spell Level</th>
+            <th>Base Damage (Single Target)</th>
+            <th>Base Damage (Multiple Targets)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let info of SpellLevelInfoList.getItems()">
+            <td>{{info.CharacterLevel}}</td>
+            <td>{{info.SpellLevel}}</td>
+            <td>{{info.SingleTargetDamage}}{{info.SingleTargetDie}}</td>
+            <td>{{info.MultipleTargetDamage}}{{info.MultipleTargetDie}}</td>
+        </tr>
+    </tbody>
+</table>

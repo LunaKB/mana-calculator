@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h4>Primary Effects</h4>
+            <form>
+                <label for="primary-effect-select" class="form-label">Primary Effect</label>
+                <select class="form-select" name="primary-effect-select" id="primary-effect-select">
+                    <option *ngFor="let effect of PrimaryEffects.getItems()" (value)="effect" >{{effect.Name}}</option>
+                </select>
+                <br>
+                <button type="button" class="btn confirm-add" (click)="updateSelection()">Update</button>
+            </form>
+            <br>
+            <div>
+                <p *ngIf="!PrimaryEffect">No primary effect selected. Update Selection.</p>
+                <table class="table" *ngIf="PrimaryEffect">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Aspect</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{PrimaryEffect.Name}}</td>
+                            <td>{{PrimaryEffect.Aspect}}</td>
+                            <td>{{PrimaryEffect.Cost}}</td>
+                            <td>{{PrimaryEffect.Description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

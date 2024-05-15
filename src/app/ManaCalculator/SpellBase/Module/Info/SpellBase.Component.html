@@ -1,0 +1,25 @@
+<h3>Spell Base Table</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cost</th>
+            <th>Casting Time</th>
+            <th>Range</th>
+            <th>Target</th>
+            <th>Area</th>
+            <th>Area Size</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let info of SpellBaseInfoList.getItems()">
+            <th>{{info.Cost}}</th>
+            <td>{{info.CastingTime}}</td>
+            <td>{{info.Range}}</td>
+            <td>{{info.Target}}</td>
+            <td>{{info.Area}}</td>
+            <td>{{info.AreaSize}}</td>
+            <td>{{info.Duration}}</td>        
+        </tr>
+    </tbody>
+</table>

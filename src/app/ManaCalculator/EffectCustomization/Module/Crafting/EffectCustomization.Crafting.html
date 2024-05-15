@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <p *ngIf="!hasEffectCustomizationTypes()">No effects to add</p>
+            <alter-aspect-control
+                [should-show]="ShowAffinity"
+                [all-effects]="AllEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)" />
+            <alter-saving-throw-control
+                [should-show]="ShowSavingThrow"
+                [non-coda-effects]="NonCodaEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <curtail-capacity-control
+                [should-show]="ShowCurtailCapacity"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)" />
+            <damage-increase-control
+                [should-show]="ShowDamageIncrease"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)" />
+            <echoed-control
+                [should-show]="ShowEchoed"
+                [non-coda-effects]="NonCodaEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <inhibit-control
+                [should-show]="ShowInhibit"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <power-word-control
+                [should-show]="ShowPowerWord"
+                [non-coda-effects]="NonCodaEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <ricochet-control
+                [should-show]="ShowRicochet"
+                [non-coda-effects]="NonCodaEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <stealthed-control
+                [should-show]="ShowStealthed"
+                [non-coda-effects]="NonCodaEffects"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)"/>
+            <temporary-feat-control
+                [should-show]="ShowTemporaryFeat"
+                (customization-added)="onEffectCustomizationAdded($event)"
+                (customization-removed)="onEffectCustomizationRemoved($event)" />
+        </div>
+    </div>
+</div>

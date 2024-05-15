@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h4>Secondary Effects</h4>
+        <div class="col-8">
+            <form>
+                <label for="secondary_effect_select" class="form-label">Secondary Effect</label>
+                <select class="form-select" name="secondary_effect_select" id="secondary_effect_select">
+                    <option *ngFor="let effect of SecondaryEffects.getItems()" (value)="effect" >{{effect.Name}}</option>
+                </select>
+                <br>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn confirm-add" (click)="addSecondaryEffect()">Add</button>
+                    <button type="button" class="btn confirm-add" (click)="setPreview()">Preview</button>
+                </div>
+            </form>
+            <br>
+            <div>
+                <p *ngIf="SelectedSecondaryEffects.length() == 0">No secondary effects added.</p>
+                <table class="table table-striped" *ngIf="SelectedSecondaryEffects.length() > 0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Aspect</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let effect of SelectedSecondaryEffects.getItems()">
+                            <td>{{effect.Name}}</td>
+                            <td>{{effect.Aspect}}</td>
+                            <td>{{effect.Cost}}</td>
+                            <td>{{effect.Description}}</td>
+                            <td><button class="btn confirm-remove" type="button" (click)="removeSecondaryEffect(effect)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Preview</h4>
+            <p *ngIf="!PreviewEffect">No effect to preview.</p>
+            <div *ngIf="PreviewEffect">
+                <p>Name: {{PreviewEffect.Name}}</p>
+                <p>Aspect: {{PreviewEffect.Aspect}}</p>
+                <p>Cost: {{PreviewEffect.Cost}}</p>
+                <p>Description: {{PreviewEffect.Description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

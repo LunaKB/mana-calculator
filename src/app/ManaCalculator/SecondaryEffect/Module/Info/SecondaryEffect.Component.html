@@ -1,0 +1,20 @@
+<h3>Secondary Effects</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Aspect</th>
+            <th>Cost</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let effect of SecondaryEffects.getItems()">
+            <td>{{effect.Name}}</td>
+            <td>{{effect.Aspect}}</td>
+            <td>{{effect.Cost}}</td>
+            <td>{{effect.Description}}</td>
+        </tr>
+    </tbody>
+</table>

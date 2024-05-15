@@ -1,0 +1,41 @@
+<div *ngIf="Show">
+    <div class="row">
+        <div class="col">
+            <h3>Alter Saving Throw</h3>
+            <p *ngIf="NonCodaEffects.length() == 0">No effects to alter.</p>
+            <div *ngIf="NonCodaEffects.length() > 0">
+                <select class="form-select" name="alter-saving-throw-select" id="alter-saving-throw-select">
+                    <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
+                </select>
+                <br>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn confirm-add" (click)="updateSavingThrowEffect()">Select</button>
+                    <button type="button" class="btn confirm-add" (click)="saveSavingThrowAlteration()">Update</button>
+                </div>
+                <hr>
+                <p *ngIf="!EffectForSavingThrow">No effect selected. Update selection.</p>
+                <div *ngIf="EffectForSavingThrow">
+                    <p>Name: {{EffectForSavingThrow.Name}}</p>
+                    <p>Description: {{EffectForSavingThrow.Description}}</p>
+                    <hr>
+                    <form>
+                        <label for="original-ability-select" class="form-label">Set Original Saving Throw</label>
+                        <select class="form-select" name="original-ability-select" id="original-ability-select">
+                            <option *ngFor="let ability  of getAbilityKeys()" (value)="ability">{{ability.valueOf()}}</option>
+                        </select>
+                        <br>
+                        <label for="custom-ability-select" class="form-label">Set Custom Saving Throw</label>
+                        <select class="form-select" name="custom-ability-select" id="custom-ability-select">
+                            <option *ngFor="let ability  of getAbilityKeys()" (value)="ability">{{ability.valueOf()}}</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h3>Output</h3>
+            <p *ngIf="SavingThrow">{{SavingThrow.getSummary()}}</p>
+        </div>
+    </div>
+    <hr>
+</div>

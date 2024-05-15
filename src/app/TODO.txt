@@ -1,0 +1,4 @@
+debug acessing from external ip adresses
+streamline converter classes
+improve ui
+read ip information from disk

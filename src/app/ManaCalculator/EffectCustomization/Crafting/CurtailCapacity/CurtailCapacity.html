@@ -1,0 +1,25 @@
+<div *ngIf="Show">
+    <div class="row">
+        <div class="col">
+            <h3>Boost of Curtail Capacity</h3>
+            <form>
+                <label for="capacity-ability-select" class="form-label">Affected Ability</label>
+                <select class="form-select" name="capacity-ability-select" id="capacity-ability-select">
+                    <option *ngFor="let ability  of getAbilityKeys()" (value)="ability">{{ability.valueOf()}}</option>
+                </select>
+
+                <label for="capacity-ability-increase-picker" class="form-label">Cost</label>
+                <input [ngModel]="AbilityScore.Cost"
+                    class="form-control" name="capacity-ability-increase-picker" id="capacity-ability-increase-picker"
+                    type="number" min="1" step="1"/>
+                <br>
+                <button type="button" class="btn confirm-add" (click)="setCapacityAbility()">Update</button>
+            </form>
+            <br>
+        </div>
+        <div class="col">
+            <h3>Output</h3>            
+            <p *ngIf="AbilityScore">{{AbilityScore.getSummary()}}</p>
+    </div>
+    <hr>
+</div>

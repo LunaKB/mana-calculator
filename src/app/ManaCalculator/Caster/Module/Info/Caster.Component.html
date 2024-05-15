@@ -1,0 +1,86 @@
+<div class="container">
+    <h3>Caster Management</h3>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h4>Details</h4>
+            <form [formGroup]="CasterFormGroup.FormGroup">
+                <label for="caster-name-input" class="form-label">Caster Name</label>
+                <input formControlName="CasterName" [(ngModel)]="CasterFormGroup.CasterName"
+                    class="form-control" name="caster-name-input" id="caster-name-input" 
+                    type="text"/>
+
+                <label for="caster-mana-input" class="form-label">Mana Points</label>
+                <input formControlName="Mana" [(ngModel)]="CasterFormGroup.ManaPoints"
+                    class="form-control" name="caster-mana-input" id="caster-mana-input"
+                    type="number" min="0" />
+                                
+                <label for="caster-mind-input" class="form-label">Mind</label>
+                <input formControlName="Mind" [(ngModel)]="CasterFormGroup.Mind"
+                    class="form-control" name="caster-mind-input" id="caster-mind-input"
+                    type="number" min="0" />
+
+                <label for="caster-source-input" class="form-label">Source</label>
+                <input formControlName="Source" [(ngModel)]="CasterFormGroup.Source"
+                    class="form-control" name="caster-source-input" id="caster-source-input"
+                    type="number" min="0" />
+                                
+                <label for="caster-name-input" class="form-label">Will</label>
+                <input formControlName="Will" [(ngModel)]="CasterFormGroup.Will"
+                    class="form-control" name="caster-name-input" id="caster-name-input"
+                    type="number" min="0" />
+                <br>
+                <div class="btn-group" role="group">
+                    <button *ngIf="!CasterFormGroup.HasId" class="btn confirm-add" type="button" (click)="addCaster()">Add Caster</button>
+                    <button *ngIf="CasterFormGroup.HasId" class="btn confirm-add" type="button" (click)="updateCaster()">Update Caster</button>
+                    <button *ngIf="CasterFormGroup.HasId" class="btn confirm-add" type="button" (click)="resetCaster()">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <h4>List</h4>
+            <p *ngIf="Casters.length() == 0">There are no casters.</p>
+            <table class="table table-striped" *ngIf="Casters.length() > 0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mana Points</th>
+                        <th>Mind</th>
+                        <th>Source</th>
+                        <th>Will</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let caster of Casters.getItems()">
+                        <td>{{caster.Name}}</td>
+                        <td>{{caster.ManaPointMax}}</td>
+                        <td>
+                            {{getValueForAffinity(caster, "Mind")}}
+                        </td>
+                        <td>
+                            {{getValueForAffinity(caster, "Source")}}
+                        </td>
+                        <td>
+                            {{getValueForAffinity(caster, "Will")}}
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{caster.Id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{caster.Id}}">
+                                    <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCaster(caster)">Remove</button></li>
+                                    <li *ngIf="!caster.IsEditable">
+                                        <button type="button" class="btn btn-primary dropdown-item" (click)="editCaster(caster)">Edit</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
