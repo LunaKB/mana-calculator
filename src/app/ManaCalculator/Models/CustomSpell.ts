@@ -13,7 +13,7 @@ import { RichochetCustomizationConverter } from "./Cost/RichochetCustomization"
 import { SavingThrowCustomizationConverter } from "./Cost/SavingThrowCustomization"
 import { StealthedCustomizationConverter } from "./Cost/StealthedCustomization"
 import { TemporaryFeatConverter } from "./Cost/TemporaryFeatCustomization"
-import { ConvertEffectCustomizationType, EffectCustomizationType } from "./Effect"
+import { EffectCustomizationTypeConverter, EffectCustomizationType } from "./Effect"
 import { SpellBaseInfo, SpellBaseInfoConverter } from "./SpellBase"
 
 export class CustomSpell {
@@ -30,8 +30,6 @@ export class CustomSpell {
     SpellAlteration: SpellBaseInfo
 
     IsEditable = false
-
-    private castingInfo: CastingInfo
 
     constructor(
         originCasterId: string, additionalCasterIdList: ArrayList<string>, spellLevel: number, 
@@ -157,7 +155,7 @@ export class CustomSpellConverter {
             return list
 
         element.forEach(customizationElement => {
-            var effectType = ConvertEffectCustomizationType.convert(customizationElement.effect_name)
+            var effectType = EffectCustomizationTypeConverter.convert(customizationElement.effect_name)
             list.add(this.convertBaseEffectCustomization(effectType, customizationElement))
         })
         return list

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Ability, ConvertAbility } from "../../../Models/Ability";
+import { Ability, AbilityConverter } from "../../../Models/Ability";
 import { AbilityScoreCustomization } from "../../../Models/Cost/AbilityScoreCustomization";
 import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationControl";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
@@ -26,7 +26,7 @@ export class CurtailCapacityControl extends BaseEffectCustomizationControl  {
     } 
 
     setCapacityAbility() {
-        this.AbilityScore.Ability = ConvertAbility.convert((document.getElementById('capacity-ability-select') as any).value)
+        this.AbilityScore.Ability = AbilityConverter.convert((document.getElementById('capacity-ability-select') as any).value)
         this.AbilityScore.Cost =  Number((document.getElementById('capacity-ability-increase-picker') as any).value)
         this.customizationAddedEmitter.emit(this.AbilityScore)
     }

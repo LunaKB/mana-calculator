@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnDestroy } from "@angular/core";
 import { SpellLevelInfo } from "../Models/SpellLevel";
 import { SpellBaseInfo } from "../Models/SpellBase";
-import { EffectCustomizationType, ConvertEffectCustomizationType, Effect } from "../Models/Effect";
+import { EffectCustomizationType, EffectCustomizationTypeConverter, Effect } from "../Models/Effect";
 import { Caster } from "../Models/Caster";
 import { CastingCalculator } from "../Utils/CastingCalculator";
 import { CustomSpell } from "../Models/CustomSpell";
@@ -100,8 +100,8 @@ export class CraftingComponent implements AfterContentInit, DataListener, OnDest
     onPrimaryEffectChange(_effect: Effect) {
         this.PrimaryEffect = _effect
 
-        if (ConvertEffectCustomizationType.isEffectCustomizationType(this.PrimaryEffect.Name))
-            this.PrimaryEffectType = ConvertEffectCustomizationType.convert(this.PrimaryEffect.Name)
+        if (EffectCustomizationTypeConverter.isType(this.PrimaryEffect.Name))
+            this.PrimaryEffectType = EffectCustomizationTypeConverter.convert(this.PrimaryEffect.Name)
         else
             this.PrimaryEffectType = null
         this.createEffectsForCustomization()

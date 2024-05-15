@@ -1,5 +1,5 @@
 import { BaseEffectCustomization } from "../../Models/Cost/BaseEffectCustomization";
-import { ConvertEffectCustomizationType, EffectCustomizationType } from "../../Models/Effect";
+import { EffectCustomizationTypeConverter, EffectCustomizationType } from "../../Models/Effect";
 import { List } from "./List";
 
 export class BaseEffectCustomizationList extends List<BaseEffectCustomization> {
@@ -16,7 +16,7 @@ export class BaseEffectCustomizationList extends List<BaseEffectCustomization> {
     }
 
     override getItemByName(name: string): BaseEffectCustomization {
-        var type = ConvertEffectCustomizationType.convert(name)
+        var type = EffectCustomizationTypeConverter.convert(name)
         return this.getItemByType(type)
     }    
 

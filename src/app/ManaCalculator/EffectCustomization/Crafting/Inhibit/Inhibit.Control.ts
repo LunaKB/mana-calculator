@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationControl";
-import { Ability, ConvertAbility } from "../../../Models/Ability";
+import { Ability, AbilityConverter } from "../../../Models/Ability";
 import { InhibitCustomization } from "../../../Models/Cost/InhibitCustomization";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
 import { EffectCustomizationType } from "../../../Models/Effect";
@@ -26,7 +26,7 @@ export class InhibitControl extends BaseEffectCustomizationControl {
     }
 
     setInhibit() {
-        this.Inhibit.Ability = ConvertAbility.convert((document.getElementById('inhibit-ability-select') as any).value)
+        this.Inhibit.Ability = AbilityConverter.convert((document.getElementById('inhibit-ability-select') as any).value)
         this.customizationAddedEmitter.emit(this.Inhibit)
     }
 }

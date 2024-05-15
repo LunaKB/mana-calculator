@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationControl";
-import { Ability, ConvertAbility } from "../../../Models/Ability";
+import { Ability, AbilityConverter } from "../../../Models/Ability";
 import { SavingThrowCustomization } from "../../../Models/Cost/SavingThrowCustomization";
 import { EffectType, Effect, EffectCustomizationType } from "../../../Models/Effect";
 import { Data } from "../../../Services/Data/Data";
@@ -36,8 +36,8 @@ export class AlterSavingThrowControl extends BaseEffectCustomizationControl {
     }
 
     saveSavingThrowAlteration() {
-        this.SavingThrow.OriginalSavingThrow = ConvertAbility.convert((document.getElementById('original-ability-select') as any).value)
-        this.SavingThrow.CustomSavingThrow = ConvertAbility.convert((document.getElementById('custom-ability-select') as any).value)
+        this.SavingThrow.OriginalSavingThrow = AbilityConverter.convert((document.getElementById('original-ability-select') as any).value)
+        this.SavingThrow.CustomSavingThrow = AbilityConverter.convert((document.getElementById('custom-ability-select') as any).value)
         this.customizationAddedEmitter.emit(this.SavingThrow)
     }
 }

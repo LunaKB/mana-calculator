@@ -1,4 +1,4 @@
-import { Ability, ConvertAbility } from "../Ability";
+import { Ability, AbilityConverter } from "../Ability";
 import { EffectCustomizationType } from "../Effect";
 import { BaseEffectCustomization } from "./BaseEffectCustomization";
 
@@ -22,7 +22,7 @@ export class InhibitCustomization extends BaseEffectCustomization {
 export class InhibitCustomizationConverter {
     static convert(element) : InhibitCustomization {
         var data = element.effect_data.split(',')
-        var ability = ConvertAbility.convert(data[0].trim())
+        var ability = AbilityConverter.convert(data[0].trim())
         return new InhibitCustomization(ability)
     }
 }

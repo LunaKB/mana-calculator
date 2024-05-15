@@ -3,7 +3,7 @@ import { AffinityConflict } from "../Models/AffinityConflict";
 import { Caster } from "../Models/Caster";
 import { CastingInfo } from "../Models/CastingInfo";
 import { AffinityCustomization } from "../Models/Cost/AffinityCustomization";
-import { ConvertEffectCustomizationType, Effect, EffectCustomizationType } from "../Models/Effect";
+import { EffectCustomizationTypeConverter, Effect, EffectCustomizationType } from "../Models/Effect";
 import { SpellBaseInfo } from "../Models/SpellBase";
 import { Default } from "./Default";
 import { ArrayList } from "./List/ArrayList";
@@ -56,9 +56,9 @@ export class CastingCalculator {
 
     private static getEffectCost(effect: Effect, effectCustomizations: BaseEffectCustomizationList) : number {
         var cost = effect.Cost
-        if (!ConvertEffectCustomizationType.isEffectCustomizationType(effect.Name))
+        if (!EffectCustomizationTypeConverter.isType(effect.Name))
             return cost
-        var customizationType = ConvertEffectCustomizationType.convert(effect.Name)
+        var customizationType = EffectCustomizationTypeConverter.convert(effect.Name)
         
         var effectCustomization = effectCustomizations.getItems().find(customization => customization.CustomizationType == customizationType)
         if (!effectCustomization)
@@ -78,9 +78,9 @@ export class CastingCalculator {
     // This will get the difference between an effect's cost and its altered DC. This should usually return 0. 
     private static getEffectDC(effect: Effect, effectCustomizations: BaseEffectCustomizationList) : number {
         var dc = 0
-        if (!ConvertEffectCustomizationType.isEffectCustomizationType(effect.Name))
+        if (!EffectCustomizationTypeConverter.isType(effect.Name))
             return dc
-        var customizationType = ConvertEffectCustomizationType.convert(effect.Name)
+        var customizationType = EffectCustomizationTypeConverter.convert(effect.Name)
 
         var effectCustomization = effectCustomizations.getItems().find(customization => customization.CustomizationType == customizationType)
         if (!effectCustomization)

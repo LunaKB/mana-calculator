@@ -1,4 +1,4 @@
-import { Ability, ConvertAbility } from "../Ability";
+import { Ability, AbilityConverter } from "../Ability";
 import { EffectCustomizationType, EffectType } from "../Effect";
 import { BaseEffectCustomization } from "./BaseEffectCustomization";
 
@@ -33,8 +33,8 @@ export class SavingThrowCustomizationConverter {
         var data = element.effect_data.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()
-        var original = ConvertAbility.convert(data[2].trim())
-        var custom = ConvertAbility.convert(data[3].trim())
+        var original = AbilityConverter.convert(data[2].trim())
+        var custom = AbilityConverter.convert(data[3].trim())
         return new SavingThrowCustomization(effectType, effectName, original, custom)
     }
 }

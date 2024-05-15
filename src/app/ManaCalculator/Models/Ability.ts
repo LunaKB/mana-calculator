@@ -7,13 +7,8 @@ export enum Ability {
     Cha = "Charisma"
 }
 
-export class ConvertAbility {
+export class AbilityConverter {
     static convert(text: string) : Ability {
-        var convertedAbility: Ability
-        Object.values(Ability).forEach(ability => {
-            if (ability.valueOf() == text)
-                convertedAbility = ability
-        })
-        return convertedAbility
+        return Object.values(Ability).find(val => val.valueOf() == text)
     }
 }

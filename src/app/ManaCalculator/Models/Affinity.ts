@@ -8,11 +8,6 @@ export enum Affinity {
 
 export class AffinityConverter {
     public static convert(text: string) : Affinity {
-        var convertedAffinity: Affinity
-        Object.values(Affinity).forEach(affinity => {
-            if (affinity.valueOf() == text)
-                convertedAffinity = affinity
-        })
-        return convertedAffinity
+        return Object.values(Affinity).find(val => val.valueOf() == text)
     }
 }

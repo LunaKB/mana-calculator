@@ -1,4 +1,4 @@
-import { ConvertEffectCustomizationType, Effect, EffectCustomizationType } from "../../Models/Effect";
+import { EffectCustomizationTypeConverter, Effect, EffectCustomizationType } from "../../Models/Effect";
 import { ArrayList } from "./ArrayList";
 import { List } from "./List";
 
@@ -26,8 +26,8 @@ export class EffectList extends List<Effect> {
     getEffectCustomizationTypes() : Array<EffectCustomizationType> {
         var customizations = new Array<EffectCustomizationType>()
         this.array
-            .filter(effect => ConvertEffectCustomizationType.isEffectCustomizationType(effect.Name))
-            .forEach(effect => customizations.push(ConvertEffectCustomizationType.convert(effect.Name)))
+            .filter(effect => EffectCustomizationTypeConverter.isType(effect.Name))
+            .forEach(effect => customizations.push(EffectCustomizationTypeConverter.convert(effect.Name)))
         return customizations
     }
 }

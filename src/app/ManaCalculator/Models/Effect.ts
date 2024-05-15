@@ -37,22 +37,12 @@ export enum EffectCustomizationType {
     Stealthed = "Stealthed"
 }
 
-export class ConvertEffectCustomizationType {
-    static isEffectCustomizationType(text: string ) : boolean {
-        var exists = false
-        Object.values(EffectCustomizationType).forEach(effect=> {
-            if (effect.valueOf() == text)
-                exists = true
-        })
-        return exists
+export class EffectCustomizationTypeConverter {
+    static isType(text: string ) : boolean {
+        return Object.values(EffectCustomizationType).some(val => val.valueOf() == text)
     }
 
     static convert(text: string) : EffectCustomizationType {
-        var convertedEffect: EffectCustomizationType = null
-        Object.values(EffectCustomizationType).forEach(effect=> {
-            if (effect.valueOf() == text)
-                convertedEffect = effect
-        })
-        return convertedEffect
+        return Object.values(EffectCustomizationType).find(val => val.valueOf() == text)
     }
 }
