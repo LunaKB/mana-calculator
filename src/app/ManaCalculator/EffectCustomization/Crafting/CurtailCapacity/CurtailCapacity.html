@@ -1,6 +1,6 @@
 <div *ngIf="Show">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h3>Boost of Curtail Capacity</h3>
             <form>
                 <label for="capacity-ability-select" class="form-label">Affected Ability</label>
@@ -18,7 +18,7 @@
             <br>
         </div>
         <div class="col">
-            <h3>Output</h3>            
+            <h3>Result</h3>            
             <p *ngIf="AbilityScore">{{AbilityScore.getSummary()}}</p>
     </div>
     <hr>

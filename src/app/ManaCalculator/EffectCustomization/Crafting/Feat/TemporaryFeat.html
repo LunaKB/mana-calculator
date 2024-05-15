@@ -1,11 +1,11 @@
 <div *ngIf="Show">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h3>Temporary Feat</h3>
             <form>
                 <label for="feat-name-input" class="form-label">Feat Name</label>
                 <input class="form-control" name="feat-name-input" id="feat-name-input" type="text" />
-                
+                <br>
                 <input [ngModel]="TemporaryFeat.HasFeat"
                     class="form-check-input" name="has-feat-input" id="has-feat-input" value="1" type="checkbox" />
                 <label for="has-feat-input" class="form-check-label">Caster Has Feat</label>
@@ -15,7 +15,7 @@
         </div>
         <br>
         <div class="col">
-            <h3>Output</h3>
+            <h3>Result</h3>
             <p *ngIf="TemporaryFeat">{{TemporaryFeat.getSummary()}}</p>
         </div>
     </div>

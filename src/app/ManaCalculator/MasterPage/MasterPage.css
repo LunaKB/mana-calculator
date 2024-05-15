@@ -1,16 +1,16 @@
 #main-title {
-    background-color: #9B104B;
+    background-color: #5E3465 !important;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 #main-title-text {
-    color: #CC4D82;
+    color: white;
     text-align: center;
 }
 
 .dropdown-menu {
-    background-color: #9B104B;
+    background-color: #5E3465;
 }
 
 .dropdown-menu > li > a.dropdown-item,
@@ -24,9 +24,13 @@ a.nav-link.active {
 }
 
 .dropdown-menu > li > a.dropdown-item:hover,
-.dropdown-menu > li > a.dropdown-item:focus
+.dropdown-menu > li > a.dropdown-item:focus,
 a.nav-link:hover,
 a.nav-link:focus {
     color: white;
-    background-color: #5B0026;
+    background-color: #36013F;
+}
+
+footer {
+    background-color: #5E3465 !important;
 }

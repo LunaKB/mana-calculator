@@ -1,6 +1,6 @@
 <div *ngIf="Show">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h3>Inhibit</h3>
             <form>
                 <label for="inhibit-ability-select" class="form-label">Select Saving Throw</label>
@@ -13,7 +13,7 @@
             <br>
         </div>
         <div class="col">
-            <h3>Output</h3>
+            <h3>Result</h3>
             <p *ngIf="Inhibit">{{Inhibit.getSummary()}}</p>
         </div>
     </div>

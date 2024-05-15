@@ -1,6 +1,6 @@
 <div *ngIf="Show">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h3>Power Word</h3>
             <p *ngIf="NonCodaEffects.length() == 0">No effects to empower.</p>
             <div *ngIf="NonCodaEffects.length() > 0">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="col">
-            <h3>Output</h3>
+            <h3>Result</h3>
             <p *ngIf="PowerWord">{{PowerWord.getSummary()}}</p>
         </div>
     </div>   

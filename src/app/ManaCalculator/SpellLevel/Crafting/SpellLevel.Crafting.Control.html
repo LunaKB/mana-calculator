@@ -11,8 +11,10 @@
                 <button type="button" class="btn confirm-add" (click)="onSpellLevelChange()">Update</button>
             </form>
             <br>
-            <div *ngIf="CurrentInfo">
-                <table class="table">
+            <div>
+                <hr>
+                <p *ngIf="!CurrentInfo">No spell level selected. Update selection.</p>
+                <table class="table" *ngIf="CurrentInfo">
                     <thead>
                         <tr>
                             <th>Spell Level</th>

@@ -1,17 +1,19 @@
-<div class="row">
-    <div class="col-2">
-        <nav class="nav-crafting">
-            <div class="nav nav-tabs flex-column" role="tablist">
-                <a class="nav-item nav-link active" id="caster-tab" data-bs-toggle="tab" href="#caster-tabpanel" role="tab">Casters</a>
-                <a class="nav-item nav-link" id="spell-level-tab" data-bs-toggle="tab" href="#spell-level-tabpanel" role="tab">Spell Levels</a>
-                <a class="nav-item nav-link" id="spell-alteration-tab" data-bs-toggle="tab" href="#spell-alteration-tabpanel" role="tab">Spell Alteration</a>
-                <a class="nav-item nav-link" id="primary-effect-tab" data-bs-toggle="tab" href="#primary-effect-tabpanel" role="tab">Primary Effects</a>
-                <a class="nav-item nav-link" id="secondary-effect-tab" data-bs-toggle="tab" href="#secondary-effect-tabpanel" role="tab">Secondary Effects</a>
-                <a class="nav-item nav-link" id="coda-tab" data-bs-toggle="tab" href="#coda-tabpanel" role="tab">Codas</a>
-                <a class="nav-item nav-link" id="additional-cost-tab" data-bs-toggle="tab" href="#effect-customization-tabpanel" role="tab">Effect Customization</a>
-                <a class="nav-item nav-link" id="output-tab" data-bs-toggle="tab" href="#output-tabpanel" role="tab">Output</a>
-            </div>
-        </nav>
+<div class="row d-flex full-height">
+    <div class="col-2 full-height">
+        <div class="crafting-col full-height">
+            <nav class="nav-crafting">
+                <div class="nav nav-tabs flex-column" role="tablist">
+                    <a class="nav-item nav-link active" id="caster-tab" data-bs-toggle="tab" href="#caster-tabpanel" role="tab">Casters</a>
+                    <a class="nav-item nav-link" id="spell-level-tab" data-bs-toggle="tab" href="#spell-level-tabpanel" role="tab">Spell Levels</a>
+                    <a class="nav-item nav-link" id="spell-alteration-tab" data-bs-toggle="tab" href="#spell-alteration-tabpanel" role="tab">Spell Alteration</a>
+                    <a class="nav-item nav-link" id="primary-effect-tab" data-bs-toggle="tab" href="#primary-effect-tabpanel" role="tab">Primary Effects</a>
+                    <a class="nav-item nav-link" id="secondary-effect-tab" data-bs-toggle="tab" href="#secondary-effect-tabpanel" role="tab">Secondary Effects</a>
+                    <a class="nav-item nav-link" id="coda-tab" data-bs-toggle="tab" href="#coda-tabpanel" role="tab">Codas</a>
+                    <a class="nav-item nav-link" id="additional-cost-tab" data-bs-toggle="tab" href="#effect-customization-tabpanel" role="tab">Effect Customization</a>
+                    <a class="nav-item nav-link" id="result-tab" data-bs-toggle="tab" href="#result-tabpanel" role="tab">Result</a>
+                </div>
+            </nav>
+        </div>
     </div>
     <div class="col">
         <br><br>
@@ -61,17 +63,17 @@
                     (effect-customization-added)="onCustomizationAdded($event)"
                     (effect-customization-removed)="onCustomizationRemoved($event)" />
             </div>
-            <div class="tab-pane" id="output-tabpanel" role="tabpanel">
+            <div class="tab-pane" id="result-tabpanel" role="tabpanel">
                 <div class="container">
                     <div class="row">
-                        <div class="col">
+                        <div class="col border-end">
                             <div>
                                 <h3>Spell Name</h3>
                                 <label class="form-label" for="spell-name-input">Name</label>
                                 <input [(ngModel)]="SpellName"
                                     class="form-control" name="spell-name-input" id="spell-name-input" type="text" />
                                 
-                                <label class="form-label" for="spell-description-input">Name</label>
+                                <label class="form-label" for="spell-description-input">Description</label>
                                 <textarea [(ngModel)]="Description"
                                     class="form-control" name="spell-description-input" id="spell-description-input"></textarea>
                             </div>

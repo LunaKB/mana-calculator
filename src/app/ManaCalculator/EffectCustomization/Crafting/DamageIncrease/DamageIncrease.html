@@ -1,6 +1,6 @@
 <div *ngIf="Show">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h3>Damage Increase</h3>
             <form>
                 <label for="damage-increase-input" class="form-label">Cost</label>
@@ -13,7 +13,7 @@
         </div>
         <br>
         <div class="col">
-            <h3>Output</h3>
+            <h3>Result</h3>
             <p *ngIf="DamageIncrease">{{DamageIncrease.getSummary()}}</p>
         </div>
     </div>

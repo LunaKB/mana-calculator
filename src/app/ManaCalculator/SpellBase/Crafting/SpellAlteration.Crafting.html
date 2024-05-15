@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col border-end">
             <h4>Alter Spell Base</h4>
             <form>
                 <label for="spell-base-cost" class="form-label">Spell Base Cost</label>
@@ -42,7 +42,7 @@
             </form>
         </div>
         <div class="col">
-            <h4>Output</h4>
+            <h4>Result</h4>
             <p *ngIf="!CurrentInfo">No alterations detected. Update selection.</p>
             <div *ngIf="CurrentInfo">
                 <table class="table table-striped">
