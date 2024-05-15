@@ -58,7 +58,7 @@ async function post(data) {
         var codasQuery = getCodasQuery(data)
         var spellValues = `"${data.UniqueId}", "${data.OriginCasterId}", ${additionalCastersQuery}, ${data.SpellLevel}, ${data.PrimaryEffectId}, ${secondaryEffectQuery}, ${codasQuery}, "${data.SpellName}", "${data.Description}"`
         var result = await db.query(
-            `INSERT INTO custom_spells(uuid, origin_caster_id, spell_level_id, primary_effect_id, name, description)
+            `INSERT INTO custom_spells(uuid, origin_caster_id, additional_caster_id_list, spell_level_id, primary_effect_id, secondary_effect_id_list, coda_id_list, name, description)
             VALUES  (${spellValues});`
         );
         if (result.affectedRows)

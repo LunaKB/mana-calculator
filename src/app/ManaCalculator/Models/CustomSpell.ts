@@ -138,13 +138,13 @@ export class CustomSpellConverter {
     }
 
     static convertStringList(element) : ArrayList<string> {
-        if (element == null)
+        if (element == null || element.length == 0)
             return new ArrayList<string>()
         return new ArrayList<string>(...element.split(','))
     }
 
     static convertNumberList(element) : ArrayList<number> {
-        if (element == null)
+        if (element == null || element.length == 0)
             return new ArrayList<number>()
         return new ArrayList<number>(...Array.from(element.split(','), (value) => Number(value)))
     }

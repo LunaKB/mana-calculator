@@ -369,9 +369,9 @@ export class Data extends ServiceComponent {
                     data.forEach(element => {
                         var spellElement = element[0]
                         var spellAlteration = CustomSpellConverter.convertSpellAlteration(element[1])
-                        var spellSecondaryEffects = CustomSpellConverter.convertSecondaryEffectIds(spellElement.secondary_effect_id_list)
-                        var spellAdditionalCasters = CustomSpellConverter.convertCasterIds(spellElement.additional_caster_id_list)
-                        var spellCodaEffects = CustomSpellConverter.convertCodaIds(spellElement.coda_id_list)
+                        var spellSecondaryEffects = CustomSpellConverter.convertSecondaryEffectIds(spellElement)
+                        var spellAdditionalCasters = CustomSpellConverter.convertCasterIds(spellElement)
+                        var spellCodaEffects = CustomSpellConverter.convertCodaIds(spellElement)
                         var spellEffectCustomizations = CustomSpellConverter.convertBaseEffectCustomizations(element[2])                        
 
                         var spell = new CustomSpell(
