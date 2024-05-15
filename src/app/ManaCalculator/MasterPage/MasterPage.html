@@ -1,33 +1,21 @@
 <div class="container">
     <div id="main-title">
-        <nav class="navbar">
-            <div class="container-fluid">
-                <button class="navbar-toggler" id="menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
-                    <i class="bi bi-list h1" id="menu-icon"></i>
-                </button>
-                <div class="navbar-brand abs"><h1 id="main-title-text">Mana Spellcasting Calculator</h1></div>
-            </div>
-            <div class="container-fluid">
-                <div class="navbar-collapse collapse" id="navbar-content">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['Crafting']">Crafting</a></li>
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['CustomSpell']">Custom Spells</a></li>
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['Casters']">Casters</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="table-dropdown" role="button" data-bs-toggle="dropdown">Reference Tables</a>
-                            <ul class="dropdown-menu" aria-labelledby="table-dropdown">
-                                <li><a class="dropdown-item" [routerLink]="['SpellBase']">Spell Base Table</a></li>
-                                <li><a class="dropdown-item" [routerLink]="['PrimaryEffect']">Primary Effect Table</a></li>
-                                <li><a class="dropdown-item" [routerLink]="['SecondaryEffect']">Secondary Effect Table</a></li>
-                                <li><a class="dropdown-item" [routerLink]="['Coda']">Coda Table</a></li>
-                                <li><a class="dropdown-item" [routerLink]="['SpellLevel']">Spell Level Table</a></li>
-        
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <h1 id="main-title-text">Spellforge: Aetherian Realm Spell Management</h1>
+        <ul class="nav nav-fill">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['Crafting']">Crafting</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['CustomSpell']">Custom Spells</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['Casters']">Casters</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="table-dropdown" role="button" data-bs-toggle="dropdown">Reference Tables</a>
+                <ul class="dropdown-menu" aria-labelledby="table-dropdown">
+                    <li><a class="dropdown-item" [routerLink]="['SpellBase']">Spell Base Table</a></li>
+                    <li><a class="dropdown-item" [routerLink]="['PrimaryEffect']">Primary Effect Table</a></li>
+                    <li><a class="dropdown-item" [routerLink]="['SecondaryEffect']">Secondary Effect Table</a></li>
+                    <li><a class="dropdown-item" [routerLink]="['Coda']">Coda Table</a></li>
+                    <li><a class="dropdown-item" [routerLink]="['SpellLevel']">Spell Level Table</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
     <router-outlet />
 </div>

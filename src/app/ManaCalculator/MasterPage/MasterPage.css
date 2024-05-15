@@ -6,22 +6,11 @@
 
 #main-title-text {
     color: #CC4D82;
-}
-
-#menu-icon {
-    color: #CC4D82;
-}
-
-.dropdown-menu, .navbar {
-    background-color: #9B104B;
-}
-
-.navbar-brand.abs {
-    position: absolute;
-    width: auto;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
+}
+
+.dropdown-menu {
+    background-color: #9B104B;
 }
 
 .dropdown-menu > li > a.dropdown-item,

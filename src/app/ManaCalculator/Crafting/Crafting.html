@@ -1,131 +1,130 @@
-<div class="container">
-    <h2>Crafting Calculator</h2>
-    <div class="row">
-        <div class="col-3">
-            <nav class="nav-crafting">
-                <div class="nav nav-tabs flex-column" role="tablist">
-                    <a class="nav-item nav-link active" id="caster-tab" data-bs-toggle="tab" href="#caster-tabpanel" role="tab">Casters</a>
-                    <a class="nav-item nav-link" id="spell-level-tab" data-bs-toggle="tab" href="#spell-level-tabpanel" role="tab">Spell Levels</a>
-                    <a class="nav-item nav-link" id="spell-alteration-tab" data-bs-toggle="tab" href="#spell-alteration-tabpanel" role="tab">Spell Alteration</a>
-                    <a class="nav-item nav-link" id="primary-effect-tab" data-bs-toggle="tab" href="#primary-effect-tabpanel" role="tab">Primary Effects</a>
-                    <a class="nav-item nav-link" id="secondary-effect-tab" data-bs-toggle="tab" href="#secondary-effect-tabpanel" role="tab">Secondary Effects</a>
-                    <a class="nav-item nav-link" id="coda-tab" data-bs-toggle="tab" href="#coda-tabpanel" role="tab">Codas</a>
-                    <a class="nav-item nav-link" id="additional-cost-tab" data-bs-toggle="tab" href="#effect-customization-tabpanel" role="tab">Effect Customization</a>
-                    <a class="nav-item nav-link" id="output-tab" data-bs-toggle="tab" href="#output-tabpanel" role="tab">Output</a>
-                </div>
-            </nav>
-        </div>
-        <div class="col">
-            <div class="tab-content pt-5" id="tab-content">
-                <div class="tab-pane active" id="caster-tabpanel" role="tabpanel">
-                    <caster-crafting-control
-                        [parent-ready]="Ready"
-                        (origin-caster-changed)="onOriginCasterChange($event)"
-                        (additional-casters-added)="onAdditionalCasterAdded($event)"
-                        (additional-casters-removed)="onAdditionalCasterRemoved($event)" />
-                </div>
-                <div class="tab-pane" id="spell-level-tabpanel" role="tabpanel">
-                    <spell-level-crafting-control 
-                        [parent-ready]="Ready"
-                        (spell-info-selected)="onSpellLevelInfoChange($event)" />
-                </div>
-                <div class="tab-pane" id="spell-alteration-tabpanel" role="tabpanel">
-                    <spell-alteration-crafting-control
-                        [parent-ready]="Ready"
-                        (spell-alteration-update)="onSpellAlterationInfoChange($event)" />
-                </div>
-                <div class="tab-pane" id="primary-effect-tabpanel" role="tabpanel">
-                    <primary-effect-crafting-control
-                        [parent-ready]="Ready"
-                        (primary-effect-changed)="onPrimaryEffectChange($event)" />
-                </div>
-                <div class="tab-pane" id="secondary-effect-tabpanel" role="tabpanel">
-                    <secondary-effect-crafting-control
-                        [parent-ready]="Ready"
-                        (secondary-effect-added)="onSecondaryEffectAdded($event)"
-                        (secondary-effect-removed)="onSecondaryEffectRemoved($event)" />
-                </div>
-                <div class="tab-pane" id="coda-tabpanel" role="tabpanel">
-                    <coda-crafting-control
-                        [parent-ready]="Ready"
-                        (coda-effect-added)="onCodaEffectAdded($event)"
-                        (coda-effect-removed)="onCodaEffectRemoved($event)" />
-                </div>
-                <div class="tab-pane" id="effect-customization-tabpanel" role="tabpanel">
-                    <effect-customization-crafting-control
-                        [primary-effect-type]="PrimaryEffectType"
-                        [secondary-effect-types]="SecondaryEffectTypes"
-                        [coda-effect-types]="CodasEffectTypes"
-                        [all-effects]="AllEffectsToCustomize"
-                        [non-coda-effects]="NonCodaEffectsToCustomize"
-                        (effect-customization-added)="onCustomizationAdded($event)"
-                        (effect-customization-removed)="onCustomizationRemoved($event)" />
-                </div>
-                <div class="tab-pane" id="output-tabpanel" role="tabpanel">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div>
-                                    <h3>Spell Name</h3>
-                                    <label class="form-label" for="spell-name-input">Name</label>
-                                    <input [(ngModel)]="SpellName"
-                                        class="form-control" name="spell-name-input" id="spell-name-input" type="text" />
-                                    
-                                    <label class="form-label" for="spell-description-input">Name</label>
-                                    <textarea [(ngModel)]="Description"
-                                        class="form-control" name="spell-description-input" id="spell-description-input"></textarea>
-                                </div>
-                                <caster-output-control
-                                    [origin-caster]="OriginCaster"
-                                    [additional-casters]="AdditionalCasters" />
+<div class="row">
+    <div class="col-2">
+        <nav class="nav-crafting">
+            <div class="nav nav-tabs flex-column" role="tablist">
+                <a class="nav-item nav-link active" id="caster-tab" data-bs-toggle="tab" href="#caster-tabpanel" role="tab">Casters</a>
+                <a class="nav-item nav-link" id="spell-level-tab" data-bs-toggle="tab" href="#spell-level-tabpanel" role="tab">Spell Levels</a>
+                <a class="nav-item nav-link" id="spell-alteration-tab" data-bs-toggle="tab" href="#spell-alteration-tabpanel" role="tab">Spell Alteration</a>
+                <a class="nav-item nav-link" id="primary-effect-tab" data-bs-toggle="tab" href="#primary-effect-tabpanel" role="tab">Primary Effects</a>
+                <a class="nav-item nav-link" id="secondary-effect-tab" data-bs-toggle="tab" href="#secondary-effect-tabpanel" role="tab">Secondary Effects</a>
+                <a class="nav-item nav-link" id="coda-tab" data-bs-toggle="tab" href="#coda-tabpanel" role="tab">Codas</a>
+                <a class="nav-item nav-link" id="additional-cost-tab" data-bs-toggle="tab" href="#effect-customization-tabpanel" role="tab">Effect Customization</a>
+                <a class="nav-item nav-link" id="output-tab" data-bs-toggle="tab" href="#output-tabpanel" role="tab">Output</a>
+            </div>
+        </nav>
+    </div>
+    <div class="col">
+        <br><br>
+        <h2>Spell Crafting</h2>
+        <div class="tab-content pt-5" id="tab-content">
+            <div class="tab-pane active" id="caster-tabpanel" role="tabpanel">
+                <caster-crafting-control
+                    [parent-ready]="Ready"
+                    (origin-caster-changed)="onOriginCasterChange($event)"
+                    (additional-casters-added)="onAdditionalCasterAdded($event)"
+                    (additional-casters-removed)="onAdditionalCasterRemoved($event)" />
+            </div>
+            <div class="tab-pane" id="spell-level-tabpanel" role="tabpanel">
+                <spell-level-crafting-control 
+                    [parent-ready]="Ready"
+                    (spell-info-selected)="onSpellLevelInfoChange($event)" />
+            </div>
+            <div class="tab-pane" id="spell-alteration-tabpanel" role="tabpanel">
+                <spell-alteration-crafting-control
+                    [parent-ready]="Ready"
+                    (spell-alteration-update)="onSpellAlterationInfoChange($event)" />
+            </div>
+            <div class="tab-pane" id="primary-effect-tabpanel" role="tabpanel">
+                <primary-effect-crafting-control
+                    [parent-ready]="Ready"
+                    (primary-effect-changed)="onPrimaryEffectChange($event)" />
+            </div>
+            <div class="tab-pane" id="secondary-effect-tabpanel" role="tabpanel">
+                <secondary-effect-crafting-control
+                    [parent-ready]="Ready"
+                    (secondary-effect-added)="onSecondaryEffectAdded($event)"
+                    (secondary-effect-removed)="onSecondaryEffectRemoved($event)" />
+            </div>
+            <div class="tab-pane" id="coda-tabpanel" role="tabpanel">
+                <coda-crafting-control
+                    [parent-ready]="Ready"
+                    (coda-effect-added)="onCodaEffectAdded($event)"
+                    (coda-effect-removed)="onCodaEffectRemoved($event)" />
+            </div>
+            <div class="tab-pane" id="effect-customization-tabpanel" role="tabpanel">
+                <effect-customization-crafting-control
+                    [primary-effect-type]="PrimaryEffectType"
+                    [secondary-effect-types]="SecondaryEffectTypes"
+                    [coda-effect-types]="CodasEffectTypes"
+                    [all-effects]="AllEffectsToCustomize"
+                    [non-coda-effects]="NonCodaEffectsToCustomize"
+                    (effect-customization-added)="onCustomizationAdded($event)"
+                    (effect-customization-removed)="onCustomizationRemoved($event)" />
+            </div>
+            <div class="tab-pane" id="output-tabpanel" role="tabpanel">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <h3>Spell Name</h3>
+                                <label class="form-label" for="spell-name-input">Name</label>
+                                <input [(ngModel)]="SpellName"
+                                    class="form-control" name="spell-name-input" id="spell-name-input" type="text" />
+                                
+                                <label class="form-label" for="spell-description-input">Name</label>
+                                <textarea [(ngModel)]="Description"
+                                    class="form-control" name="spell-description-input" id="spell-description-input"></textarea>
                             </div>
-                            <div class="col">
-                                <spell-level-output-control
-                                    [spell-level-info]="SpellLevelInfo"/>
-                                <spell-alteration-output-control
-                                    [spell-alteration-info]="SpellAlterationInfo" />
-                            </div>
+                            <caster-output-control
+                                [origin-caster]="OriginCaster"
+                                [additional-casters]="AdditionalCasters" />
                         </div>
-                        <primary-effect-output-control 
-                            [primary-effect]="PrimaryEffect" />
-                        <secondary-effect-output-control
-                            [secondary-effects]="SecondaryEffects" />
-                        <coda-output-control
-                            [codas]="CodaEffects" />
-                        <effect-customization-output-control
-                            [spell-effect-customizations]="SpellEffectCustomizations" />
-                        <div class="row">
-                            <div class="col">
-                                <form>
-                                    <div>
-                                        <h3>Casting</h3>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Total Mana Cost</th>
-                                                    <th>Concentration DC</th>
-                                                    <th>Affinity Conflict Benefit</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngIf="CastingInformation">
-                                                    <td >{{CastingInformation.Cost}}</td>
-                                                    <td >{{CastingInformation.DC}}</td>
-                                                    <td >{{CastingInformation.AffinityConflict.Benefit}}</td>
-                                                </tr>
-                                                <tr *ngIf="!CastingInformation">
-                                                    <td colspan="3"><p class="error-message">Not enough information.</p></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <button *ngIf="showSave() && !CustomSpell" type="button" class="btn confirm-add" (click)="save()">Save</button>
-                                        <button *ngIf="showSave() && CustomSpell && CustomSpell.IsEditable" type="button" class="btn confirm-add" (click)="update()">Update</button>
-                                        <button type="button" class="btn confirm-add" (click)="reset()">Reset</button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="col">
+                            <spell-level-output-control
+                                [spell-level-info]="SpellLevelInfo"/>
+                            <spell-alteration-output-control
+                                [spell-alteration-info]="SpellAlterationInfo" />
+                        </div>
+                    </div>
+                    <primary-effect-output-control 
+                        [primary-effect]="PrimaryEffect" />
+                    <secondary-effect-output-control
+                        [secondary-effects]="SecondaryEffects" />
+                    <coda-output-control
+                        [codas]="CodaEffects" />
+                    <effect-customization-output-control
+                        [spell-effect-customizations]="SpellEffectCustomizations" />
+                    <div class="row">
+                        <div class="col">
+                            <form>
+                                <div>
+                                    <h3>Casting</h3>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Total Mana Cost</th>
+                                                <th>Concentration DC</th>
+                                                <th>Affinity Conflict Benefit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngIf="CastingInformation">
+                                                <td >{{CastingInformation.Cost}}</td>
+                                                <td >{{CastingInformation.DC}}</td>
+                                                <td >{{CastingInformation.AffinityConflict.Benefit}}</td>
+                                            </tr>
+                                            <tr *ngIf="!CastingInformation">
+                                                <td colspan="3"><p class="error-message">Not enough information.</p></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button *ngIf="showSave() && !CustomSpell" type="button" class="btn confirm-add" (click)="save()">Save</button>
+                                    <button *ngIf="showSave() && CustomSpell && CustomSpell.IsEditable" type="button" class="btn confirm-add" (click)="update()">Update</button>
+                                    <button type="button" class="btn confirm-add" (click)="reset()">Reset</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -133,5 +132,3 @@
         </div>
     </div>
 </div>
-
-
