@@ -113,28 +113,49 @@ export class CustomSpellDTO {
 }
 
 export class CustomSpellConverter {
+    static fromServer(data) : CustomSpell {
+        var additionalCasters = this.convertCasterIds(data)
+        var spellSecondaryEffects = this.convertSecondaryEffectIds(data)
+        var spellCodaEffects = this.convertCodaIds(data)
+        var spellEffectCustomizations = this.convertBaseEffectCustomizations(data)
+        var spellAlteration = this.convertSpellAlteration(data)
+
+        return new CustomSpell(
+            data.originCaster.uuid,
+            additionalCasters,
+            data.spellLevel.spellLevel,
+            data.primaryEffect.id,
+            spellSecondaryEffects,
+            spellCodaEffects,
+            spellEffectCustomizations,
+            data.name,
+            data.description,
+            spellAlteration,
+            data.uuid)
+    }
+
     static convertSpellAlteration(element) : SpellBaseInfo {
         if (element == null)
             return new SpellBaseInfo(0, "", "", 0, "", "", "")
-        return SpellBaseInfoConverter.convert(element)
+        return SpellBaseInfoConverter.convert(element.customSpellBase)
     }
 
     static convertSecondaryEffectIds(element) : ArrayList<number> {
         if (element == null)
             return new ArrayList<number>()
-        return CustomSpellConverter.convertNumberList(element.secondary_effect_id_list)
+        return CustomSpellConverter.convertNumberList(element.secondaryEffectIdList)
     }
 
     static convertCodaIds(element) : ArrayList<number> {
         if (element == null)
             return new ArrayList<number>()
-        return CustomSpellConverter.convertNumberList(element.coda_id_list)
+        return CustomSpellConverter.convertNumberList(element.codaIdList)
     }
 
     static convertCasterIds(element) : ArrayList<string> {
         if (element == null)
             return new ArrayList<string>()
-        return CustomSpellConverter.convertStringList(element.additional_caster_id_list)
+        return CustomSpellConverter.convertStringList(element.additionalCasterIdList)
     }
 
     static convertStringList(element) : ArrayList<string> {
@@ -154,8 +175,8 @@ export class CustomSpellConverter {
         if (element == null)
             return list
 
-        element.forEach(customizationElement => {
-            var effectType = EffectCustomizationTypeConverter.convert(customizationElement.effect_name)
+        element.spellEffectCustomizations.forEach(customizationElement => {
+            var effectType = EffectCustomizationTypeConverter.convert(customizationElement.effectName)
             list.add(this.convertBaseEffectCustomization(effectType, customizationElement))
         })
         return list

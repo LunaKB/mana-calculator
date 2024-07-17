@@ -30,7 +30,7 @@ export class AffinityCustomization extends BaseEffectCustomization {
 
 export class AffinityCustomizationConverter {
     static convert(element) : AffinityCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()
         var original = AffinityConverter.convert(data[2].trim())

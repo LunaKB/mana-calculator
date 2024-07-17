@@ -28,7 +28,7 @@ export class AbilityScoreCustomization extends BaseEffectCustomization{
 
 export class AbilityScoreCustomizationConverter {
     static convert(element) : AbilityScoreCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var ability = AbilityConverter.convert(data[0].trim())
         var cost = Number(data[1].trim())
         return new AbilityScoreCustomization(ability, cost)

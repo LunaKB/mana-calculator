@@ -35,7 +35,7 @@ export class TemporaryFeatCustomization extends BaseEffectCustomization {
 
 export class TemporaryFeatConverter {
     static convert(element) : TemporaryFeatCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var featName = data[0].trim()
         var hasFeat = Boolean(data[1].trim())
         return new TemporaryFeatCustomization(featName, hasFeat)

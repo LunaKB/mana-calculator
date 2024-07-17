@@ -30,7 +30,7 @@ export class SavingThrowCustomization extends BaseEffectCustomization {
 
 export class SavingThrowCustomizationConverter {
     static convert(element) : SavingThrowCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()
         var original = AbilityConverter.convert(data[2].trim())

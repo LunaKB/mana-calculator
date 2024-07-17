@@ -25,7 +25,7 @@ export class StealthedCustomization extends BaseEffectCustomization {
 
 export class StealthedCustomizationConverter {
     static convert(element) : StealthedCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()        
         return new StealthedCustomization(effectType, effectName)

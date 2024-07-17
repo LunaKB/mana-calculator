@@ -21,7 +21,7 @@ export class InhibitCustomization extends BaseEffectCustomization {
 
 export class InhibitCustomizationConverter {
     static convert(element) : InhibitCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var ability = AbilityConverter.convert(data[0].trim())
         return new InhibitCustomization(ability)
     }

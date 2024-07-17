@@ -43,7 +43,7 @@ export class CasterConverter {
     public static convert(data) : Caster {
         var id = data.uuid
         var name = data.name
-        var points = data.mana_points
+        var points = data.manaPoints
 
         var affinities = new Map<Affinity, number>()
         affinities.set(Affinity.Mind, data.mind)
