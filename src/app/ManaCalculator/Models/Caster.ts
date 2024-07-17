@@ -22,25 +22,25 @@ export class Caster {
 }
 
 export class CasterDTO {
-    Id: string
-    Name: string
-    ManaPointMax: number
-    Mind = 0
-    Source = 0
-    Will = 0
+    uuid: string
+    name: string
+    manaPoints: number
+    mind = 0
+    source = 0
+    will = 0
 
     constructor(id: string, name: string, manaPointMax: number, mind: number, source: number, will: number) {
-        this.Id = id
-        this.Name = name
-        this.ManaPointMax = manaPointMax
-        this.Mind = mind
-        this.Source = source
-        this.Will = will
+        this.uuid = id
+        this.name = name
+        this.manaPoints = manaPointMax
+        this.mind = mind
+        this.source = source
+        this.will = will
     }
 }
 
 export class CasterConverter {
-    public static convert(data) : Caster {
+    static convert(data) : Caster {
         var id = data.uuid
         var name = data.name
         var points = data.manaPoints
@@ -51,6 +51,17 @@ export class CasterConverter {
         affinities.set(Affinity.Will, data.will)
 
         return new Caster(name, points, affinities, id)
+    }
+
+    static toServer(caster: Caster) : string {
+        var casterDTO = new CasterDTO(
+            caster.Id,
+            caster.Name,
+            caster.ManaPointMax,
+            caster.Affinities.get(Affinity.Mind),
+            caster.Affinities.get(Affinity.Source),
+            caster.Affinities.get(Affinity.Will))
+        return JSON.stringify(casterDTO)
     }
 }
 

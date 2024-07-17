@@ -81,43 +81,33 @@ export class Data extends ServiceComponent {
     }
 
     addCaster(caster: Caster) {
-        var casterDTO = new CasterDTO(
-            caster.Id,
-            caster.Name,
-            caster.ManaPointMax,
-            caster.Affinities.get(Affinity.Mind),
-            caster.Affinities.get(Affinity.Source),
-            caster.Affinities.get(Affinity.Will))
-
-        var body = JSON.stringify(casterDTO)
+        var body = CasterConverter.toServer(caster)
         this.casterService.add(body).subscribe({
+            next: (val) => {
+                var serverCaster = CasterConverter.convert(val)
+                this.Casters.add(serverCaster)
+            },
             error: (error) =>  {
                 console.log(error) 
-                ToastrWrapper.Toastr.error(`Server  error adding caster ${caster.Name}`)
+                ToastrWrapper.Toastr.error(`Error adding caster ${caster.Name}.`)
             }, complete: () => {
-                this.Casters.add(caster)
-                ToastrWrapper.Toastr.success("Caster Added")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} added.`)
             }
         })
     }
 
-    updateCaster(caster: Caster) {
-        var casterDTO = new CasterDTO(
-            caster.Id,
-            caster.Name,
-            caster.ManaPointMax,
-            caster.Affinities.get(Affinity.Mind),
-            caster.Affinities.get(Affinity.Source),
-            caster.Affinities.get(Affinity.Will))
-        
-        var body = JSON.stringify(casterDTO)
-        this.casterService.update(casterDTO.Id, body).subscribe({
+    updateCaster(caster: Caster) {        
+        var body = CasterConverter.toServer(caster)
+        this.casterService.update(caster.Id, body).subscribe({
+            next: (val) => {
+                var serverCaster = CasterConverter.convert(val)
+                this.Casters.updateItem(serverCaster)
+            },
             error: (error) =>  {
                 console.log(error)
-                ToastrWrapper.Toastr.error(`Error updating caster ${caster.Name}`)
+                ToastrWrapper.Toastr.error(`Error updating caster ${caster.Name}.`)
             }, complete: () => {
-                this.Casters.updateItem(caster)
-                ToastrWrapper.Toastr.success("Caster Updated")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} updated.`)
             }
         })
     }
@@ -126,10 +116,10 @@ export class Data extends ServiceComponent {
         this.casterService.remove(caster.Id).subscribe({
             error: (error) => {
                 console.log(error)
-                ToastrWrapper.Toastr.error(`Error deleting caster ${caster.Name}`)                
+                ToastrWrapper.Toastr.error(`Error deleting caster ${caster.Name}.`)                
             }, complete: () => {
                 this.Casters.removeItemByUUID(caster.Id)
-                ToastrWrapper.Toastr.success("Caster Deleted")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} deleted.`)
             }
         })
     }
