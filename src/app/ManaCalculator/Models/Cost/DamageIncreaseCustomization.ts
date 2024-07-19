@@ -25,7 +25,7 @@ export class DamageIncreaseCustomization extends BaseEffectCustomization {
 
 export class DamageIncreaseCustomizationConverter {
     static convert(element) : DamageIncreaseCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var cost = Number(data[0].trim())
         return new DamageIncreaseCustomization(cost)
     }

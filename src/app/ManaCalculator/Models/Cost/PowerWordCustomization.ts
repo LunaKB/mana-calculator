@@ -32,7 +32,7 @@ export class PowerWordCustomization extends BaseEffectCustomization {
 
 export class PowerWordCustomizationConverter {
     static convert(element) : PowerWordCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()
         var cost = Number(data[2].trim())

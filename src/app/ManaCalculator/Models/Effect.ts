@@ -46,3 +46,9 @@ export class EffectCustomizationTypeConverter {
         return Object.values(EffectCustomizationType).find(val => val.valueOf() == text)
     }
 }
+
+export class ConvertEffectData {
+    static fromServer(data, type: EffectType) : Effect {
+        return new Effect(type, data.id, data.name, Affinity[data.aspect], data.description, data.cost)
+    }
+}

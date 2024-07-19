@@ -24,7 +24,7 @@ export class EchoedCustomization extends BaseEffectCustomization {
 
 export class EchoedCustomizationConverter {
     static convert(element) : EchoedCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()
         return new EchoedCustomization(effectType, effectName)

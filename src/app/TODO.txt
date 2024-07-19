@@ -1,10 +1,5 @@
 debug acessing from external ip adresses
 improve ui
-    "Output" to "Result"
-    Spell list named to "Archive"
-    Caster list changed to "Registry"
-        Details to "Profile"
-        List to "Roster"
     New colors
         light mode
             For a mystical theme that evokes the magic of spellcrafting while maintaining a soothing aesthetic, you might consider a palette inspired by mystical elements and nature. Here's a suggestion:

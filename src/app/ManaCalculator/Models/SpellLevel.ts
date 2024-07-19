@@ -14,3 +14,9 @@ export class SpellLevelInfo {
         this.MultipleTargetDamage = multipleTarget
     }
 }
+
+export class ConvertSpellLevelInfoData {
+    static fromServer(data) : SpellLevelInfo {
+        return new SpellLevelInfo(data.characterLevel, data.spellLevel, data.singleDamage, data.multipleDamage)
+    }
+}

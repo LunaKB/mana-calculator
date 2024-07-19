@@ -22,11 +22,11 @@ export class SpellBaseInfoConverter {
     static convert(element) : SpellBaseInfo {
         return new SpellBaseInfo(
             element.cost,
-            element.casting_time,
+            element.castingTime,
             element.range,
             element.target,
             element.area,
-            element.area_size,
+            element.areaSize,
             element.duration
         )
     }

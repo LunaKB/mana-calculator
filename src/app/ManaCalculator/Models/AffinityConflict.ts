@@ -9,3 +9,9 @@ export class AffinityConflict {
         this.Benefit = benefit
     }
 }
+
+export class ConvertAffinityConflictData {
+    static fromServer(data) : AffinityConflict {
+        return new AffinityConflict(data.numberOfAspects, data.conSaveIncrease, data.benefitDescription)
+    }
+}

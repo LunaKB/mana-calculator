@@ -25,7 +25,7 @@ export class RichochetCustomization extends BaseEffectCustomization {
 
 export class RichochetCustomizationConverter {
     static convert(element) : RichochetCustomization {
-        var data = element.effect_data.split(',')
+        var data = element.effectData.split(',')
         var effectType = EffectType[data[0].trim()]
         var effectName = data[1].trim()        
         return new RichochetCustomization(effectType, effectName)

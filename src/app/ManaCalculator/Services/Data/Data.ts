@@ -6,19 +6,19 @@ import { Affinity } from "../../Models/Affinity";
 import { CodaService } from "../Coda.Service";
 import { PrimaryEffectService } from "../PrimaryEffect.Service";
 import { SecondaryEffectService } from "../SecondaryEffect.Service";
-import { SpellBaseInfo } from "../../Models/SpellBase";
+import { SpellBaseInfo, SpellBaseInfoConverter } from "../../Models/SpellBase";
 import { SpellBaseService } from "../SpellBase.Service";
-import { SpellLevelInfo } from "../../Models/SpellLevel";
+import { ConvertSpellLevelInfoData, SpellLevelInfo } from "../../Models/SpellLevel";
 import { SpellLevelService } from "../SpellLevel.Service";
 import { CasterList } from "../../Utils/List/CasterList";
 import { EffectList } from "../../Utils/List/EffectList";
 import { SpellLevelInfoList } from "../../Utils/List/SpellLevelInfoList";
 import { ArrayList } from "../../Utils/List/ArrayList";
-import { AffinityConflict } from "../../Models/AffinityConflict";
+import { AffinityConflict, ConvertAffinityConflictData } from "../../Models/AffinityConflict";
 import { AffinityConflictService } from "../AffinityConflict.Service";
 import { CustomSpellService } from "../CustomSpell.Service";
 import { CustomSpell, CustomSpellConverter, CustomSpellDTO } from "../../Models/CustomSpell";
-import { Effect, EffectType } from "../../Models/Effect";
+import { ConvertEffectData, Effect, EffectType } from "../../Models/Effect";
 import { CustomSpellList } from "../../Utils/List/CustomSpellList";
 import { ToastrWrapper } from "../../Utils/ToastrWrapper";
 
@@ -81,43 +81,33 @@ export class Data extends ServiceComponent {
     }
 
     addCaster(caster: Caster) {
-        var casterDTO = new CasterDTO(
-            caster.Id,
-            caster.Name,
-            caster.ManaPointMax,
-            caster.Affinities.get(Affinity.Mind),
-            caster.Affinities.get(Affinity.Source),
-            caster.Affinities.get(Affinity.Will))
-
-        var body = JSON.stringify(casterDTO)
+        var body = CasterConverter.toServer(caster)
         this.casterService.add(body).subscribe({
+            next: (val) => {
+                var serverCaster = CasterConverter.convert(val)
+                this.Casters.add(serverCaster)
+            },
             error: (error) =>  {
                 console.log(error) 
-                ToastrWrapper.Toastr.error(`Server  error adding caster ${caster.Name}`)
+                ToastrWrapper.Toastr.error(`Error adding caster ${caster.Name}.`)
             }, complete: () => {
-                this.Casters.add(caster)
-                ToastrWrapper.Toastr.success("Caster Added")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} added.`)
             }
         })
     }
 
-    updateCaster(caster: Caster) {
-        var casterDTO = new CasterDTO(
-            caster.Id,
-            caster.Name,
-            caster.ManaPointMax,
-            caster.Affinities.get(Affinity.Mind),
-            caster.Affinities.get(Affinity.Source),
-            caster.Affinities.get(Affinity.Will))
-        
-        var body = JSON.stringify(casterDTO)
-        this.casterService.update(casterDTO.Id, body).subscribe({
+    updateCaster(caster: Caster) {        
+        var body = CasterConverter.toServer(caster)
+        this.casterService.update(caster.Id, body).subscribe({
+            next: (val) => {
+                var serverCaster = CasterConverter.convert(val)
+                this.Casters.updateItem(serverCaster)
+            },
             error: (error) =>  {
                 console.log(error)
-                ToastrWrapper.Toastr.error(`Error updating caster ${caster.Name}`)
+                ToastrWrapper.Toastr.error(`Error updating caster ${caster.Name}.`)
             }, complete: () => {
-                this.Casters.updateItem(caster)
-                ToastrWrapper.Toastr.success("Caster Updated")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} updated.`)
             }
         })
     }
@@ -126,10 +116,10 @@ export class Data extends ServiceComponent {
         this.casterService.remove(caster.Id).subscribe({
             error: (error) => {
                 console.log(error)
-                ToastrWrapper.Toastr.error(`Error deleting caster ${caster.Name}`)                
+                ToastrWrapper.Toastr.error(`Error deleting caster ${caster.Name}.`)                
             }, complete: () => {
                 this.Casters.removeItemByUUID(caster.Id)
-                ToastrWrapper.Toastr.success("Caster Deleted")
+                ToastrWrapper.Toastr.success(`Caster ${caster.Name} deleted.`)
             }
         })
     }
@@ -230,11 +220,7 @@ export class Data extends ServiceComponent {
             this.affinityConflictService.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        this.AffinityConflicts.add(new AffinityConflict(
-                            element.number_of_aspects,
-                            element.con_save_increase,
-                            element.benefit
-                        ))
+                        this.AffinityConflicts.add(ConvertAffinityConflictData.fromServer(element))
                     })
                     observer.next(true)
                 },
@@ -264,14 +250,8 @@ export class Data extends ServiceComponent {
             this.codaService.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        var id = element.id
-                        var name = element.name
-                        var aspect = Affinity[element.aspect]
-                        var description = element.description
-                        var cost = element.cost
-                        this.CodaEffects.add(new Effect(EffectType.Coda, id, name, aspect, description, cost))
-                    });
-                    
+                        this.CodaEffects.add(ConvertEffectData.fromServer(element, EffectType.Coda))
+                    });                    
                     observer.next(true)
                 },
                 error: (error) => observer.error(error),
@@ -285,12 +265,7 @@ export class Data extends ServiceComponent {
             this.primaryEffectService.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        var id = element.id
-                        var name = element.name
-                        var aspect = Affinity[element.aspect]
-                        var description = element.description
-                        var cost = element.cost
-                        this.PrimaryEffects.add(new Effect(EffectType.Primary, id, name, aspect, description, cost))
+                        this.PrimaryEffects.add(ConvertEffectData.fromServer(element, EffectType.Primary))
                     });
                     
                     observer.next(true)
@@ -306,12 +281,7 @@ export class Data extends ServiceComponent {
             this.secondaryEffectservice.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        var id = element.id
-                        var name = element.name
-                        var aspect = Affinity[element.aspect]
-                        var description = element.description
-                        var cost = element.cost
-                        this.SecondaryEffects.add(new Effect(EffectType.Secondary, id, name, aspect, description, cost))
+                        this.SecondaryEffects.add(ConvertEffectData.fromServer(element, EffectType.Secondary))
                     });
                     
                     observer.next(true)
@@ -327,12 +297,7 @@ export class Data extends ServiceComponent {
             this.spellBaseService.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        this.SpellBaseInfoList.add(new SpellBaseInfo(
-                            element.cost, element.casting_time,
-                            element.range, element.target,
-                            element.area, element.area_size, 
-                            element.duration
-                        ))
+                        this.SpellBaseInfoList.add(SpellBaseInfoConverter.convert(element))
                     });
                     observer.next(true)
                 },
@@ -347,12 +312,7 @@ export class Data extends ServiceComponent {
             this.spellLevelService.getAll().subscribe({
                 next: (data) => {
                     data.forEach(element => {
-                        this.SpellLevelInfoList.add(new SpellLevelInfo(
-                            element.character_level,
-                            element.spell_level,
-                            element.single_damage,
-                            element.multiple_damage
-                        ))
+                        this.SpellLevelInfoList.add(ConvertSpellLevelInfoData.fromServer(element))
                     })
                     observer.next(true)
                 },
@@ -366,27 +326,8 @@ export class Data extends ServiceComponent {
         return new Observable<boolean>(observer => {
             this.customSpellService.getAll().subscribe({
                 next: (data) => {
-                    data.forEach(element => {
-                        var spellElement = element[0]
-                        var spellAlteration = CustomSpellConverter.convertSpellAlteration(element[1])
-                        var spellSecondaryEffects = CustomSpellConverter.convertSecondaryEffectIds(spellElement.secondary_effect_id_list)
-                        var spellAdditionalCasters = CustomSpellConverter.convertCasterIds(spellElement.additional_caster_id_list)
-                        var spellCodaEffects = CustomSpellConverter.convertCodaIds(spellElement.coda_id_list)
-                        var spellEffectCustomizations = CustomSpellConverter.convertBaseEffectCustomizations(element[2])                        
-
-                        var spell = new CustomSpell(
-                            spellElement.origin_caster_id,
-                            spellAdditionalCasters,
-                            spellElement.spell_level_id,
-                            spellElement.primary_effect_id,
-                            spellSecondaryEffects,
-                            spellCodaEffects,
-                            spellEffectCustomizations,
-                            spellElement.name,
-                            spellElement.description,
-                            spellAlteration,
-                            spellElement.uuid
-                        )
+                    data.forEach(element => {                   
+                        var spell = CustomSpellConverter.fromServer(element)
                         this.CustomSpells.add(spell) 
                     })
                     observer.next(true)
