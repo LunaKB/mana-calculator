@@ -21,10 +21,15 @@ export class SavingThrowCustomization extends BaseEffectCustomization {
     public override getCost(): number {
         return 3
     }
+
     public override getSummary(): string {
         if (this.EffectName == '')
             return 'No effect selected.'
         return `The saving throw for ${this.EffectType} Effect ${this.EffectName} changed from ${this.OriginalSavingThrow} to ${this.CustomSavingThrow}`
+    }
+
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}, ${this.OriginalSavingThrow}, ${this.CustomSavingThrow}`
     }
 }
 

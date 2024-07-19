@@ -25,6 +25,10 @@ export class PowerWordCustomization extends BaseEffectCustomization {
         return `The ${this.EffectType} Effect ${this.EffectName} happens automatically. ${this.getTargets()} target(s) affected.`
     }
 
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}, ${this.Cost}`
+    }
+
     getTargets() : number {
         return this.Cost / 2
     }    

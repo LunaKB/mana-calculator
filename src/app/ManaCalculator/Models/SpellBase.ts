@@ -18,6 +18,28 @@ export class SpellBaseInfo {
     }
 }
 
+export class SpellBaseInfoDTO {    
+    spellId: string
+    cost: number
+    castingTime: string
+    range: string
+    target: number
+    area: string
+    areaSize: string
+    duration: string
+
+    constructor(spellId: string, cost: number, castingTime: string, range: string, target: number, area: string, areaSize: string, duration: string) {
+        this.spellId = spellId
+        this.cost = cost
+        this.castingTime = castingTime
+        this.range = range
+        this.target = target
+        this.area = area
+        this.areaSize = areaSize
+        this.duration = duration
+    }
+}
+
 export class SpellBaseInfoConverter {
     static convert(element) : SpellBaseInfo {
         return new SpellBaseInfo(
@@ -29,5 +51,12 @@ export class SpellBaseInfoConverter {
             element.areaSize,
             element.duration
         )
+    }
+
+    static toServer(id: string, spellAlteration: SpellBaseInfo) : SpellBaseInfoDTO {
+        return new SpellBaseInfoDTO(
+            id, spellAlteration.Cost, spellAlteration.CastingTime,
+            spellAlteration.Range, spellAlteration.Target, spellAlteration.Area,
+            spellAlteration.AreaSize, spellAlteration.Duration)
     }
 }

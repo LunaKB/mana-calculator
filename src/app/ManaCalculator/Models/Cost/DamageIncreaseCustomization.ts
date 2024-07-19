@@ -18,9 +18,14 @@ export class DamageIncreaseCustomization extends BaseEffectCustomization {
     public override getDC(): number {
         return this.Cost * 2
     }
+
     public override getSummary(): string {
         return `Increase amount of damage die by ${this.Cost}. Spellcrafting DC increased by ${this.getDC()}.`
     }    
+
+    public override getEffectData(): string {
+        return `${this.Cost}`
+    }
 }
 
 export class DamageIncreaseCustomizationConverter {

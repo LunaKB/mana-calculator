@@ -21,6 +21,10 @@ export class StealthedCustomization extends BaseEffectCustomization {
             return 'No effect selected.'
         return `The ${this.EffectType} Effect ${this.EffectName} will be stealthed.`
     }
+
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}`
+    }
 }
 
 export class StealthedCustomizationConverter {

@@ -31,6 +31,10 @@ export class TemporaryFeatCustomization extends BaseEffectCustomization {
 
         return `Spending ${this.getCost()} to give ${this.FeatName}. ${hasFeatMessage}`
     }
+
+    public override getEffectData(): string {
+        return `${this.FeatName}, ${this.HasFeat}`
+    }
 }
 
 export class TemporaryFeatConverter {

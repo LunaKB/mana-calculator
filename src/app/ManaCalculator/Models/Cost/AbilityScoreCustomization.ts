@@ -24,6 +24,10 @@ export class AbilityScoreCustomization extends BaseEffectCustomization{
     getScore() : number {
         return this.Cost + 1
     }
+
+    public override getEffectData(): string {
+        return `${this.Ability}, ${this.Cost}`
+    }
 }
 
 export class AbilityScoreCustomizationConverter {

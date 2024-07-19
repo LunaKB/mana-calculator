@@ -1,26 +1,26 @@
-import { Observable, switchMap } from "rxjs";
-import { Caster, CasterConverter, CasterDTO } from "../../Models/Caster";
-import { CasterService } from "../Caster.Service";
-import { ServiceComponent } from "../ServiceComponent";
-import { Affinity } from "../../Models/Affinity";
-import { CodaService } from "../Coda.Service";
-import { PrimaryEffectService } from "../PrimaryEffect.Service";
-import { SecondaryEffectService } from "../SecondaryEffect.Service";
-import { SpellBaseInfo, SpellBaseInfoConverter } from "../../Models/SpellBase";
-import { SpellBaseService } from "../SpellBase.Service";
-import { ConvertSpellLevelInfoData, SpellLevelInfo } from "../../Models/SpellLevel";
-import { SpellLevelService } from "../SpellLevel.Service";
-import { CasterList } from "../../Utils/List/CasterList";
-import { EffectList } from "../../Utils/List/EffectList";
-import { SpellLevelInfoList } from "../../Utils/List/SpellLevelInfoList";
-import { ArrayList } from "../../Utils/List/ArrayList";
-import { AffinityConflict, ConvertAffinityConflictData } from "../../Models/AffinityConflict";
-import { AffinityConflictService } from "../AffinityConflict.Service";
-import { CustomSpellService } from "../CustomSpell.Service";
-import { CustomSpell, CustomSpellConverter, CustomSpellDTO } from "../../Models/CustomSpell";
-import { ConvertEffectData, Effect, EffectType } from "../../Models/Effect";
-import { CustomSpellList } from "../../Utils/List/CustomSpellList";
-import { ToastrWrapper } from "../../Utils/ToastrWrapper";
+import { Observable, switchMap } from 'rxjs';
+import { Caster, CasterConverter, CasterDTO } from '../../Models/Caster';
+import { CasterService } from '../Caster.Service';
+import { ServiceComponent } from '../ServiceComponent';
+import { Affinity } from '../../Models/Affinity';
+import { CodaService } from '../Coda.Service';
+import { PrimaryEffectService } from '../PrimaryEffect.Service';
+import { SecondaryEffectService } from '../SecondaryEffect.Service';
+import { SpellBaseInfo, SpellBaseInfoConverter } from '../../Models/SpellBase';
+import { SpellBaseService } from '../SpellBase.Service';
+import { ConvertSpellLevelInfoData, SpellLevelInfo } from '../../Models/SpellLevel';
+import { SpellLevelService } from '../SpellLevel.Service';
+import { CasterList } from '../../Utils/List/CasterList';
+import { EffectList } from '../../Utils/List/EffectList';
+import { SpellLevelInfoList } from '../../Utils/List/SpellLevelInfoList';
+import { ArrayList } from '../../Utils/List/ArrayList';
+import { AffinityConflict, ConvertAffinityConflictData } from '../../Models/AffinityConflict';
+import { AffinityConflictService } from '../AffinityConflict.Service';
+import { CustomSpellService } from '../CustomSpell.Service';
+import { CustomSpell, CustomSpellConverter, CustomSpellDTO } from '../../Models/CustomSpell';
+import { ConvertEffectData, Effect, EffectType } from '../../Models/Effect';
+import { CustomSpellList } from '../../Utils/List/CustomSpellList';
+import { ToastrWrapper } from '../../Utils/ToastrWrapper';
 
 export class Data extends ServiceComponent {
     Casters = new CasterList()
@@ -124,55 +124,39 @@ export class Data extends ServiceComponent {
         })
     }
 
-    addCustomSpell(customSpell: CustomSpell) {
-        var spellDTO = new CustomSpellDTO(
-            customSpell.OriginCasterId,
-            customSpell.AdditionalCasterIdList.getItems(),
-            customSpell.SpellLevel,
-            customSpell.PrimaryEffectId,
-            customSpell.SecondaryEffectIdList.getItems(),
-            customSpell.CodaIdList.getItems(),
-            customSpell.EffectCustomizations.getItems(),
-            customSpell.SpellName,
-            customSpell.Description,
-            customSpell.SpellAlteration,
-            customSpell.UniqueId
-        )
-
-        var body = JSON.stringify(spellDTO)
-        this.customSpellService.add(body).subscribe({
-            error: (error) => {
-                console.log(error)
-                ToastrWrapper.Toastr.error('Error adding spell.')  
-            }, complete: () => {
-                this.CustomSpells.add(customSpell)
-                ToastrWrapper.Toastr.success("Spell Added")
-            }
+    addCustomSpell(customSpell: CustomSpell) : Observable<CustomSpell> {
+        return new Observable<CustomSpell>(observer => {
+            var body = CustomSpellConverter.toServer(customSpell)
+            this.customSpellService.add(body).subscribe({
+                next: (val) => {
+                    var serverSpell = CustomSpellConverter.fromServer(val)
+                    this.CustomSpells.add(serverSpell)
+                    observer.next(serverSpell)
+                },
+                error: (error) => {
+                    console.log(error)
+                    ToastrWrapper.Toastr.error('Error adding spell.')  
+                    observer.error(error)
+                }, complete: () => {
+                    ToastrWrapper.Toastr.success('Spell added.')
+                    observer.complete()
+                }
+            })
         })
     }
 
     updateCustomSpell(customSpell: CustomSpell) {
-        var spellDTO = new CustomSpellDTO(
-            customSpell.OriginCasterId,
-            customSpell.AdditionalCasterIdList.getItems(),
-            customSpell.SpellLevel,
-            customSpell.PrimaryEffectId,
-            customSpell.SecondaryEffectIdList.getItems(),
-            customSpell.CodaIdList.getItems(),
-            customSpell.EffectCustomizations.getItems(),
-            customSpell.SpellName,
-            customSpell.Description,
-            customSpell.SpellAlteration,
-            customSpell.UniqueId
-        )
-        var body = JSON.stringify(spellDTO)
+        var body = CustomSpellConverter.toServer(customSpell)
         this.customSpellService.update(customSpell.UniqueId, body).subscribe({
+            next: (val) => {
+                if (val)
+                    this.CustomSpells.updateItem(customSpell)
+            },
             error: (error) => {
                 console.log(error)
                 ToastrWrapper.Toastr.error('Error updating spell.')
             }, complete: () => {
-                this.CustomSpells.updateItem(customSpell)
-                ToastrWrapper.Toastr.success("Spell Updated")
+                ToastrWrapper.Toastr.success('Spell updated.')
             }
         })
     }
@@ -184,7 +168,7 @@ export class Data extends ServiceComponent {
                 ToastrWrapper.Toastr.error('Error deleting spell.')
             }, complete: () => {
                 this.CustomSpells.removeItemByUUID(customSpell.UniqueId)
-                ToastrWrapper.Toastr.success("Spell Deleted")
+                ToastrWrapper.Toastr.success('Spell deleted.')
             }
         })
     }
@@ -203,7 +187,7 @@ export class Data extends ServiceComponent {
           ]).subscribe({
                 next: (val) => {
                 if (val)
-                    console.log("Loaded application data.")
+                    console.log('Loaded application data.')
                     observer.next(true)
                 },
                 error: (error) => {

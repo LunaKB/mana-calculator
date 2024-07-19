@@ -16,10 +16,15 @@ export class RichochetCustomization extends BaseEffectCustomization {
     public override getCost(): number {
         return 2
     }
+
     public override getSummary(): string {
         if (this.EffectName == '')
             return 'No effect selected.'
         return `The ${this.EffectType} Effect ${this.EffectName} will richochet.`
+    }
+
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}`
     }
 }
 
