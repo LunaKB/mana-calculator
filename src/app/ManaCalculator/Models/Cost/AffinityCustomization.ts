@@ -21,10 +21,15 @@ export class AffinityCustomization extends BaseEffectCustomization {
     public override getCost(): number {
         return 1
     }
+
     public override getSummary(): string {
         if (this.EffectName == "")
             return 'No effect selected.'
         return `The aspect for ${this.EffectType} Effect ${this.EffectName} changed from ${this.OriginalAffinity} to ${this.CustomAffinity}`
+    }
+
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}, ${this.OriginalAffinity}, ${this.CustomAffinity}`
     }
 }
 

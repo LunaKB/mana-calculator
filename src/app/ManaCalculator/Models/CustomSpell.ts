@@ -4,7 +4,7 @@ import { BaseEffectCustomizationList } from "../Utils/List/BaseEffectCustomizati
 import { CastingInfo } from "./CastingInfo"
 import { AbilityScoreCustomizationConverter } from "./Cost/AbilityScoreCustomization"
 import { AffinityCustomizationConverter } from "./Cost/AffinityCustomization"
-import { BaseEffectCustomization } from "./Cost/BaseEffectCustomization"
+import { BaseEffectCustomization, BaseEffectCustomizationDTO, ConverBaseEffectCustomization } from "./Cost/BaseEffectCustomization"
 import { DamageIncreaseCustomizationConverter } from "./Cost/DamageIncreaseCustomization"
 import { EchoedCustomizationConverter } from "./Cost/EchoedCustomization"
 import { InhibitCustomizationConverter } from "./Cost/InhibitCustomization"
@@ -14,7 +14,7 @@ import { SavingThrowCustomizationConverter } from "./Cost/SavingThrowCustomizati
 import { StealthedCustomizationConverter } from "./Cost/StealthedCustomization"
 import { TemporaryFeatConverter } from "./Cost/TemporaryFeatCustomization"
 import { EffectCustomizationTypeConverter, EffectCustomizationType } from "./Effect"
-import { SpellBaseInfo, SpellBaseInfoConverter } from "./SpellBase"
+import { SpellBaseInfo, SpellBaseInfoConverter, SpellBaseInfoDTO } from "./SpellBase"
 
 export class CustomSpell {
     UniqueId: string
@@ -48,8 +48,6 @@ export class CustomSpell {
 
         if (spellId)
             this.UniqueId = spellId
-        else
-            this.UniqueId = Math.random().toString(16).slice(2)
     }
 
     getCastingInfo(dataService: DataService) : CastingInfo {
@@ -82,33 +80,34 @@ export class CustomSpell {
 }
 
 export class CustomSpellDTO {
-    UniqueId: string
-    OriginCasterId: string
-    AdditionalCasterIdList: Array<string>
-    SpellLevel: number
-    PrimaryEffectId: number
-    SecondaryEffectIdList: Array<number>
-    CodaIdList: Array<number>
-    EffectCustomizations: Array<BaseEffectCustomization>
-    SpellName: string
-    Description: string
-    SpellAlteration: SpellBaseInfo    
+    uuid: string
+    originCasterId: string
+    additionalCasterIdList: string
+    spellLevel: number
+    primaryEffectId: number
+    secondaryEffectIdList: string
+    codaIdList: string
+    spellEffectCustomizations: Array<BaseEffectCustomizationDTO>
+    name: string
+    description: string
+    customSpellBase: SpellBaseInfoDTO  
 
     constructor(
-        originCasterId: string, additionalCasterIdList: Array<string>, spellLevel: number, 
-        primaryEffectId: number, secondaryEffectIdList: Array<number>, codaIdList: Array<number>, 
-        effectCustomizations: Array<BaseEffectCustomization>, name: string, description: string, spellAlteration: SpellBaseInfo, spellId: string) {
-        this.OriginCasterId = originCasterId
-        this.AdditionalCasterIdList = additionalCasterIdList
-        this.SpellLevel = spellLevel
-        this.PrimaryEffectId = primaryEffectId
-        this.SecondaryEffectIdList = secondaryEffectIdList
-        this.CodaIdList = codaIdList
-        this.EffectCustomizations = effectCustomizations
-        this.SpellName = name
-        this.Description = description
-        this.SpellAlteration = spellAlteration
-        this.UniqueId = spellId
+        originCasterId: string, additionalCasterIdList: string, spellLevel: number, 
+        primaryEffectId: number, secondaryEffectIdList: string, codaIdList: string, 
+        effectCustomizations: Array<BaseEffectCustomizationDTO>, name: string, description: string, 
+        spellAlteration: SpellBaseInfoDTO, spellId: string) {
+        this.originCasterId = originCasterId
+        this.additionalCasterIdList = additionalCasterIdList
+        this.spellLevel = spellLevel
+        this.primaryEffectId = primaryEffectId
+        this.secondaryEffectIdList = secondaryEffectIdList
+        this.codaIdList = codaIdList
+        this.spellEffectCustomizations = effectCustomizations
+        this.name = name
+        this.description = description
+        this.customSpellBase = spellAlteration
+        this.uuid = spellId
     }
 }
 
@@ -121,10 +120,10 @@ export class CustomSpellConverter {
         var spellAlteration = this.convertSpellAlteration(data)
 
         return new CustomSpell(
-            data.originCaster.uuid,
+            data.originCasterId,
             additionalCasters,
-            data.spellLevel.spellLevel,
-            data.primaryEffect.id,
+            data.spellLevel,
+            data.primaryEffectId,
             spellSecondaryEffects,
             spellCodaEffects,
             spellEffectCustomizations,
@@ -132,6 +131,20 @@ export class CustomSpellConverter {
             data.description,
             spellAlteration,
             data.uuid)
+    }
+
+    static toServer(spell: CustomSpell) : string {
+        var effectCustomizationsDTOs = Array<BaseEffectCustomizationDTO>()
+        spell.EffectCustomizations.getItems().forEach(effectCustomization => {
+            effectCustomizationsDTOs.push(ConverBaseEffectCustomization.toServer(spell.UniqueId, effectCustomization))
+        })
+
+        var serverSpell = new CustomSpellDTO(
+            spell.OriginCasterId, spell.AdditionalCasterIdList.getItems().toString(), spell.SpellLevel,
+            spell.PrimaryEffectId, spell.SecondaryEffectIdList.getItems().toString(), spell.CodaIdList.getItems().toString(),
+            effectCustomizationsDTOs, spell.SpellName, spell.Description,
+            SpellBaseInfoConverter.toServer(spell.UniqueId, spell.SpellAlteration), spell.UniqueId)
+        return JSON.stringify(serverSpell)
     }
 
     static convertSpellAlteration(element) : SpellBaseInfo {

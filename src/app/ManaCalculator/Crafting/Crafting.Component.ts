@@ -13,6 +13,7 @@ import { ToastrWrapper } from "../Utils/ToastrWrapper";
 import { DataService } from "../Services/Data/DataService";
 import { DataListener } from "../Services/Data/DataListener";
 import { CastingInfo } from "../Models/CastingInfo";
+import { error } from "console";
 
 @Component({
     templateUrl: './Crafting.html',
@@ -183,8 +184,15 @@ export class CraftingComponent implements AfterContentInit, DataListener, OnDest
 
     save() {
         this.createCustomSpell()
-        this._dataService.Data.addCustomSpell(this.CustomSpell)
-        this.CustomSpell.IsEditable = true
+        this._dataService.Data.addCustomSpell(this.CustomSpell).subscribe({
+            next: (val) => {
+                this.CustomSpell = val
+                console.log(val)
+                this.CustomSpell.IsEditable = true
+            },
+            error: (error) => console.log("Error creating custom spell"),
+            complete: () => console.log("Spell created successfully.")
+        })
     }
 
     update() {

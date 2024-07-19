@@ -20,6 +20,10 @@ export class EchoedCustomization extends BaseEffectCustomization {
     public override getSummary(): string {
         return `The ${this.EffectType} Effect ${this.EffectName} is being echoed.`
     }
+
+    public override getEffectData(): string {
+        return `${this.EffectType}, ${this.EffectName}`
+    }
 }
 
 export class EchoedCustomizationConverter {

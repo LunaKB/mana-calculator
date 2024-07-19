@@ -14,8 +14,13 @@ export class InhibitCustomization extends BaseEffectCustomization {
     public override getCost(): number {
         return 1
     }
+
     public override getSummary(): string {
         return `A target will have disadvantage on ${this.Ability.valueOf()} saving throws.`
+    }
+
+    public override getEffectData(): string {
+        return `${this.Ability}`
     }
 }
 
