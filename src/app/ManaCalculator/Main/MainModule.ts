@@ -17,6 +17,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ToastrWrapper } from '../Utils/ToastrWrapper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from '../Services/Data/DataService';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DataService } from '../Services/Data/DataService';
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    {provide: APP_BASE_HREF, useValue: '/dnd/'}
   ],
   bootstrap: [MasterPageComponent]
 })
