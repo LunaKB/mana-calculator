@@ -2,16 +2,10 @@ debug acessing from external ip adresses
 improve ui
     Layout
         Mobile layout
-            Crafting
             Spell Archive
             Casters
             Reference Tables
         Make footer always at bottom of page
-        Spell Crafting
-            Progress indicator
-            Next and previous buttons
-            Change tab locations, probably top
-            Make errors or unset data red
         Spell Archive
             Export data as text
         

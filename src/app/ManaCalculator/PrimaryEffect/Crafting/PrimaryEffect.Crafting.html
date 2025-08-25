@@ -13,7 +13,7 @@
             <br>
             <div>
                 <hr>
-                <p *ngIf="!PrimaryEffect">No primary effect selected. Update Selection.</p>
+                <p class="error-message" *ngIf="!PrimaryEffect">No primary effect selected. Update Selection.</p>
                 <table class="table" *ngIf="PrimaryEffect">
                     <thead>
                         <tr>

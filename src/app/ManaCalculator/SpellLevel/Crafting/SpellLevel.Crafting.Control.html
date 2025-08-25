@@ -13,7 +13,7 @@
             <br>
             <div>
                 <hr>
-                <p *ngIf="!CurrentInfo">No spell level selected. Update selection.</p>
+                <p class="error-message" *ngIf="!CurrentInfo">No spell level selected. Update selection.</p>
                 <table class="table" *ngIf="CurrentInfo">
                     <thead>
                         <tr>

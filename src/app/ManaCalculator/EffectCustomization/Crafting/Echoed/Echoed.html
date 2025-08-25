@@ -10,13 +10,13 @@
                 <br>
                 <button type="button" class="btn confirm-add" (click)="updateEchoedEffect()">Update</button>
                 <br><br>
-                <p *ngIf="!EffectToEcho">No effect selected. Update selection.</p>
+                <p class="error-message" *ngIf="!EffectToEcho">No effect selected. Update selection.</p>
             </div>
         </div>
         <br>
         <div class="col">
             <h3>Result</h3>
-            <p *ngIf="EffectToEcho">{{this.Echoed.getSummary()}}</p>
+            <p *ngIf="Echoed">{{this.Echoed.getSummary()}}</p>
         </div>
     </div>
     <hr>

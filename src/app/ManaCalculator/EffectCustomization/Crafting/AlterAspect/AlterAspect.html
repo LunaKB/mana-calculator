@@ -13,7 +13,7 @@
                     <button type="button" class="btn confirm-add" (click)="saveAffinityAlteration()">Update</button>
                 </div>
                 <hr>
-                <p *ngIf="!EffectForAffinity">No effect selected.</p>
+                <p class="error-message" *ngIf="!EffectForAffinity">No effect selected. Update customization.</p>
                 <div *ngIf="EffectForAffinity">
                     <p>Name: {{EffectForAffinity.Name}}</p>
                     <p>Aspect: {{EffectForAffinity.Aspect}}</p>

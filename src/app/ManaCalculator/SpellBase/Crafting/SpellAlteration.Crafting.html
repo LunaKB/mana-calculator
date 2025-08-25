@@ -43,7 +43,7 @@
         </div>
         <div class="col">
             <h4>Result</h4>
-            <p *ngIf="!CurrentInfo">No alterations detected. Update selection.</p>
+            <p class="error-message" *ngIf="!CurrentInfo">No alterations detected. Update selection.</p>
             <div *ngIf="CurrentInfo">
                 <table class="table table-striped">
                     <tbody>

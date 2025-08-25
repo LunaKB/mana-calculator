@@ -10,11 +10,6 @@ app-root {
     display: inline-block;
 }
 
-.full-height {
-    min-height: 100vh !important;
-
-}
-
 select, input, textarea {
     background-color: #FFFEF1 !important;    
 }

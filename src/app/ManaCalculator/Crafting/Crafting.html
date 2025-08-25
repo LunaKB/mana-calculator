@@ -1,59 +1,70 @@
-<div class="row d-flex full-height">
-    <div class="col-2 full-height">
-        <div class="crafting-col full-height">
-            <nav class="nav-crafting">
-                <div class="nav nav-tabs flex-column" role="tablist">
-                    <a class="nav-item nav-link active" id="caster-tab" data-bs-toggle="tab" href="#caster-tabpanel" role="tab">Casters</a>
-                    <a class="nav-item nav-link" id="spell-level-tab" data-bs-toggle="tab" href="#spell-level-tabpanel" role="tab">Spell Levels</a>
-                    <a class="nav-item nav-link" id="spell-alteration-tab" data-bs-toggle="tab" href="#spell-alteration-tabpanel" role="tab">Spell Alteration</a>
-                    <a class="nav-item nav-link" id="primary-effect-tab" data-bs-toggle="tab" href="#primary-effect-tabpanel" role="tab">Primary Effects</a>
-                    <a class="nav-item nav-link" id="secondary-effect-tab" data-bs-toggle="tab" href="#secondary-effect-tabpanel" role="tab">Secondary Effects</a>
-                    <a class="nav-item nav-link" id="coda-tab" data-bs-toggle="tab" href="#coda-tabpanel" role="tab">Codas</a>
-                    <a class="nav-item nav-link" id="additional-cost-tab" data-bs-toggle="tab" href="#effect-customization-tabpanel" role="tab">Effect Customization</a>
-                    <a class="nav-item nav-link" id="result-tab" data-bs-toggle="tab" href="#result-tabpanel" role="tab">Result</a>
-                </div>
-            </nav>
+<div class="row d-flex">
+    <h2>Spell Crafter</h2>
+    <div id="crafting-carousel" class="carousel carousel-dark slide" data-bs-ride="false" data-bs-wrap="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="5"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="6"></button>
+            <button type="button" data-bs-target="#crafting-carousel" data-bs-slide-to="7"></button>
         </div>
-    </div>
-    <div class="col">
-        <br><br>
-        <h2>Spell Crafting</h2>
-        <div class="tab-content pt-5" id="tab-content">
-            <div class="tab-pane active" id="caster-tabpanel" role="tabpanel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
                 <caster-crafting-control
                     [parent-ready]="Ready"
                     (origin-caster-changed)="onOriginCasterChange($event)"
                     (additional-casters-added)="onAdditionalCasterAdded($event)"
                     (additional-casters-removed)="onAdditionalCasterRemoved($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Casters</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="spell-level-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <spell-level-crafting-control 
                     [parent-ready]="Ready"
                     (spell-info-selected)="onSpellLevelInfoChange($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Spell Levels</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="spell-alteration-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <spell-alteration-crafting-control
                     [parent-ready]="Ready"
                     (spell-alteration-update)="onSpellAlterationInfoChange($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Spell Alteration</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="primary-effect-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <primary-effect-crafting-control
                     [parent-ready]="Ready"
                     (primary-effect-changed)="onPrimaryEffectChange($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Primary Effects</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="secondary-effect-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <secondary-effect-crafting-control
                     [parent-ready]="Ready"
                     (secondary-effect-added)="onSecondaryEffectAdded($event)"
                     (secondary-effect-removed)="onSecondaryEffectRemoved($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Secondary Effects</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="coda-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <coda-crafting-control
                     [parent-ready]="Ready"
                     (coda-effect-added)="onCodaEffectAdded($event)"
                     (coda-effect-removed)="onCodaEffectRemoved($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Codas</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="effect-customization-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <effect-customization-crafting-control
                     [primary-effect-type]="PrimaryEffectType"
                     [secondary-effect-types]="SecondaryEffectTypes"
@@ -62,8 +73,11 @@
                     [non-coda-effects]="NonCodaEffectsToCustomize"
                     (effect-customization-added)="onCustomizationAdded($event)"
                     (effect-customization-removed)="onCustomizationRemoved($event)" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Effect Customization</h4>
+                </div>
             </div>
-            <div class="tab-pane" id="result-tabpanel" role="tabpanel">
+            <div class="carousel-item">
                 <div class="container">
                     <div class="row">
                         <div class="col border-end">
@@ -130,7 +144,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Result</h4>
+                </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#crafting-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#crafting-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>

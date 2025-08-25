@@ -13,7 +13,7 @@
                     <button type="button" class="btn confirm-add" (click)="savePowerWordAlteration()">Update</button>
                 </div>
                 <hr>
-                <p *ngIf="!EffectForPowerWord">No effect selected. Update selection.</p>
+                <p class="error-message" *ngIf="!EffectForPowerWord">No effect selected. Update selection.</p>
                 <div *ngIf="EffectForPowerWord">
                     <p>{{EffectForPowerWord.Name}}</p>
                     <p>{{EffectForPowerWord.Description}}</p>

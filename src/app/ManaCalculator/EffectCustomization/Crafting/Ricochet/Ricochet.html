@@ -10,7 +10,7 @@
                 <br>
                 <button type="button" class="btn confirm-add" (click)="setRichochet()">Update</button>
                 <hr>
-                <p *ngIf="!EffectForRichochet">No effect selected. Update selection.</p>
+                <p class="error-message" *ngIf="!EffectForRichochet">No effect selected. Update selection.</p>
                 <div *ngIf="EffectForRichochet">
                     <p>{{EffectForRichochet.Name}}</p>
                     <p>{{EffectForRichochet.Description}}</p>

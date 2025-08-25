@@ -18,6 +18,8 @@ export class EchoedCustomization extends BaseEffectCustomization {
     }
 
     public override getSummary(): string {
+        if (this.EffectName == "")
+            return 'No effect selected.'
         return `The ${this.EffectType} Effect ${this.EffectName} is being echoed.`
     }
 

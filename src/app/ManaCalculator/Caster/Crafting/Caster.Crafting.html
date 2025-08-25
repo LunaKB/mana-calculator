@@ -11,7 +11,7 @@
             </form>
             <br>
             <div>
-                <p *ngIf="!OriginCaster">No origin caster selected. Update Selection.</p>
+                <p class="error-message" *ngIf="!OriginCaster">No origin caster selected. Update Selection.</p>
                 <table class="table" *ngIf="OriginCaster">
                     <thead>
                         <tr>

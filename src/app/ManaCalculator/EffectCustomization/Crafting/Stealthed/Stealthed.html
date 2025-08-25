@@ -10,7 +10,7 @@
                 <br>
                 <button type="button" class="btn confirm-add" (click)="setStealthed()">Update</button>
                 <hr>
-                <p *ngIf="!EffectForStealth">No effect selected. Update selection.</p>
+                <p class="error-message" *ngIf="!EffectForStealth">No effect selected. Update selection.</p>
                 <div *ngIf="EffectForStealth">
                     <p>Name: {{EffectForStealth.Name}}</p>
                     <p>Description: {{EffectForStealth.Description}}</p>

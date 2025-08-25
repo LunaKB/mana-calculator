@@ -13,7 +13,7 @@
                     <button type="button" class="btn confirm-add" (click)="saveSavingThrowAlteration()">Update</button>
                 </div>
                 <hr>
-                <p *ngIf="!EffectForSavingThrow">No effect selected. Update selection.</p>
+                <p class="error-message" *ngIf="!EffectForSavingThrow">No effect selected. Update selection.</p>
                 <div *ngIf="EffectForSavingThrow">
                     <p>Name: {{EffectForSavingThrow.Name}}</p>
                     <p>Description: {{EffectForSavingThrow.Description}}</p>

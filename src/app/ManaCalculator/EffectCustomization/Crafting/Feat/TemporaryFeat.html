@@ -11,6 +11,8 @@
                 <label for="has-feat-input" class="form-check-label">Caster Has Feat</label>
                 <br>
                 <button type="button" class="btn confirm-add" (click)="setFeat()">Update</button>
+                <br><br>
+                <p class="error-message" *ngIf="TemporaryFeat.FeatName.trim() == ''">No feat set. Update customization.</p>
             </form>
         </div>
         <br>
