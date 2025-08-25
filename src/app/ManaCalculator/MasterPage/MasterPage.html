@@ -1,26 +1,34 @@
-<div class="container h-100">
-    <div id="main-title">
-        <h1 id="main-title-text">Spellforge: Aetherian Realm Spell Management</h1>
-        <ul class="nav nav-fill">
-            <li class="nav-item"><a class="nav-link" [routerLink]="['Crafting']">Crafting</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['CustomSpell']">Spell Archive</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['Casters']">Casters</a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="table-dropdown" role="button" data-bs-toggle="dropdown">Reference Tables</a>
-                <ul class="dropdown-menu" aria-labelledby="table-dropdown">
-                    <li><a class="dropdown-item" [routerLink]="['SpellBase']">Spell Base Table</a></li>
-                    <li><a class="dropdown-item" [routerLink]="['PrimaryEffect']">Primary Effect Table</a></li>
-                    <li><a class="dropdown-item" [routerLink]="['SecondaryEffect']">Secondary Effect Table</a></li>
-                    <li><a class="dropdown-item" [routerLink]="['Coda']">Coda Table</a></li>
-                    <li><a class="dropdown-item" [routerLink]="['SpellLevel']">Spell Level Table</a></li>
-                </ul>
-            </li>
-        </ul>
+<header id="main-title">
+  <nav class="navbar navbar-expand-lg" id="main-navbar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h1 id="main-title-text">Spellforge: Aetherian Realm Spell Management</h1>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" [routerLink]="['Crafting']">Crafting</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['CustomSpell']">Spell Archive</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['Casters']">Casters</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="table-dropdown" role="button" data-bs-toggle="dropdown">Reference Tables</a>
+            <ul class="dropdown-menu" aria-labelledby="table-dropdown">
+                <li><a class="dropdown-item" [routerLink]="['SpellBase']">Spell Base Table</a></li>
+                <li><a class="dropdown-item" [routerLink]="['PrimaryEffect']">Primary Effect Table</a></li>
+                <li><a class="dropdown-item" [routerLink]="['SecondaryEffect']">Secondary Effect Table</a></li>
+                <li><a class="dropdown-item" [routerLink]="['Coda']">Coda Table</a></li>
+                <li><a class="dropdown-item" [routerLink]="['SpellLevel']">Spell Level Table</a></li>
+            </ul>
+        </li>
+      </ul> 
     </div>
+  </nav>
+</header>
+<div class="container">
     <router-outlet />
-    <footer class="text-center">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
-            🌕 2024 Luna KB
-        </div>
-    </footer>
 </div>
+<footer class="text-center">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
+        🌕 2024 Luna KB
+    </div>
+</footer>

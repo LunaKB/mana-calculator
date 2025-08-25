@@ -1,5 +1,11 @@
+#main-navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #main-title {
     background-color: #5E3465 !important;
+    border-radius: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -7,6 +13,7 @@
 #main-title-text {
     color: white;
     text-align: center;
+    padding-right: 10px;
 }
 
 .dropdown-menu {
@@ -19,7 +26,8 @@ a.nav-link {
 }
 
 .dropdown-menu > li > a.dropdown-item.active,
-a.nav-link.active {
+a.nav-link.active,
+a.nav-link.show {
     color: white;
 }
 
@@ -33,4 +41,8 @@ a.nav-link:focus {
 
 footer {
     background-color: #5E3465 !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
