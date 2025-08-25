@@ -4,7 +4,6 @@ improve ui
         Mobile layout
             Spell Archive
             Casters
-            Reference Tables
         Spell Archive
             Export data as text
         

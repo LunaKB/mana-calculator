@@ -1,20 +1,54 @@
-<h3>Coda Table</h3>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Aspect</th>
-            <th>Cost</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let effect of CodaEffects.getItems()">
-            <td>{{effect.Name}}</td>
-            <td>{{effect.Aspect}}</td>
-            <td>{{effect.Cost}}</td>
-            <td>{{effect.Description}}</td>
-        </tr>
-    </tbody>
-</table>
+<h3>Codas</h3>
+<div class="info-desktop reference">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Aspect</th>
+                <th>Cost</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let effect of CodaEffects.getItems()">
+                <td>{{effect.Name}}</td>
+                <td>{{effect.Aspect}}</td>
+                <td>{{effect.Cost}}</td>
+                <td>{{effect.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="info-mobile reference">
+    <form>
+        <select class="form-select" name="coda-select" id="coda-select">
+            <option *ngFor="let effect of CodaEffects.getItems()" (value)="effect" >{{effect.Name}}</option>
+        </select>
+        <br>
+        <button type="button" class="btn confirm-add" (click)="updateSelection()">Update</button>
+    </form>
+    <div>
+        <hr>
+        <p class="error-message" *ngIf="!CodaEffect">No Coda selected. Update Selection.</p>
+        <div *ngIf="CodaEffect">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{CodaEffect.Name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Aspect</th>
+                        <td>{{CodaEffect.Aspect}}</td>
+                    </tr>
+                    <tr>
+                        <th>Cost</th>
+                        <td>{{CodaEffect.Cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Description</h4>
+            <p>{{CodaEffect.Description}}</p>
+        </div>
+    </div>
+</div>

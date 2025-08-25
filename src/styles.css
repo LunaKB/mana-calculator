@@ -30,6 +30,10 @@ table > tbody > tr > td {
     background-color: #FFFDD5 !important;
 }
 
+.reference {
+    margin-bottom: 100px !important;
+}
+
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #FFFDD5;
@@ -71,4 +75,16 @@ table > tbody > tr > td {
     border-top:5px solid #EFCC90;
     border-bottom:5px solid #EFCC90;
     padding:30px 25px;
+}
+
+@media only screen and (max-width: 800px) {
+    .info-desktop {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .info-mobile {
+        display: none;
+    }
 }

@@ -2,6 +2,7 @@ import { AfterContentInit, Component, OnDestroy } from "@angular/core";
 import { EffectList } from "../../../Utils/List/EffectList";
 import { DataListener } from "../../../Services/Data/DataListener";
 import { DataService } from "../../../Services/Data/DataService";
+import { Effect } from "../../../Models/Effect";
 
 @Component({
     templateUrl: "./SecondaryEffect.Component.html",
@@ -9,6 +10,7 @@ import { DataService } from "../../../Services/Data/DataService";
 })
 export class SecondaryEffectComponent implements AfterContentInit, DataListener, OnDestroy {
     SecondaryEffects = new EffectList()
+    SecondaryEffect: Effect = null
     
     constructor(private _dataService: DataService) { }
 
@@ -23,5 +25,14 @@ export class SecondaryEffectComponent implements AfterContentInit, DataListener,
 
     ngOnDestroy(): void {
         this._dataService.removeListener(this)
+    }
+
+    updateSelection() {
+        this.onSecondaryEffectChange((document.getElementById('secondary_effect_select') as any).value)
+    }
+
+    private onSecondaryEffectChange(_event) {
+        var name = this._dataService.Data.getInputOrValue(_event)
+        this.SecondaryEffect = this.SecondaryEffects.getItemByName(name)
     }
 }
