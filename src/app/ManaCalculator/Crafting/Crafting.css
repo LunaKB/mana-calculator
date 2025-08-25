@@ -7,6 +7,10 @@ h2 {
     width: min-content;
 }
 
+.carousel-indicators {
+    position: inherit;
+}
+
 .carousel-item {
     padding: 20px 20px 100px 20px;
 }

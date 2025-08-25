@@ -41,6 +41,12 @@ a.nav-link:focus {
 
 footer {
     background-color: #5E3465 !important;
+    border-radius: 25px;
+}
+
+footer > h3 {
+    width: 100%;
+    color: white;
 }
 
 .navbar-toggler-icon {

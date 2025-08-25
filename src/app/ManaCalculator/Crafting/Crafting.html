@@ -18,51 +18,33 @@
                     (origin-caster-changed)="onOriginCasterChange($event)"
                     (additional-casters-added)="onAdditionalCasterAdded($event)"
                     (additional-casters-removed)="onAdditionalCasterRemoved($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Casters</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <spell-level-crafting-control 
                     [parent-ready]="Ready"
                     (spell-info-selected)="onSpellLevelInfoChange($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Spell Levels</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <spell-alteration-crafting-control
                     [parent-ready]="Ready"
                     (spell-alteration-update)="onSpellAlterationInfoChange($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Spell Alteration</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <primary-effect-crafting-control
                     [parent-ready]="Ready"
                     (primary-effect-changed)="onPrimaryEffectChange($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Primary Effects</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <secondary-effect-crafting-control
                     [parent-ready]="Ready"
                     (secondary-effect-added)="onSecondaryEffectAdded($event)"
                     (secondary-effect-removed)="onSecondaryEffectRemoved($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Secondary Effects</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <coda-crafting-control
                     [parent-ready]="Ready"
                     (coda-effect-added)="onCodaEffectAdded($event)"
                     (coda-effect-removed)="onCodaEffectRemoved($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Codas</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <effect-customization-crafting-control
@@ -73,9 +55,6 @@
                     [non-coda-effects]="NonCodaEffectsToCustomize"
                     (effect-customization-added)="onCustomizationAdded($event)"
                     (effect-customization-removed)="onCustomizationRemoved($event)" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Effect Customization</h4>
-                </div>
             </div>
             <div class="carousel-item">
                 <div class="container">
@@ -143,9 +122,6 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h4>Result</h4>
                 </div>
             </div>
         </div>
