@@ -14,22 +14,42 @@
             <div>
                 <hr>
                 <p class="error-message" *ngIf="!CurrentInfo">No spell level selected. Update selection.</p>
-                <table class="table" *ngIf="CurrentInfo">
-                    <thead>
-                        <tr>
-                            <th>Spell Level</th>
-                            <th>Base Damage (Single Target)</th>
-                            <th>Base Damage (Multiple Targets)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{CurrentInfo.SpellLevel}}</td>
-                            <td>{{CurrentInfo.SingleTargetDamage}}{{CurrentInfo.SingleTargetDie}}</td>
-                            <td>{{CurrentInfo.MultipleTargetDamage}}{{CurrentInfo.MultipleTargetDie}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="info-desktop">
+                    <table class="table" *ngIf="CurrentInfo">
+                        <thead>
+                            <tr>
+                                <th>Spell Level</th>
+                                <th>Base Damage (Single Target)</th>
+                                <th>Base Damage (Multiple Targets)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{CurrentInfo.SpellLevel}}</td>
+                                <td>{{CurrentInfo.SingleTargetDamage}}{{CurrentInfo.SingleTargetDie}}</td>
+                                <td>{{CurrentInfo.MultipleTargetDamage}}{{CurrentInfo.MultipleTargetDie}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-mobile">
+                    <table class="table" *ngIf="CurrentInfo">
+                        <tbody>
+                            <tr>
+                                <th>Spell Level</th>
+                                <td>{{CurrentInfo.SpellLevel}}</td>
+                            </tr>
+                            <tr>
+                                <th>Base Damage (Single Target)</th>
+                                <td>{{CurrentInfo.SingleTargetDamage}}{{CurrentInfo.SingleTargetDie}}</td>
+                            </tr>
+                            <tr>
+                                <th>Base Damage (Multiple Targets)</th>
+                                <td>{{CurrentInfo.MultipleTargetDamage}}{{CurrentInfo.MultipleTargetDie}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>        
         </div> 
     </div>
