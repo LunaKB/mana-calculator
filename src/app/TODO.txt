@@ -4,7 +4,6 @@ improve ui
         Mobile layout
             Caster Registry
             Spell Crafter
-                Casters
                 Effective Spell Level
                 Spell Alteration
                 Primary Effects

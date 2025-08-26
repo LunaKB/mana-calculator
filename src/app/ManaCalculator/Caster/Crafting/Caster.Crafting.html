@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <h3>Casters</h3>
-        <div class="col">
+        <div>
             <form>
                 <h4>Origin Caster</h4>
                 <select class="form-select" name="origin-caster-select" id="origin-caster-select">
@@ -13,35 +13,64 @@
             <br>
             <div>
                 <p class="error-message" *ngIf="!OriginCaster">No origin caster selected. Update Selection.</p>
-                <table class="table" *ngIf="OriginCaster">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Mana Points</th>
-                            <th>Mind</th>
-                            <th>Source</th>
-                            <th>Will</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{OriginCaster.Name}}</td>
-                            <td>{{OriginCaster.ManaPointMax}}</td>
-                            <td>
-                                {{getValueForAffinity(OriginCaster, "Mind")}}
-                            </td>
-                            <td>
-                                {{getValueForAffinity(OriginCaster, "Source")}}
-                            </td>
-                            <td>
-                                {{getValueForAffinity(OriginCaster, "Will")}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="info-desktop">
+                    <table class="table" *ngIf="OriginCaster">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mana Points</th>
+                                <th>Mind</th>
+                                <th>Source</th>
+                                <th>Will</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{OriginCaster.Name}}</td>
+                                <td>{{OriginCaster.ManaPointMax}}</td>
+                                <td>
+                                    {{getValueForAffinity(OriginCaster, "Mind")}}
+                                </td>
+                                <td>
+                                    {{getValueForAffinity(OriginCaster, "Source")}}
+                                </td>
+                                <td>
+                                    {{getValueForAffinity(OriginCaster, "Will")}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-mobile">
+                    <div *ngIf="OriginCaster">
+                        <h5>{{OriginCaster.Name}}</h5>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Mana Points</th>
+                                    <td>{{OriginCaster.ManaPointMax}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mind</th>
+                                    <td>{{getValueForAffinity(OriginCaster, "Mind")}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Source</th>
+                                    <td>{{getValueForAffinity(OriginCaster, "Source")}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Will</th>
+                                    <td>{{getValueForAffinity(OriginCaster, "Will")}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col border-start">
+        <hr>
+        <div>
             <form>
                 <h4>Additional Casters</h4>
                 <select class="form-select" name="additional-caster-select" id="additional-caster-select">
@@ -53,34 +82,68 @@
             <br>
             <div>
                 <p *ngIf="AdditionalCasters.length() == 0">No additional casters added.</p>
-                <table class="table table-striped" *ngIf="AdditionalCasters.length() > 0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Mana Points</th>
-                            <th>Mind</th>
-                            <th>Source</th>
-                            <th>Will</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let caster of AdditionalCasters.getItems()">
-                            <td>{{caster.Name}}</td>
-                            <td>{{caster.ManaPointMax}}</td>
-                            <td>
-                                {{getValueForAffinity(caster, "Mind")}}
-                            </td>
-                            <td>
-                                {{getValueForAffinity(caster, "Source")}}
-                            </td>
-                            <td>
-                                {{getValueForAffinity(caster, "Will")}}
-                            </td>
-                            <td><button type="button" class="btn confirm-remove" (click)="removeAdditionalCaster(caster)">Remove</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="info-desktop">
+                    <table class="table table-striped" *ngIf="AdditionalCasters.length() > 0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mana Points</th>
+                                <th>Mind</th>
+                                <th>Source</th>
+                                <th>Will</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let caster of AdditionalCasters.getItems()">
+                                <td>{{caster.Name}}</td>
+                                <td>{{caster.ManaPointMax}}</td>
+                                <td>
+                                    {{getValueForAffinity(caster, "Mind")}}
+                                </td>
+                                <td>
+                                    {{getValueForAffinity(caster, "Source")}}
+                                </td>
+                                <td>
+                                    {{getValueForAffinity(caster, "Will")}}
+                                </td>
+                                <td><button type="button" class="btn confirm-remove" (click)="removeAdditionalCaster(caster)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-mobile">
+                    <div *ngIf="AdditionalCasters.length() > 0">
+                        <div *ngFor="let caster of AdditionalCasters.getItems()">
+                            <h5>{{caster.Name}}</h5>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Mana Points</th>
+                                        <td>{{caster.ManaPointMax}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mind</th>
+                                        <td>{{getValueForAffinity(caster, "Mind")}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Source</th>
+                                        <td>{{getValueForAffinity(caster, "Source")}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Will</th>
+                                        <td>{{getValueForAffinity(caster, "Will")}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Action</th>
+                                        <td><button type="button" class="btn confirm-remove" (click)="removeAdditionalCaster(caster)">Remove</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
