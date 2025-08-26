@@ -2,8 +2,16 @@ debug acessing from external ip adresses
 improve ui
     Layout
         Mobile layout
-            Spell Archive
-            Casters
+            Caster Registry
+            Spell Crafter
+                Casters
+                Effective Spell Level
+                Spell Alteration
+                Primary Effects
+                Secondary Effects
+                Codas
+                Effect Customization
+                Result
         Spell Archive
             Export data as text
         

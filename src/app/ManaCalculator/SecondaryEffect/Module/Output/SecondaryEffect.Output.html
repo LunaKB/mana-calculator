@@ -1,21 +1,43 @@
 <div class="row" *ngIf="SecondaryEffects.length() > 0">
     <h3>Secondary Effects</h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Aspect</th>
-                <th>Cost</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let effect of SecondaryEffects.getItems()">
-                <td>{{effect.Name}}</td>
-                <td>{{effect.Aspect}}</td>
-                <td>{{effect.Cost}}</td>
-                <td>{{effect.Description}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="info-desktop">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Aspect</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let effect of SecondaryEffects.getItems()">
+                    <td>{{effect.Name}}</td>
+                    <td>{{effect.Aspect}}</td>
+                    <td>{{effect.Cost}}</td>
+                    <td>{{effect.Description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="info-mobile">
+        <div *ngFor="let effect of SecondaryEffects.getItems()">
+            <h4>{{effect.Name}}</h4>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Aspect</th>
+                        <td>{{effect.Aspect}}</td>
+                    </tr>
+                    <tr>
+                        <th>Cost</th>
+                        <td>{{effect.Cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Description</h5>
+            <p>{{effect.Description}}</p>
+            <hr>
+        </div>
+    </div>
 </div>

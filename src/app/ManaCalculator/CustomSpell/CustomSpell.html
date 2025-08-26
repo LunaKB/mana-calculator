@@ -1,24 +1,34 @@
 <br>
-<div class="row justify-content-center">
+<div class="row justify-content-center reference">
+    <h2>Spell Archive</h2>
     <div class="col">
         <p *ngIf="CustomSpells.length() == 0">There are no spells.</p>
         <div class="accordion" id="accordion-list" *ngIf="CustomSpells.length() > 0">
             <div *ngFor="let spell of CustomSpells.getItems()" class="accordion-item accordion-card">
                 <div *ngIf="spell.getCastingInfo(_dataService) as CastingInfo">
-                    <div class="accordion-header" id="heading-{{spell.UniqueId}}">
-                        <button class="accordion-button accordion-button-color collapsed" type="button" attr.data-bs-target="#collapse-{{spell.UniqueId}}" data-bs-toggle="collapse">
+                    <div class="row accordion-header" id="heading-{{spell.UniqueId}}">
+                        <div class="accordion-button accordion-button-color collapsed" type="button" attr.data-bs-target="#collapse-{{spell.UniqueId}}" data-bs-toggle="collapse">
                             {{spell.SpellName}} | Mana Cost - {{CastingInfo.Cost}} | Casting DC - {{CastingInfo.DC}}
-                        </button>
+                        </div>
                     </div>
 
                     <div id="collapse-{{spell.UniqueId}}" class="accordion-collapse collapse">
                         <div class="accordion-body">
                             <div class="row">
-                                <div class="col">
+                                <div class="col">     
+                                    <div class="dropdown info-mobile">
+                                        <button class="btn-small confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{spell.UniqueId}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{spell.UniqueId}}">
+                                            <li><button type="button" class="btn btn-primary dropdown-item" (click)="editCustomSpell(spell)">Edit</button></li>
+                                            <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCustomSpell(spell)">Remove</button></li>
+                                        </ul>
+                                    </div>
                                     <p>Description: {{spell.Description}}</p>
                                     <p>Affinity Conflict Bonus: {{CastingInfo.AffinityConflict.Benefit}}
                                 </div>
-                                <div class="col-1">
+                                <div class="col-1 info-desktop">
                                     <div class="dropdown">
                                         <button class="btn confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{spell.UniqueId}}" data-bs-toggle="dropdown" aria-expanded="false">
                                             Actions
@@ -27,22 +37,16 @@
                                             <li><button type="button" class="btn btn-primary dropdown-item" (click)="editCustomSpell(spell)">Edit</button></li>
                                             <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCustomSpell(spell)">Remove</button></li>
                                         </ul>
-                                    </div>                                    
+                                    </div>                              
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col border-end">
-                                    <caster-output-control
-                                        [origin-caster]="_dataService.getOriginCaster(spell.OriginCasterId)"
-                                        [additional-casters]="_dataService.getAdditionalCasters(spell.AdditionalCasterIdList)" />
-                                </div>
-                                <div class="col">
-                                    <spell-level-output-control
-                                        [spell-level-info]="_dataService.getSpellLevelInfo(spell.SpellLevel)" />
-                                    <spell-alteration-output-control
-                                        [spell-alteration-info]="spell.SpellAlteration" />
-                                </div>
-                            </div>
+                            <caster-output-control
+                                [origin-caster]="_dataService.getOriginCaster(spell.OriginCasterId)"
+                                [additional-casters]="_dataService.getAdditionalCasters(spell.AdditionalCasterIdList)" />
+                            <spell-level-output-control
+                                [spell-level-info]="_dataService.getSpellLevelInfo(spell.SpellLevel)" />
+                            <spell-alteration-output-control
+                                [spell-alteration-info]="spell.SpellAlteration" />                            
                             <primary-effect-output-control 
                                 [primary-effect]="_dataService.getPrimaryEffect(spell.PrimaryEffectId)" />
                             <secondary-effect-output-control

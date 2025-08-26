@@ -1,44 +1,100 @@
 <h3>Casters</h3>
 <p class="error-message" *ngIf="!OriginCaster">No origin caster selected.</p>
-<table class="table table-striped" *ngIf="OriginCaster">
-    <thead>
-        <tr>
-            <th>Caster Type</th>
-            <th>Name</th>
-            <th>Mana Points</th>
-            <th>Mind</th>
-            <th>Source</th>
-            <th>Will</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngIf="OriginCaster">
-            <td>Origin</td>
-            <td>{{OriginCaster.Name}}</td>
-            <td>{{OriginCaster.ManaPointMax}}</td>
-            <td>
-                {{getValueForAffinity(OriginCaster, "Mind")}}
-            </td>
-            <td>
-                {{getValueForAffinity(OriginCaster, "Source")}}
-            </td>
-            <td>
-                {{getValueForAffinity(OriginCaster, "Will")}}
-            </td>
-        </tr>
-        <tr *ngFor="let caster of AdditionalCasters.getItems()">
-            <td>Additional</td>
-            <td>{{caster.Name}}</td>
-            <td>{{caster.ManaPointMax}}</td>
-            <td>
-                {{getValueForAffinity(caster, "Mind")}}
-            </td>
-            <td>
-                {{getValueForAffinity(caster, "Source")}}
-            </td>
-            <td>
-                {{getValueForAffinity(caster, "Will")}}
-            </td>
-        </tr>   
-    </tbody>
-</table>
+<div class="info-desktop">
+    <table class="table table-striped" *ngIf="OriginCaster">
+        <thead>
+            <tr>
+                <th>Caster Type</th>
+                <th>Name</th>
+                <th>Mana Points</th>
+                <th>Mind</th>
+                <th>Source</th>
+                <th>Will</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="OriginCaster">
+                <td>Origin</td>
+                <td>{{OriginCaster.Name}}</td>
+                <td>{{OriginCaster.ManaPointMax}}</td>
+                <td>
+                    {{getValueForAffinity(OriginCaster, "Mind")}}
+                </td>
+                <td>
+                    {{getValueForAffinity(OriginCaster, "Source")}}
+                </td>
+                <td>
+                    {{getValueForAffinity(OriginCaster, "Will")}}
+                </td>
+            </tr>
+            <tr *ngFor="let caster of AdditionalCasters.getItems()">
+                <td>Additional</td>
+                <td>{{caster.Name}}</td>
+                <td>{{caster.ManaPointMax}}</td>
+                <td>
+                    {{getValueForAffinity(caster, "Mind")}}
+                </td>
+                <td>
+                    {{getValueForAffinity(caster, "Source")}}
+                </td>
+                <td>
+                    {{getValueForAffinity(caster, "Will")}}
+                </td>
+            </tr>   
+        </tbody>
+    </table>
+</div>
+<div class="info-mobile">
+    <div *ngIf="OriginCaster">
+        <h4>Origin Caster</h4>
+        <h5>{{OriginCaster.Name}}</h5>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Mana Points</th>
+                    <td>{{OriginCaster.ManaPointMax}}</td>
+                </tr>
+                <tr>
+                    <th>Mind</th>
+                    <td>{{getValueForAffinity(OriginCaster, "Mind")}}</td>
+                </tr>
+                <tr>
+                    <th>Source</th>
+                    <td>{{getValueForAffinity(OriginCaster, "Source")}}</td>
+                </tr>
+                <tr>
+                    <th>Will</th>
+                    <td>{{getValueForAffinity(OriginCaster, "Will")}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+    </div>
+    <div *ngIf="AdditionalCasters.length() > 0">
+        <h4>Additional Casters</h4>
+        <div *ngFor="let caster of AdditionalCasters.getItems()">
+            <h5>{{caster.Name}}</h5>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Mana Points</th>
+                        <td>{{caster.ManaPointMax}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mind</th>
+                        <td>{{getValueForAffinity(caster, "Mind")}}</td>
+                    </tr>
+                    <tr>
+                        <th>Source</th>
+                        <td>{{getValueForAffinity(caster, "Source")}}</td>
+                    </tr>
+                    <tr>
+                        <th>Will</th>
+                        <td>{{getValueForAffinity(caster, "Will")}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+</div>

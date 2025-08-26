@@ -1,6 +1,6 @@
 <div class="row" *ngIf="SpellEffectCustomizations.length() > 0">
-    <div class="col">
-        <h3>Spell Effect Customizations</h3>
+    <h3>Spell Effect Customizations</h3>
+    <div class="info-desktop">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -17,5 +17,21 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="info-mobile">
+        <div *ngFor="let costEffect of SpellEffectCustomizations.getItems()">
+            <h4>{{costEffect.CustomizationType.valueOf()}}</h4>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Cost</th>
+                        <td>{{costEffect.getCost()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Summary</h5>
+            <p>{{costEffect.getSummary()}}</p>
+            <hr>
+        </div>        
     </div>
 </div>
