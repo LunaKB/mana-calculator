@@ -4,7 +4,6 @@ improve ui
         Mobile layout
             Caster Registry
             Spell Crafter
-                Spell Alteration
                 Primary Effects
                 Secondary Effects
                 Codas

@@ -1,84 +1,82 @@
 <div class="container">
     <div class="row">
         <h3>Spell Alteration</h3>
-        <div class="col border-end">
-            <h4>Alter Spell Base</h4>
-            <form>
-                <label for="spell-base-cost" class="form-label">Spell Base Cost</label>
-                <input [(ngModel)]="Cost" (ngModelChange)="onCostChange()"
-                    class="form-control" name="spell-base-cost" id="spell-base-cost"
-                    type="number" min="0" max="6" step="1" />
-                <br>
-                <label for="casting-time-select" class="form-label">Casting Time</label>
-                <select class="form-control" name="casting-time-select" id="casting-time-select">
-                    <option *ngFor="let castingTime of AvailableCastingTimes.getItems()" (value)="castingTime">{{castingTime}}</option>
-                </select>
-                <br>
-                <label for="range-select" class="form-label">Range</label>
-                <select class="form-control" name="range-select" id="range-select">
-                    <option *ngFor="let range of AvailableRanges.getItems()" (value)="range">{{range}}</option>
-                </select>
-                <br>
-                <label for="target-select" class="form-label"># of Targets</label>
-                <select class="form-control" name="target-select" id="target-select">
-                    <option *ngFor="let target of AvailableTargets.getItems()" (value)="target">{{target}}</option>
-                </select>
-                <br>
-                <label for="area-select" class="form-label">Area</label>
-                <select class="form-control" name="area-select" id="area-select">
-                    <option *ngFor="let area of AvailableAreas.getItems()" (value)="area">{{area}}</option>
-                </select>
-                <br>
-                <label for="area-size-select" class="form-label">Area Size</label>
-                <select class="form-control" name="area-size-select" id="area-size-select">
-                    <option *ngFor="let areaSize of AvailableAreaSizes.getItems()" (value)="areaSize">{{areaSize}}</option>
-                </select>
-                <br>
-                <label for="duration-select" class="form-label">Duration</label>
-                <select class="form-control" name="duration-select" id="duration-select">
-                    <option *ngFor="let duration of AvailableDurations.getItems()" (value)="duration">{{duration}}</option>
-                </select>
-                <br>
-                <button type="button" class="btn confirm-add" (click)="updateSelection()">Update</button>
-            </form>
-        </div>
-        <div class="col">
-            <h4>Result</h4>
-            <p class="error-message" *ngIf="!CurrentInfo">No alterations detected. Update selection.</p>
-            <div *ngIf="CurrentInfo">
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <th>Cost</th>
-                            <td>{{CurrentInfo.Cost}}</td>
-                        </tr>
-                        <tr>
-                            <th>Casting Time</th>
-                            <td>{{CurrentInfo.CastingTime}}</td>
-                        </tr>
-                        <tr>
-                            <th>Range</th>
-                            <td>{{CurrentInfo.Range}}</td>
-                        </tr>
-                        <tr>
-                            <th># of Targets</th>
-                            <td>{{CurrentInfo.Target}}</td>
-                        </tr>
-                        <tr>
-                            <th>Area</th>
-                            <td>{{CurrentInfo.Area}}</td>
-                        </tr>
-                        <tr>
-                            <th>Area Size</th>
-                            <td>{{CurrentInfo.AreaSize}}</td>
-                        </tr>
-                        <tr>
-                            <th>Duration</th>
-                            <td>{{CurrentInfo.Duration}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <h4>Alter Spell Base</h4>
+        <form>
+            <label for="spell-base-cost" class="form-label">Spell Base Cost</label>
+            <input [(ngModel)]="Cost" (ngModelChange)="onCostChange()"
+                class="form-control" name="spell-base-cost" id="spell-base-cost"
+                type="number" min="0" max="6" step="1" />
+            <br>
+            <label for="casting-time-select" class="form-label">Casting Time</label>
+            <select class="form-control" name="casting-time-select" id="casting-time-select">
+                <option *ngFor="let castingTime of AvailableCastingTimes.getItems()" (value)="castingTime">{{castingTime}}</option>
+            </select>
+            <br>
+            <label for="range-select" class="form-label">Range</label>
+            <select class="form-control" name="range-select" id="range-select">
+                <option *ngFor="let range of AvailableRanges.getItems()" (value)="range">{{range}}</option>
+            </select>
+            <br>
+            <label for="target-select" class="form-label"># of Targets</label>
+            <select class="form-control" name="target-select" id="target-select">
+                <option *ngFor="let target of AvailableTargets.getItems()" (value)="target">{{target}}</option>
+            </select>
+            <br>
+            <label for="area-select" class="form-label">Area</label>
+            <select class="form-control" name="area-select" id="area-select">
+                <option *ngFor="let area of AvailableAreas.getItems()" (value)="area">{{area}}</option>
+            </select>
+            <br>
+            <label for="area-size-select" class="form-label">Area Size</label>
+            <select class="form-control" name="area-size-select" id="area-size-select">
+                <option *ngFor="let areaSize of AvailableAreaSizes.getItems()" (value)="areaSize">{{areaSize}}</option>
+            </select>
+            <br>
+            <label for="duration-select" class="form-label">Duration</label>
+            <select class="form-control" name="duration-select" id="duration-select">
+                <option *ngFor="let duration of AvailableDurations.getItems()" (value)="duration">{{duration}}</option>
+            </select>
+            <br>
+            <button type="button" class="btn confirm-add" (click)="updateSelection()">Update</button>
+            <br><br>
+        </form>
+        <hr>
+        <h4>Result</h4>
+        <p class="error-message" *ngIf="!CurrentInfo">No alterations detected. Update selection.</p>
+        <div *ngIf="CurrentInfo">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Cost</th>
+                        <td>{{CurrentInfo.Cost}}</td>
+                    </tr>
+                    <tr>
+                        <th>Casting Time</th>
+                        <td>{{CurrentInfo.CastingTime}}</td>
+                    </tr>
+                    <tr>
+                        <th>Range</th>
+                        <td>{{CurrentInfo.Range}}</td>
+                    </tr>
+                    <tr>
+                        <th># of Targets</th>
+                        <td>{{CurrentInfo.Target}}</td>
+                    </tr>
+                    <tr>
+                        <th>Area</th>
+                        <td>{{CurrentInfo.Area}}</td>
+                    </tr>
+                    <tr>
+                        <th>Area Size</th>
+                        <td>{{CurrentInfo.AreaSize}}</td>
+                    </tr>
+                    <tr>
+                        <th>Duration</th>
+                        <td>{{CurrentInfo.Duration}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
