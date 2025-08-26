@@ -14,24 +14,45 @@
             <div>
                 <hr>
                 <p class="error-message" *ngIf="!PrimaryEffect">No primary effect selected. Update Selection.</p>
-                <table class="table" *ngIf="PrimaryEffect">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Aspect</th>
-                            <th>Cost</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{PrimaryEffect.Name}}</td>
-                            <td>{{PrimaryEffect.Aspect}}</td>
-                            <td>{{PrimaryEffect.Cost}}</td>
-                            <td>{{PrimaryEffect.Description}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="info-desktop">
+                    <table class="table" *ngIf="PrimaryEffect">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Aspect</th>
+                                <th>Cost</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{PrimaryEffect.Name}}</td>
+                                <td>{{PrimaryEffect.Aspect}}</td>
+                                <td>{{PrimaryEffect.Cost}}</td>
+                                <td>{{PrimaryEffect.Description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-mobile">
+                    <div *ngIf="PrimaryEffect">
+                        <h4>{{PrimaryEffect.Name}}</h4>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <td>{{PrimaryEffect.Aspect}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Cost</th>
+                                    <td>{{PrimaryEffect.Cost}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5>Description</h5>
+                        <p>{{PrimaryEffect.Description}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

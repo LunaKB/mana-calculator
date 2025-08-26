@@ -1,44 +1,75 @@
 <div class="container">
     <div class="row justify-content-center">
         <h3>Secondary Effects</h3>
-        <div class="col-8 border-end">
+        <div class="col-8">
             <form>
                 <label for="secondary_effect_select" class="form-label">Secondary Effect</label>
                 <select class="form-select" name="secondary_effect_select" id="secondary_effect_select">
                     <option *ngFor="let effect of SecondaryEffects.getItems()" (value)="effect" >{{effect.Name}}</option>
                 </select>
                 <br>
-                <div class="btn-group" role="group">
+                <div class="btn-group info-desktop" role="group">
                     <button type="button" class="btn confirm-add" (click)="addSecondaryEffect()">Add</button>
                     <button type="button" class="btn confirm-add" (click)="setPreview()">Preview</button>
+                </div>
+                <div class="btn-group info-mobile" role="group">
+                    <button type="button" class="btn confirm-add" (click)="addSecondaryEffect()">Add</button>
                 </div>
             </form>
             <br>
             <div>
                 <p *ngIf="SelectedSecondaryEffects.length() == 0">No secondary effects added.</p>
-                <table class="table table-striped" *ngIf="SelectedSecondaryEffects.length() > 0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Aspect</th>
-                            <th>Cost</th>
-                            <th>Description</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let effect of SelectedSecondaryEffects.getItems()">
-                            <td>{{effect.Name}}</td>
-                            <td>{{effect.Aspect}}</td>
-                            <td>{{effect.Cost}}</td>
-                            <td>{{effect.Description}}</td>
-                            <td><button class="btn confirm-remove" type="button" (click)="removeSecondaryEffect(effect)">Remove</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="info-desktop">
+                    <table class="table table-striped" *ngIf="SelectedSecondaryEffects.length() > 0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Aspect</th>
+                                <th>Cost</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let effect of SelectedSecondaryEffects.getItems()">
+                                <td>{{effect.Name}}</td>
+                                <td>{{effect.Aspect}}</td>
+                                <td>{{effect.Cost}}</td>
+                                <td>{{effect.Description}}</td>
+                                <td><button class="btn confirm-remove" type="button" (click)="removeSecondaryEffect(effect)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-mobile">
+                    <div *ngIf="SelectedSecondaryEffects.length() > 0">
+                        <div *ngFor="let effect of SelectedSecondaryEffects.getItems()">
+                            <h4>{{effect.Name}}</h4>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Aspect</th>
+                                        <td>{{effect.Aspect}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cost</th>
+                                        <td>{{effect.Cost}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Action</th>
+                                        <td><button class="btn confirm-remove" type="button" (click)="removeSecondaryEffect(effect)">Remove</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>Description</h5>
+                            <p>{{effect.Description}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
-        <div class="col">
+        <div class="col border-start info-desktop">
             <h4>Preview</h4>
             <p *ngIf="!PreviewEffect">No effect to preview.</p>
             <div *ngIf="PreviewEffect">
