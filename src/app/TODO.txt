@@ -3,7 +3,6 @@ debug resetting spell crafter. all controls should reset as well.
 make sure "ricochet" is spelled correctly in UI and code.
 improve ui
     Layout
-        Center spell list title
         Mobile layout
             Caster Registry
             Spell Crafter
