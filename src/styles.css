@@ -82,7 +82,7 @@ table > tbody > tr > td {
 }
 
 .error-message {
-    color: red;
+    color: red !important;
     font-style: italic;
 }
 

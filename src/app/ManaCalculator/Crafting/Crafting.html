@@ -58,29 +58,25 @@
             </div>
             <div class="carousel-item">
                 <div class="container">
-                    <div class="row">
-                        <div class="col border-end">
-                            <div>
-                                <h3>Spell Name</h3>
-                                <label class="form-label" for="spell-name-input">Name</label>
-                                <input [(ngModel)]="SpellName"
-                                    class="form-control" name="spell-name-input" id="spell-name-input" type="text" />
-                                
-                                <label class="form-label" for="spell-description-input">Description</label>
-                                <textarea [(ngModel)]="Description"
-                                    class="form-control" name="spell-description-input" id="spell-description-input"></textarea>
-                            </div>
-                            <caster-output-control
-                                [origin-caster]="OriginCaster"
-                                [additional-casters]="AdditionalCasters" />
-                        </div>
-                        <div class="col">
-                            <spell-level-output-control
-                                [spell-level-info]="SpellLevelInfo"/>
-                            <spell-alteration-output-control
-                                [spell-alteration-info]="SpellAlterationInfo" />
-                        </div>
+                    <div>
+                        <h3>Spell Name</h3>
+                        <label class="form-label" for="spell-name-input">Name</label>
+                        <input [(ngModel)]="SpellName"
+                            class="form-control" name="spell-name-input" id="spell-name-input" type="text" />
+                        
+                        <label class="form-label" for="spell-description-input">Description</label>
+                        <textarea [(ngModel)]="Description"
+                            class="form-control" name="spell-description-input" id="spell-description-input"></textarea>
+                        <br>
                     </div>
+
+                    <caster-output-control
+                        [origin-caster]="OriginCaster"
+                        [additional-casters]="AdditionalCasters" />
+                    <spell-level-output-control
+                        [spell-level-info]="SpellLevelInfo"/>
+                    <spell-alteration-output-control
+                        [spell-alteration-info]="SpellAlterationInfo" />
                     <primary-effect-output-control 
                         [primary-effect]="PrimaryEffect" />
                     <secondary-effect-output-control
@@ -90,10 +86,10 @@
                     <effect-customization-output-control
                         [spell-effect-customizations]="SpellEffectCustomizations" />
                     <div class="row">
-                        <div class="col">
-                            <form>
-                                <div>
-                                    <h3>Casting</h3>
+                        <form>
+                            <div>
+                                <h3>Casting</h3>
+                                <div class="info-desktop">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -109,18 +105,40 @@
                                                 <td >{{CastingInformation.AffinityConflict.Benefit}}</td>
                                             </tr>
                                             <tr *ngIf="!CastingInformation">
-                                                <td colspan="3"><p class="error-message">Not enough information.</p></td>
+                                                <td colspan="3"><p class="error-message">Not enough information. Resolve all errors.</p></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="btn-group" role="group">
-                                    <button *ngIf="showSave() && !CustomSpell" type="button" class="btn confirm-add" (click)="save()">Save</button>
-                                    <button *ngIf="showSave() && CustomSpell && CustomSpell.IsEditable" type="button" class="btn confirm-add" (click)="update()">Update</button>
-                                    <button type="button" class="btn confirm-add" (click)="reset()">Reset</button>
+                                <div class="info-mobile">
+                                    <p *ngIf="!CastingInformation" class="error-message">Not enough information.</p>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <th>Total Mana Cost</th>
+                                                <td *ngIf="CastingInformation">{{CastingInformation.Cost}}</td>
+                                                <td *ngIf="!CastingInformation" class="error-message">Resolve all errors</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Concentration DC</th>
+                                                <td *ngIf="CastingInformation">{{CastingInformation.DC}}</td>
+                                                <td *ngIf="!CastingInformation" class="error-message">Resolve all errors</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Affinity Conflict Benefit</th>
+                                                <td *ngIf="CastingInformation">{{CastingInformation.AffinityConflict.Benefit}}</td>
+                                                <td *ngIf="!CastingInformation" class="error-message">Resolve all errors</td>
+                                            </tr>
+                                        </tbody>                                            
+                                    </table>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button *ngIf="showSave() && !CustomSpell" type="button" class="btn confirm-add" (click)="save()">Save</button>
+                                <button *ngIf="showSave() && CustomSpell && CustomSpell.IsEditable" type="button" class="btn confirm-add" (click)="update()">Update</button>
+                                <button type="button" class="btn confirm-add" (click)="reset()">Reset</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
