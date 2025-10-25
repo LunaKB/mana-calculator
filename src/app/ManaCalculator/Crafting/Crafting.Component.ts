@@ -13,7 +13,6 @@ import { ToastrWrapper } from "../Utils/ToastrWrapper";
 import { DataService } from "../Services/Data/DataService";
 import { DataListener } from "../Services/Data/DataListener";
 import { CastingInfo } from "../Models/CastingInfo";
-import { error } from "console";
 
 @Component({
     templateUrl: './Crafting.html',

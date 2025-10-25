@@ -18,6 +18,23 @@ h3, h4, h5 {
     text-align: center;
 }
 
+.accordion .accordion-card {
+	border: none;
+	margin-bottom: 2px;
+	border-radius: 0;
+	box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    background-color: #FFFEDE;
+}
+
+.accordion-button-color {
+  color: white !important;
+  background-color: #008080 !important;
+}
+.accordion-button-color:not(.collapsed) {
+  color: white !important;
+  background-color: #005A5A !important;
+}
+
 .accordion-header {
     background: #426F9B !important;
 }

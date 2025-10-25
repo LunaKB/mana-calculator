@@ -1,42 +1,51 @@
 <div *ngIf="Show">
-    <div class="row">
-        <div class="col border-end">
-            <h3>Alter Aspect</h3>
-            <p *ngIf="AllEffects.length() == 0">No effects to alter.</p>
-            <div *ngIf="AllEffects.length() > 0">
-                <select class="form-select" name="alter-affinity-select" id="alter-affinity-select">
-                    <option *ngFor="let effect of AllEffects.getItems()" (value)="effect">{{effect.Name}}</option>
-                </select>
-                <br>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn confirm-add" (click)="updateAffinityEffect()">Select</button>
-                    <button type="button" class="btn confirm-add" (click)="saveAffinityAlteration()">Update</button>
+    <div class="accordion" id="accordion-list">
+        <div class="accordion-item accordion-card">
+            <div class="row accordion-header" id="heading-alter-aspect">
+                <div class="accordion-button-color accordion-button collapsed" type="button" data-bs-target="#collapse-alter-aspect" data-bs-toggle="collapse">
+                    Alter Aspect
                 </div>
-                <hr>
-                <p class="error-message" *ngIf="!EffectForAffinity">No effect selected. Update customization.</p>
-                <div *ngIf="EffectForAffinity">
-                    <p>Name: {{EffectForAffinity.Name}}</p>
-                    <p>Aspect: {{EffectForAffinity.Aspect}}</p>
-                    <p> Description: {{EffectForAffinity.Description}}</p>
-                    <hr>
-                    <form>
-                        <label for="original-affinity-select" class="form-label">Set Original Affinity</label>
-                        <select class="form-select" name="original-affinity-select" id="original-affinity-select">
-                            <option *ngFor="let affinity of getSourceAffinityKeys()" (value)="affinity">{{affinity.valueOf()}}</option>
+            </div>
+
+            <div id="collapse-alter-aspect" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Alter Aspect</h4>
+                    <p *ngIf="AllEffects.length() == 0">No effects to alter.</p>
+                    <div *ngIf="AllEffects.length() > 0">
+                        <select class="form-select" name="alter-affinity-select" id="alter-affinity-select">
+                            <option *ngFor="let effect of AllEffects.getItems()" (value)="effect">{{effect.Name}}</option>
                         </select>
                         <br>
-                        <label for="custom-affinity-select" class="form-label">Set Custom Affinity</label>
-                        <select class="form-select" name="custom-affinity-select" id="custom-affinity-select">
-                            <option *ngFor="let affinity of getCustomAffinityKeys()" (value)="affinity">{{affinity.valueOf()}}</option>
-                        </select>
-                    </form>
+                        <button type="button" class="btn confirm-add" (click)="updateAffinityEffect()">Select</button>
+                        
+                        <hr>
+                        <p class="error-message" *ngIf="!EffectForAffinity">No effect selected. Update customization.</p>
+                        <div *ngIf="EffectForAffinity">
+                            <p>Name: {{EffectForAffinity.Name}}</p>
+                            <p>Aspect: {{EffectForAffinity.Aspect}}</p>
+                            <p> Description: {{EffectForAffinity.Description}}</p>
+                            <hr>
+                            <form>
+                                <label for="original-affinity-select" class="form-label">Set Original Affinity</label>
+                                <select class="form-select" name="original-affinity-select" id="original-affinity-select">
+                                    <option *ngFor="let affinity of getSourceAffinityKeys()" (value)="affinity">{{affinity.valueOf()}}</option>
+                                </select>
+                                <br>
+                                <label for="custom-affinity-select" class="form-label">Set Custom Affinity</label>
+                                <select class="form-select" name="custom-affinity-select" id="custom-affinity-select">
+                                    <option *ngFor="let affinity of getCustomAffinityKeys()" (value)="affinity">{{affinity.valueOf()}}</option>
+                                </select>
+                            </form>
+                            <br>
+                            <button type="button" class="btn confirm-add" (click)="saveAffinityAlteration()">Update</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4>Result</h4>
+                    <p *ngIf="Affinity">{{Affinity.getSummary()}}</p>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <h3>Result</h3>
-            <p *ngIf="Affinity">{{Affinity.getSummary()}}</p>
-        </div>
     </div>
-    <hr>
+    <br>
 </div>
