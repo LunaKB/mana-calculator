@@ -13,21 +13,21 @@
                 <h3>Ricochet</h3>
                 <p *ngIf="NonCodaEffects.length() == 0">No effects to alter.</p>
                 <div *ngIf="NonCodaEffects.length() > 0">
-                    <select class="form-select" name="richochet-select" id="richochet-select">
+                    <select class="form-select" name="ricochet-select" id="ricochet-select">
                         <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
                     </select>
                     <br>
-                    <button type="button" class="btn confirm-add" (click)="setRichochet()">Update</button>
+                    <button type="button" class="btn confirm-add" (click)="setRicochet()">Update</button>
                     <hr>
-                    <p class="error-message" *ngIf="!EffectForRichochet">No effect selected. Update selection.</p>
-                    <div *ngIf="EffectForRichochet">
-                        <p>{{EffectForRichochet.Name}}</p>
-                        <p>{{EffectForRichochet.Description}}</p>
+                    <p class="error-message" *ngIf="!EffectForRicochet">No effect selected. Update selection.</p>
+                    <div *ngIf="EffectForRicochet">
+                        <p>{{EffectForRicochet.Name}}</p>
+                        <p>{{EffectForRicochet.Description}}</p>
                     </div>
                 </div>
                 <hr>
                 <h4>Result</h4>
-                <p *ngIf="Richochet">{{Richochet.getSummary()}}</p>
+                <p *ngIf="Ricochet">{{Ricochet.getSummary()}}</p>
             </div>
         </div>
     </div>

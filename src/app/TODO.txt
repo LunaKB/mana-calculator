@@ -1,6 +1,5 @@
 debug acessing from external ip adresses
 debug resetting spell crafter. all controls should reset as well.
-make sure "ricochet" is spelled correctly in UI and code.
 improve ui
     Layout
         Mobile layout

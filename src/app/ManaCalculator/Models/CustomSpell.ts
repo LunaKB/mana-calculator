@@ -9,7 +9,7 @@ import { DamageIncreaseCustomizationConverter } from "./Cost/DamageIncreaseCusto
 import { EchoedCustomizationConverter } from "./Cost/EchoedCustomization"
 import { InhibitCustomizationConverter } from "./Cost/InhibitCustomization"
 import { PowerWordCustomizationConverter } from "./Cost/PowerWordCustomization"
-import { RichochetCustomizationConverter } from "./Cost/RichochetCustomization"
+import { RicochetCustomizationConverter } from "./Cost/RicochetCustomization"
 import { SavingThrowCustomizationConverter } from "./Cost/SavingThrowCustomization"
 import { StealthedCustomizationConverter } from "./Cost/StealthedCustomization"
 import { TemporaryFeatConverter } from "./Cost/TemporaryFeatCustomization"
@@ -222,7 +222,7 @@ export class CustomSpellConverter {
                 return PowerWordCustomizationConverter.convert(element)
                    
             case EffectCustomizationType.Ricochet:
-                return RichochetCustomizationConverter.convert(element)
+                return RicochetCustomizationConverter.convert(element)
                 
             case EffectCustomizationType.Stealthed:
                 return StealthedCustomizationConverter.convert(element)

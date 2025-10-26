@@ -245,7 +245,7 @@ function formatEffectCustomizationQuery(array, uuid) {
                 queryString += formatPowerWordQuery(item, uuid)
                 break
             case 'Ricochet':
-                queryString += formatRichochetQuery(item, uuid)
+                queryString += formatRicochetQuery(item, uuid)
                 break
             case 'Stealthed':
                 queryString += formatStealthedQuery(item, uuid)
@@ -291,7 +291,7 @@ function formatPowerWordQuery(item, uuid) {
     return `("${uuid}", "${item.CustomizationType}", "${item.EffectType}, ${item.EffectName}, ${item.Cost}")`
 }
 
-function formatRichochetQuery(item, uuid) {
+function formatRicochetQuery(item, uuid) {
     return `("${uuid}", "${item.CustomizationType}", "${item.EffectType}, ${item.EffectName}")`
 }
 
