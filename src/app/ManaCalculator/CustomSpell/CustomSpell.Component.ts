@@ -1,11 +1,12 @@
 import { AfterContentInit, Component, OnDestroy } from "@angular/core";
-import { CustomSpell } from "../Models/CustomSpell";
+import { CustomSpell, CustomSpellConverter } from "../Models/CustomSpell";
 import { CasterList } from "../Utils/List/CasterList";
 import { EffectList } from "../Utils/List/EffectList";
 import { CustomSpellList } from "../Utils/List/CustomSpellList";
 import { Router } from "@angular/router";
 import { DataListener } from "../Services/Data/DataListener";
 import { DataService } from "../Services/Data/DataService";
+import { Clipboard } from "@angular/cdk/clipboard";
 
 @Component({
     templateUrl: './CustomSpell.html',
@@ -18,7 +19,7 @@ export class CustomSpellComponent implements AfterContentInit, DataListener, OnD
     PrimaryEffects = new EffectList()
     SecondaryEffects = new EffectList()
 
-    constructor(private router: Router, public _dataService: DataService) {}
+    constructor(private router: Router, public _dataService: DataService, private clipboard: Clipboard) {}
     
     ngAfterContentInit(): void {
         this._dataService.setListener(this)
@@ -50,5 +51,10 @@ export class CustomSpellComponent implements AfterContentInit, DataListener, OnD
     removeCustomSpell(_spell: CustomSpell) {
         if (confirm(`Are you sure you want to delete this?`))
             this._dataService.Data.removeCustomSpell(_spell)
+    }
+
+    copyCustomSpellToClipboard(_spell: CustomSpell) {
+        // If the resulting text gets too big, implement the PendingCopy version of this: https://v12.material.angular.io/cdk/clipboard/overview
+        this.clipboard.copy(CustomSpellConverter.toString(_spell, this._dataService))
     }
 }

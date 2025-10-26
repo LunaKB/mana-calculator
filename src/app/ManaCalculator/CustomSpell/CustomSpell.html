@@ -40,6 +40,7 @@
                                 <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{spell.UniqueId}}">
                                     <li><button type="button" class="btn btn-primary dropdown-item" (click)="editCustomSpell(spell)">Edit</button></li>
                                     <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCustomSpell(spell)">Remove</button></li>
+                                    <li><button type="button" class="btn btn-primary dropdown-item" (click)="copyCustomSpellToClipboard(spell)">Copy to Clipboard</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,4 +50,6 @@
         </div>
     </div>
 </div>
+<br>
+<br>
 <br>
