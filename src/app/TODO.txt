@@ -7,28 +7,3 @@ improve ui
             Spell Crafter
                 When showing list of items, show them starting from recently added
                 For mobile, show description in a popup instead maybe? It just takes up a lot of screen real estate as is and it needs to not do that.
-        
-    New colors
-        Make background more appealing
-        Make carousel controls stand out more
-        light mode
-            For a mystical theme that evokes the magic of spellcrafting while maintaining a soothing aesthetic, you might consider a palette inspired by mystical elements and nature. Here's a suggestion:
-
-            1. **Deep Purple**: Use this as a primary color to represent the mystery and magic of spellcrafting.
-            2. **Teal or Turquoise**: This color can symbolize tranquility and the mystical qualities of water, which often appears in magical settings.
-            3. **Soft Gold or Amber**: Incorporate this color sparingly as an accent to add a touch of luxury and enchantment.
-            4. **Muted Green**: A soft, muted green can represent the natural elements often associated with magic and spellcasting, such as herbs and forests.
-            5. **Cream or Light Gray**: Use a light neutral color as a background to ensure readability and to balance the more vibrant mystical hues.
-
-            These colors together can create a harmonious and magical atmosphere for your app, while also being easy on the eyes for users. Would you like any adjustments or further suggestions?
-
-        dark mode  
-            Absolutely! Dark mode variants can provide a sleek and modern look while reducing eye strain, especially for users who prefer using apps in low-light environments. Here's a suggestion for a dark mode color palette inspired by mystical themes:
-
-            1. **Dark Indigo or Midnight Blue**: Use this as the primary background color to create a sense of depth and mystery.
-            2. **Deep Violet or Plum**: Incorporate this color for text and accents to maintain readability while adding a touch of magic.
-            3. **Dark Teal or Deep Turquoise**: Use as an alternative accent color to provide visual interest and contrast against the darker background.
-            4. **Soft Gold or Amber**: Similar to the light mode variant, use this color sparingly as an accent to add warmth and enchantment.
-            5. **Charcoal or Dark Gray**: Use for secondary elements or borders to provide definition without overpowering the overall design.
-
-            By incorporating these darker tones, you can maintain the mystical theme while also providing users with a visually appealing and comfortable experience in dark mode. Let me know if you need further adjustments or have any other questions!

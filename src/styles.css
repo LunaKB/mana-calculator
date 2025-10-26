@@ -1,5 +1,56 @@
+/* https://medium.com/understanding-javascript-developwithmi/light-dark-mode-in-angular-the-most-elegant-implementation-96a1adefa978 */
+[data-theme='light'] {
+    --background-color: #FFFEE8;
+    --text-color: black;
+    --input-background-color: #FFFEF1;
+    --accordion-background-color: #FFFEDE;
+    --accordion-button-color: #005A5A;
+    --accordion-button-color-collapsed: #008080;
+    --accordion-header-color: #426F9B;
+    --accordion-text-color: white;
+    --carousel-arrow-background-color-hover: #F9EBD3;
+    --confirm-add-color: #8FA889;
+    --confirm-add-color-hover: #30422B;
+    --confirm-remove-color: #5F8356;
+    --confirm-remove-color-hover: #30422B;
+    --confirm-text-color: white;
+    --table-header-color: #CCCAA6;
+    --table-data-color: #FFFDD5;
+    --table-row-odd-color: #FFFDD5;
+    --table-row-even-color: #FFFDD9;
+    --title-background-color: #4A1A52;
+    --title-background-color-hover: #36013F;
+    --title-text-color: white;
+    --title-dropdown-background-color: #4A1A52;
+}
+
+[data-theme='dark'] {
+    --background-color: #A5A5A5;
+    --text-color: #131A11;
+    --input-background-color: #C9C9C9;
+    --accordion-background-color: #C9C9C9;
+    --accordion-button-color: #4D888C;
+    --accordion-button-color-collapsed: #33777B;
+    --accordion-header-color: #131A11;
+    --accordion-text-color: white;
+    --carousel-arrow-background-color-hover: #5C5C5C;
+    --confirm-add-color: #4A1A49;
+    --confirm-add-color-hover: #5E345D;
+    --confirm-remove-color: #310130;
+    --confirm-remove-color-hover: #5E345D;
+    --confirm-text-color: white;
+    --table-header-color: #808080;
+    --table-data-color: #C9C9C9;
+    --table-row-odd-color: #C9C9C9;
+    --table-row-even-color: #B7B7B7;
+    --title-background-color: #011430;
+    --title-background-color-hover: #34455D;
+    --title-text-color: white;
+    --title-background-color: #011430;
+}
+
 html, body {
-    background-color: #FFFEE8 !important;
+    background-color: var(--background-color) !important;
     margin: 0 !important;
     min-height: 100vh !important;
 }
@@ -11,11 +62,17 @@ app-root {
 }
 
 select, input, textarea {
-    background-color: #FFFEF1 !important;    
+    color: var(--text-color) !important;
+    background-color: var(--input-background-color) !important;    
 }
 
 h2, h3, h4, h5 {
+    color: var(--text-color) !important;
     text-align: center;
+}
+
+p, label {
+    color: var(--text-color) !important;    
 }
 
 .accordion .accordion-card {
@@ -23,28 +80,31 @@ h2, h3, h4, h5 {
 	margin-bottom: 2px;
 	border-radius: 0;
 	box-shadow: 0 0 6px rgba(0,0,0,0.2);
-    background-color: #FFFEDE;
+    background-color: var(--accordion-background-color);
 }
 
 .accordion-button-color {
-  color: white !important;
-  background-color: #008080 !important;
+  color: var(--accordion-text-color) !important;
+  background-color: var(--accordion-button-color-collapsed) !important;
 }
+
 .accordion-button-color:not(.collapsed) {
-  color: white !important;
-  background-color: #005A5A !important;
+  color: var(--accordion-text-color) !important;
+  background-color: var(--accordion-button-color) !important;
 }
 
 .accordion-header {
-    background: #426F9B !important;
+    background: var(--accordion-header-color) !important;
 }
 
 table > thead > tr > th {
-    background-color: #CCCAA6 !important;
+    color: var(--text-color) !important;
+    background-color: var(--table-header-color) !important;
 }
 
 table > tbody > tr > td {
-    background-color: #FFFDD5 !important;
+    color: var(--text-color) !important;
+    background-color: var(--table-data-color) !important;
 }
 
 .reference {
@@ -53,32 +113,32 @@ table > tbody > tr > td {
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #FFFDD5;
+   background-color: var(--table-row-odd-color) !important;
  }
 
  .table-striped>tbody>tr:nth-child(even)>td, 
  .table-striped>tbody>tr:nth-child(even)>th {
-    background-color: #FFFDD9;
+    background-color: var(--table-row-even-color) !important;
   }
 
 .confirm-add {
-    background-color: #5F8356 !important;
-    color: white !important;
+    background-color: var(--confirm-add-color) !important;
+    color: var(--confirm-text-color) !important;
 }
 
 .confirm-add:hover {
-    background-color: #4C6945 !important;
-    color: white !important;
+    background-color: var(--confirm-add-color-hover) !important;
+    color: var(--confirm-text-color) !important;
 }
 
 .confirm-remove {
-    background-color: #263422 !important;
-    color: white !important;
+    background-color: var(--confirm-remove-color) !important;
+    color: var(--confirm-text-color) !important;
 }
 
 .confirm-remove:hover {
-    background-color: #131A11 !important;
-    color: white !important;
+    background-color: var(--confirm-remove-color-hover) !important;
+    color: var(--confirm-text-color) !important;
 }
 
 .error-message {

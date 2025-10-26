@@ -1,1 +1,8 @@
+.dropdown-menu {
+    background-color: var(--accordion-background-color);
+}
 
+.dropdown-menu > li > button:hover,
+.dropdown-menu > li > button:focus {
+    background-color: var(--table-header-color) !important;
+}
