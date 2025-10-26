@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
 import { SpellLevelInfo } from "../Models/SpellLevel";
 import { SpellBaseInfo } from "../Models/SpellBase";
 import { EffectCustomizationType, EffectCustomizationTypeConverter, Effect } from "../Models/Effect";
@@ -10,15 +10,14 @@ import { CasterList } from "../Utils/List/CasterList";
 import { BaseEffectCustomizationList } from "../Utils/List/BaseEffectCustomizationList";
 import { BaseEffectCustomization } from "../Models/Cost/BaseEffectCustomization";
 import { ToastrWrapper } from "../Utils/ToastrWrapper";
-import { DataService } from "../Services/Data/DataService";
-import { DataListener } from "../Services/Data/DataListener";
 import { CastingInfo } from "../Models/CastingInfo";
+import { BaseParentComponent } from "../BaseParentComponent";
 
 @Component({
     templateUrl: './Crafting.html',
     styleUrl: './Crafting.css'
 })
-export class CraftingComponent implements AfterContentInit, DataListener, OnDestroy {
+export class CraftingComponent extends BaseParentComponent {
     SpellName: string = "name of spell"
     Description: string  = "description of spell"
 
@@ -42,19 +41,17 @@ export class CraftingComponent implements AfterContentInit, DataListener, OnDest
 
     CustomSpell: CustomSpell = null
     CastingInformation: CastingInfo = null
-    Ready = false
+    Ready = false    
 
-    constructor(private _dataService: DataService) { }
-
-    ngAfterContentInit(): void {
+    override ngAfterContentInit(): void {
         this._dataService.setListener(this)
     }
 
-    ngOnDestroy(): void {
+    override ngOnDestroy(): void {
         this._dataService.removeListener(this)
     }
 
-    onDataReady(status: boolean) {
+    override onDataReady(status: boolean) {
         console.log("got data after it is ready")
         this.Ready = status
 

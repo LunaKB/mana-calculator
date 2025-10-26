@@ -4,6 +4,7 @@ import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomiz
 import { StealthedCustomization } from "../../../Models/Cost/StealthedCustomization";
 import { Effect, EffectCustomizationType, EffectType } from "../../../Models/Effect";
 import { Data } from "../../../Services/Data/Data";
+import { ArrayList } from "../../../Utils/List/ArrayList";
 
 @Component({
     selector: 'stealthed-control',
@@ -24,6 +25,13 @@ export class StealthedControl extends BaseEffectCustomizationControl {
     override resetCustomization() {
         this.Stealthed = new StealthedCustomization(EffectType.Primary, "")
         this.EffectForStealth = null
+    }
+
+    protected override showPopupForItem(_event: any): void {
+        var popupText = new ArrayList<string>()
+        popupText.add((_event as Effect).Name)
+        popupText.add((_event as Effect).Description)
+        this.popupShowEmitter.emit(popupText)
     }
 
     setStealthed() {

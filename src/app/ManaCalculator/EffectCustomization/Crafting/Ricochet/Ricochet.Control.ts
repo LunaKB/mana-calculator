@@ -27,7 +27,7 @@ export class RicochetControl extends BaseEffectCustomizationControl {
     }
     
     setRicochet() {
-        var effect = this._dataService.Data.getEffectFromEvent((document.getElementById('richocet-select') as any).value)
+        var effect = this._dataService.Data.getEffectFromEvent((document.getElementById('ricochet-select') as any).value)
         this.EffectForRicochet = effect
         this.Ricochet.EffectType = effect.EffectType
         this.Ricochet.EffectName = effect.Name

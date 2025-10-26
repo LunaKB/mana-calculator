@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationControl";
 import { EchoedCustomization } from "../../../Models/Cost/EchoedCustomization";
 import { EffectType, Effect, EffectCustomizationType } from "../../../Models/Effect";
-import { Data } from "../../../Services/Data/Data";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
 
 @Component({

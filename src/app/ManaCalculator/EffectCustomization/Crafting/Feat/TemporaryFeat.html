@@ -5,28 +5,28 @@
                 <div class="accordion-button-color accordion-button collapsed" type="button" data-bs-target="#collapse-feat" data-bs-toggle="collapse">
                     Temporary Feat
                 </div>
-            </div>            
-        </div>
-
-        <div id="collapse-feat" class="accordion-collapse collapse">
-            <div class="accordion-body">
-                <h4>Temporary Feat</h4>
-                <form>
-                    <label for="feat-name-input" class="form-label">Feat Name</label>
-                    <input class="form-control" name="feat-name-input" id="feat-name-input" type="text" />
-                    <br>
-                    <input [ngModel]="TemporaryFeat.HasFeat"
-                        class="form-check-input" name="has-feat-input" id="has-feat-input" value="1" type="checkbox" />
-                    <label for="has-feat-input" class="form-check-label">Caster Has Feat</label>
-                    <br><br>
-                    <button type="button" class="btn confirm-add" (click)="setFeat()">Update</button>
-                    <br><br>
-                    <p class="error-message" *ngIf="TemporaryFeat.FeatName.trim() == ''">No feat set. Update customization.</p>
-                </form>
-                <hr>
-                <h4>Result</h4>
-                <p *ngIf="TemporaryFeat">{{TemporaryFeat.getSummary()}}</p>
             </div>
+
+            <div id="collapse-feat" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Temporary Feat</h4>
+                    <form>
+                        <label for="feat-name-input" class="form-label">Feat Name</label>
+                        <input class="form-control" name="feat-name-input" id="feat-name-input" type="text" />
+                        <br>
+                        <input [ngModel]="TemporaryFeat.HasFeat"
+                            class="form-check-input" type="checkbox" name="has-feat-input" id="has-feat-input" value="1"/>
+                        <label for="has-feat-input" class="form-check-label">Caster Has Feat</label>
+                        <br><br>
+                        <button type="button" class="btn confirm-add" (click)="setFeat()">Update</button>
+                        <br><br>
+                        <p class="error-message" *ngIf="TemporaryFeat.FeatName.trim() == ''">No feat set. Update customization.</p>
+                    </form>
+                    <hr>
+                    <h4>Result</h4>
+                    <p *ngIf="TemporaryFeat">{{TemporaryFeat.getSummary()}}</p>
+                </div>
+            </div>            
         </div>
     </div>
     <br>

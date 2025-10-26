@@ -14,6 +14,7 @@
                 </div>
                 <div class="btn-group info-mobile" role="group">
                     <button type="button" class="btn confirm-add" (click)="addCoda()">Add</button>
+                    <button type="button" class="btn confirm-add" (click)="showPreviewForItem()">Preview</button>
                 </div>
             </form>
             <br>
@@ -43,9 +44,12 @@
                 </div>
                 <div class="info-mobile">
                     <div *ngFor="let effect of SelectedCodaEffects.getItems()">
-                        <h4>{{effect.Name}}</h4>
                         <table class="table table-striped">
                             <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{effect.Name}}</td>
+                                </tr>
                                 <tr>
                                     <th>Aspect</th>
                                     <td>{{effect.Aspect}}</td>
@@ -54,16 +58,22 @@
                                     <th>Cost</th>
                                     <td>{{effect.Cost}}</td>
                                 </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td><button type="button" class="btn popup-button-show" (click)="showPopupForItem(effect)">Show</button></td>
+                                    </tr>
                                 <tr>
                                     <th>Action</th>
                                     <td><button type="button" class="btn confirm-remove" (click)="removeCoda(effect)">Remove</button></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <h5>Description</h5>
-                        <p>{{effect.Description}}</p>
                         <hr>
-                    </div>        
+                    </div> 
+                    <app-popup *ngIf="IsPopupVisible"
+                        [title]="getPopupTitle()"
+                        [message]="getPopupMessage()"
+                        (close)="hidePopup()"/>      
                 </div>
             </div>
         </div>

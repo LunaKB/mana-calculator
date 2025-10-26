@@ -3,9 +3,10 @@ import { Ability } from "../../Models/Ability";
 import { Affinity } from "../../Models/Affinity";
 import { BaseEffectCustomization } from "../../Models/Cost/BaseEffectCustomization";
 import { EffectList } from "../../Utils/List/EffectList";
-import { EffectCustomizationType } from "../../Models/Effect";
-import { Data } from "../../Services/Data/Data";
+import { Effect, EffectCustomizationType } from "../../Models/Effect";
 import { DataService } from "../../Services/Data/DataService";
+import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
+import { ArrayList } from "../../Utils/List/ArrayList";
 
 @Component({
     template: ''
@@ -22,6 +23,9 @@ export abstract class BaseEffectCustomizationControl implements OnChanges {
     
     @Output('customization-removed')
     customizationRemovedEmitter = new EventEmitter<BaseEffectCustomization>()
+
+    @Output('show-popup')
+    popupShowEmitter = new EventEmitter<ArrayList<string>>()
 
     constructor(protected _dataService: DataService) {
         this.resetCustomization()
@@ -55,6 +59,13 @@ export abstract class BaseEffectCustomizationControl implements OnChanges {
 
     getCustomAffinityKeys() : Array<Affinity> {
         return new Array<Affinity>(Affinity.Mind, Affinity.Source, Affinity.Will)
+    }
+
+    protected showPopupForItem(_event: any): void {
+        var popupText = new ArrayList<string>()
+        popupText.add((_event as Effect).Name)
+        popupText.add((_event as Effect).Description)
+        this.popupShowEmitter.emit(popupText)
     }
 }
 

@@ -1,19 +1,17 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { Effect } from "../../Models/Effect";
 import { EffectList } from "../../Utils/List/EffectList";
-import { DataService } from "../../Services/Data/DataService";
+import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
 
 @Component({
     selector: 'secondary-effect-crafting-control',
     templateUrl: './SecondaryEffect.Crafting.html',
 })
-export class SecondaryEffectControlComponent implements OnChanges {
+export class SecondaryEffectControlComponent extends BaseCraftingComponent {
     SecondaryEffects = new EffectList()
     SelectedSecondaryEffects = new EffectList()
     SecondaryEffect: Effect = null
     PreviewEffect: Effect = null
-
-    @Input('parent-ready') ParentReady = false
 
     @Output("secondary-effect-added")
     secondaryEffectAddedEmitter = new EventEmitter<Effect>()
@@ -21,9 +19,7 @@ export class SecondaryEffectControlComponent implements OnChanges {
     @Output("secondary-effect-removed")
     secondaryEffectRemovedEmitter = new EventEmitter<Effect>()
 
-    constructor(private _dataService: DataService) { }
-
-    ngOnChanges(changes: SimpleChanges): void {
+    override ngOnChanges(changes: SimpleChanges): void {
         var readyChange = changes['ParentReady']
         if (readyChange) {
             this.SecondaryEffects = this._dataService.Data.SecondaryEffects
@@ -33,6 +29,19 @@ export class SecondaryEffectControlComponent implements OnChanges {
                 this.SelectedSecondaryEffects.getItems().forEach(effect => this.secondaryEffectAddedEmitter.emit(effect))
             }
         }
+    }
+
+    protected override showPopupForItem(_event: any): void {
+        this.PopupTitle = (_event as Effect).Name
+        this.PopupMessage = (_event as Effect).Description
+        super.showPopup()
+    }
+
+    protected override showPreviewForItem(): void {
+        this.setPreview()
+        this.PopupTitle = 'Preview'
+        this.PopupMessage = `Name:\t${this.PreviewEffect.Name}\nAspect:\t${this.PreviewEffect.Aspect}\nCost:\t${this.PreviewEffect.Cost}\nDescription:\t${this.PreviewEffect.Description}`
+        super.showPopup()
     }
 
     addSecondaryEffect() {

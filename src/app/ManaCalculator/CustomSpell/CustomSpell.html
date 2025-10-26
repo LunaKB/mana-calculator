@@ -26,13 +26,17 @@
                             <spell-alteration-output-control
                                 [spell-alteration-info]="spell.SpellAlteration" />                            
                             <primary-effect-output-control 
-                                [primary-effect]="_dataService.getPrimaryEffect(spell.PrimaryEffectId)" />
+                                [primary-effect]="_dataService.getPrimaryEffect(spell.PrimaryEffectId)"
+                                (show-popup)="onShowPopup($event)" />
                             <secondary-effect-output-control
-                                [secondary-effects]="_dataService.getSecondaryEffects(spell.SecondaryEffectIdList)" />
+                                [secondary-effects]="_dataService.getSecondaryEffects(spell.SecondaryEffectIdList)"
+                                (show-popup)="onShowPopup($event)" />
                             <coda-output-control
-                                [codas]="_dataService.getCodas(spell.CodaIdList)" />
+                                [codas]="_dataService.getCodas(spell.CodaIdList)"
+                                (show-popup)="onShowPopup($event)" />
                             <effect-customization-output-control
-                                [spell-effect-customizations]="spell.EffectCustomizations" />
+                                [spell-effect-customizations]="spell.EffectCustomizations"
+                                (show-popup)="onShowPopup($event)" />
                             <div class="dropdown">
                                 <button type="button" class="btn btn-small confirm-remove dropdown-toggle" id="dropdownMenuButton-{{spell.UniqueId}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
@@ -47,6 +51,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="info-mobile">
+            <app-popup *ngIf="IsPopupVisible"
+                [title]="getPopupTitle()"
+                [message]="getPopupMessage()"
+                (close)="hidePopup()"/> 
         </div>
     </div>
 </div>

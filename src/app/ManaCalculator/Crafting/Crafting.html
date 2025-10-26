@@ -78,13 +78,17 @@
                     <spell-alteration-output-control
                         [spell-alteration-info]="SpellAlterationInfo" />
                     <primary-effect-output-control 
-                        [primary-effect]="PrimaryEffect" />
+                        [primary-effect]="PrimaryEffect"
+                        (show-popup)="onShowPopup($event)" />
                     <secondary-effect-output-control
-                        [secondary-effects]="SecondaryEffects" />
+                        [secondary-effects]="SecondaryEffects"
+                        (show-popup)="onShowPopup($event)" />
                     <coda-output-control
-                        [codas]="CodaEffects" />
+                        [codas]="CodaEffects"
+                        (show-popup)="onShowPopup($event)" />
                     <effect-customization-output-control
-                        [spell-effect-customizations]="SpellEffectCustomizations" />
+                        [spell-effect-customizations]="SpellEffectCustomizations"
+                        (show-popup)="onShowPopup($event)" />
                     <div class="row">
                         <form>
                             <div>
@@ -151,5 +155,11 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+    <div class="info-mobile">
+        <app-popup *ngIf="IsPopupVisible"
+            [title]="getPopupTitle()"
+            [message]="getPopupMessage()"
+            (close)="hidePopup()"/> 
     </div>
 </div>

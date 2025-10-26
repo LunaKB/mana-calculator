@@ -5,4 +5,3 @@ improve ui
         Mobile layout
             Spell Crafter
                 When showing list of items, show them starting from recently added
-                For mobile, show description in a popup instead maybe? It just takes up a lot of screen real estate as is and it needs to not do that.

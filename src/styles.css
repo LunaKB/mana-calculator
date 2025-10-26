@@ -14,6 +14,14 @@
     --confirm-remove-color: #5F8356;
     --confirm-remove-color-hover: #30422B;
     --confirm-text-color: white;
+    --popup-button-show-background-color: #8FA889;
+    --popup-button-show-background-color-hover: #30422B;
+    --popup-button-show-text-color: white;
+    --popup-button-close-background-color: #8FA889;
+    --popup-button-close-background-color-hover: #30422B;
+    --popup-button-close-text-color: white;
+    --popup-background-color: #FFFEE8;
+    --popup-text-color: black;
     --table-header-color: #CCCAA6;
     --table-data-color: #FFFDD5;
     --table-row-odd-color: #FFFDD5;
@@ -26,10 +34,10 @@
 
 [data-theme='dark'] {
     --background-color: #A5A5A5;
-    --text-color: #131A11;
+    --text-color: black;
     --input-background-color: #C9C9C9;
     --accordion-background-color: #C9C9C9;
-    --accordion-button-color: #4D888C;
+    --accordion-button-color: #004448;
     --accordion-button-color-collapsed: #33777B;
     --accordion-header-color: #131A11;
     --accordion-text-color: white;
@@ -39,6 +47,14 @@
     --confirm-remove-color: #310130;
     --confirm-remove-color-hover: #5E345D;
     --confirm-text-color: white;
+    --popup-button-show-background-color: #4A1A49;
+    --popup-button-show-background-color-hover: #5E345D;
+    --popup-button-show-text-color: white;
+    --popup-button-close-background-color: #4A1A49;
+    --popup-button-close-background-color-hover: #5E345D;
+    --popup-button-close-text-color: white;
+    --popup-background-color: #C9C9C9;
+    --popup-text-color: black;
     --table-header-color: #808080;
     --table-data-color: #C9C9C9;
     --table-row-odd-color: #C9C9C9;
@@ -139,6 +155,30 @@ table > tbody > tr > td {
 .confirm-remove:hover {
     background-color: var(--confirm-remove-color-hover) !important;
     color: var(--confirm-text-color) !important;
+}
+
+.popup-button-show {
+    background-color: var(--popup-button-show-background-color) !important;
+    color: var(--popup-button-show-text-color) !important;
+}
+
+.popup-button-show:hover {
+    background-color: var(--popup-button-show-background-color-hover) !important;
+    color: var(--popup-button-show-text-color) !important;
+}
+
+.popup-button-close {
+    background-color: var(--popup-button-close-background-color) !important;
+    color: var(--popup-button-show-text-color) !important;
+}
+
+.popup-button-close:hover {
+    background-color: var(--popup-button-close-background-color-hover) !important;
+    color: var(--popup-button-show-text-color) !important;
+}
+
+.form-check-input {
+    background-color: var(--confirm-add-color-hover) !important;
 }
 
 .error-message {

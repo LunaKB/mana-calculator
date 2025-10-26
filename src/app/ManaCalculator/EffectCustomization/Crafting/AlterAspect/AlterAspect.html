@@ -21,9 +21,29 @@
                         <hr>
                         <p class="error-message" *ngIf="!EffectForAffinity">No effect selected. Update customization.</p>
                         <div *ngIf="EffectForAffinity">
-                            <p>Name: {{EffectForAffinity.Name}}</p>
-                            <p>Aspect: {{EffectForAffinity.Aspect}}</p>
-                            <p> Description: {{EffectForAffinity.Description}}</p>
+                            <div class="info-desktop">
+                                <p>Name: {{EffectForAffinity.Name}}</p>
+                                <p>Aspect: {{EffectForAffinity.Aspect}}</p>
+                                <p> Description: {{EffectForAffinity.Description}}</p>
+                            </div>
+                            <div class="info-mobile">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{EffectForAffinity.Name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Aspect</th>
+                                            <td>{{EffectForAffinity.Aspect}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Description</th>
+                                            <td><button type="button" class="btn popup-button-show" (click)="showPopupForItem(EffectForAffinity)">Show</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <hr>
                             <form>
                                 <label for="original-affinity-select" class="form-label">Set Original Affinity</label>

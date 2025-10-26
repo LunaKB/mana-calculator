@@ -47,9 +47,12 @@
 <div class="info-mobile">
     <div *ngIf="OriginCaster">
         <h4>Origin Caster</h4>
-        <h5>{{OriginCaster.Name}}</h5>
         <table class="table table-striped">
             <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{OriginCaster.Name}}</td>
+                </tr>
                 <tr>
                     <th>Mana Points</th>
                     <td>{{OriginCaster.ManaPointMax}}</td>
@@ -73,9 +76,12 @@
     <div *ngIf="AdditionalCasters.length() > 0">
         <h4>Additional Casters</h4>
         <div *ngFor="let caster of AdditionalCasters.getItems()">
-            <h5>{{caster.Name}}</h5>
             <table class="table table-striped">
                 <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{caster.Name}}</td>
+                    </tr>
                     <tr>
                         <th>Mana Points</th>
                         <td>{{caster.ManaPointMax}}</td>
