@@ -2,7 +2,7 @@
 <div class="row d-flex ">
     <h3>Caster Registry</h3>
     <br>
-    <div class="col border-end">
+    <div>
         <h4>Profile</h4>
         <form [formGroup]="CasterFormGroup.FormGroup">
             <label for="caster-name-input" class="form-label">Caster Name</label>
@@ -36,51 +36,115 @@
                 <button *ngIf="CasterFormGroup.HasId" class="btn confirm-add" type="button" (click)="resetCaster()">Clear Form</button>
             </div>
         </form>
+        <br>
     </div>
-
-    <div class="col">
+    <hr>
+    <div>
         <h4>Roster</h4>
         <p *ngIf="Casters.length() == 0">There are no casters.</p>
-        <table class="table table-striped" *ngIf="Casters.length() > 0">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Mana Points</th>
-                    <th>Mind</th>
-                    <th>Source</th>
-                    <th>Will</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let caster of Casters.getItems()">
-                    <td>{{caster.Name}}</td>
-                    <td>{{caster.ManaPointMax}}</td>
-                    <td>
-                        {{getValueForAffinity(caster, "Mind")}}
-                    </td>
-                    <td>
-                        {{getValueForAffinity(caster, "Source")}}
-                    </td>
-                    <td>
-                        {{getValueForAffinity(caster, "Will")}}
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{caster.Id}}" data-bs-toggle="dropdown" aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{caster.Id}}">
-                                <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCaster(caster)">Remove</button></li>
-                                <li *ngIf="!caster.IsEditable">
-                                    <button type="button" class="btn btn-primary dropdown-item" (click)="editCaster(caster)">Edit</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div *ngIf="Casters.length() > 0">
+            <form>
+                <select class="form-select" name="caster-roster-select" id="caster-roster-select">
+                    <option *ngFor="let caster of Casters.getItems()" (value)="caster" >{{caster.Name}}</option>
+                </select>
+                <br>
+                <button type="button" class="btn confirm-add" (click)="updateRosterSelection()">Select</button>
+            </form>
+            <br>
+            <div *ngIf="RosterCaster">
+                <table class="table table-striped info-desktop">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mana Points</th>
+                            <th>Mind</th>
+                            <th>Source</th>
+                            <th>Will</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{RosterCaster.Name}}</td>
+                            <td>{{RosterCaster.ManaPointMax}}</td>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Mind")}}
+                            </td>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Source")}}
+                            </td>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Will")}}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{RosterCaster.Id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{RosterCaster.Id}}">
+                                        <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCaster(RosterCaster)">Remove</button></li>
+                                        <li *ngIf="!RosterCaster.IsEditable">
+                                            <button type="button" class="btn btn-primary dropdown-item" (click)="editCaster(RosterCaster)">Edit</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped info-mobile">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{RosterCaster.Name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mana Points</th>
+                            <td>{{RosterCaster.ManaPointMax}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mind</th>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Mind")}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Source</th>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Source")}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Will</th>
+                            <td>
+                                {{getValueForAffinity(RosterCaster, "Will")}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Action</th>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn confirm-remove dropdown-toggle" type="button" id="dropdownMenuButton-{{RosterCaster.Id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu" attr.aria-labelledby="dropdownMenuButton-{{RosterCaster.Id}}">
+                                        <li><button type="button" class="btn btn-primary dropdown-item" (click)="removeCaster(RosterCaster)">Remove</button></li>
+                                        <li *ngIf="!RosterCaster.IsEditable">
+                                            <button type="button" class="btn btn-primary dropdown-item" (click)="editCaster(RosterCaster)">Edit</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
 <br>
