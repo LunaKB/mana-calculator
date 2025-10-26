@@ -3,6 +3,11 @@
     width: min-content;
 }
 
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+    background-color: #fffbb2ce !important;
+}
+
 .carousel-indicators {
     position: inherit;
 }
