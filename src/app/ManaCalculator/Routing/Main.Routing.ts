@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CasterComponent } from "../Caster/Module/Info/Caster.Component";
-import { CraftingComponent } from "../Crafting/Crafting.Component";
 import { SpellLevelComponent } from "../SpellLevel/Module/Info/SpellLevel.Component";
 import { SpellBaseComponent } from "../SpellBase/Module/Info/SpellBase.Component";
 import { CodaComponent } from "../Coda/Module/Info/Coda.Component";
 import { PrimaryEffectComponent } from "../PrimaryEffect/Module/Info/PrimaryEffect.Component";
 import { SecondaryEffectComponent } from "../SecondaryEffect/Module/Info/SecondaryEffect.Component";
 import { CustomSpellComponent } from "../CustomSpell/CustomSpell.Component";
+import { CraftingComponent } from "../Crafting/Crafting.Component";
 
 const routes: Routes = [
     { path: "", component: CraftingComponent },

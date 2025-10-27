@@ -9,7 +9,7 @@ import { DamageIncreaseCustomizationConverter } from "./Cost/DamageIncreaseCusto
 import { EchoedCustomizationConverter } from "./Cost/EchoedCustomization"
 import { InhibitCustomizationConverter } from "./Cost/InhibitCustomization"
 import { PowerWordCustomizationConverter } from "./Cost/PowerWordCustomization"
-import { RichochetCustomizationConverter } from "./Cost/RichochetCustomization"
+import { RicochetCustomizationConverter } from "./Cost/RicochetCustomization"
 import { SavingThrowCustomizationConverter } from "./Cost/SavingThrowCustomization"
 import { StealthedCustomizationConverter } from "./Cost/StealthedCustomization"
 import { TemporaryFeatConverter } from "./Cost/TemporaryFeatCustomization"
@@ -222,7 +222,7 @@ export class CustomSpellConverter {
                 return PowerWordCustomizationConverter.convert(element)
                    
             case EffectCustomizationType.Ricochet:
-                return RichochetCustomizationConverter.convert(element)
+                return RicochetCustomizationConverter.convert(element)
                 
             case EffectCustomizationType.Stealthed:
                 return StealthedCustomizationConverter.convert(element)
@@ -230,5 +230,60 @@ export class CustomSpellConverter {
             default:
                 return null
         }
+    }
+
+    static toString(spell: CustomSpell, _dataService: DataService) : string {
+        var castingInfoString = this.castingInfoToString(spell, _dataService)
+        var casterString = this.casterToString(spell, _dataService)
+        var effectString = this.effectToString(spell, _dataService)
+        var str = `${castingInfoString}\n\n${casterString}\n\n${effectString}`
+        return str
+    }
+
+    private static castingInfoToString(spell: CustomSpell, _dataService: DataService) : string {
+        var castingInfo = spell.getCastingInfo(_dataService)
+        return `Spell: ${spell.SpellName}\nDescription: ${spell.Description}\nMana Cost: ${castingInfo.Cost}\nCasting DC: ${castingInfo.DC}\nAffinity Conflict Bonus: ${castingInfo.AffinityConflict.Benefit}`
+    }
+
+    private static casterToString(spell: CustomSpell, _dataService: DataService) : string {
+        var additionalCasters = _dataService.getAdditionalCasters(spell.AdditionalCasterIdList)
+        var additionals
+        if (additionalCasters.isEmpty())
+            additionals = ''
+        else 
+            additionals = `\nAdditional Casters: ${additionalCasters.getItems().map(caster => caster.Name).join(', ')}` 
+
+        var origin = `Origin Caster: ${_dataService.getOriginCaster(spell.OriginCasterId).Name}`
+
+        return `${origin}${additionals}`
+    }
+
+    private static effectToString(spell: CustomSpell, _dataService: DataService) : string {
+        return `${this.primaryEffectToString(spell, _dataService)}${this.secondaryEffectsToString(spell, _dataService)}${this.codasToString(spell, _dataService)}${this.customizationsToString(spell, _dataService)}`
+    }
+
+    private static primaryEffectToString(spell: CustomSpell, _dataService: DataService) : string {
+        return `Primary Effect: ${_dataService.getPrimaryEffect(spell.PrimaryEffectId).Name}`
+    }
+
+    private static secondaryEffectsToString(spell: CustomSpell, _dataService: DataService) : string {
+        var effects = _dataService.getSecondaryEffects(spell.SecondaryEffectIdList)
+        if (effects.isEmpty())
+            return ''
+        return `\nSecondary Effects: ${effects.getItems().map(effect => effect.Name).join(", ")}`
+    }
+
+    private static codasToString(spell: CustomSpell, _dataService: DataService) : string {
+        var effects = _dataService.getCodas(spell.CodaIdList)
+        if (effects.isEmpty())
+            return ''
+        return `\nCodas: ${effects.getItems().map(effect => effect.Name).join(", ")}`
+    }
+
+    private static customizationsToString(spell: CustomSpell, _dataService: DataService) : string {
+        if (spell.EffectCustomizations.isEmpty())
+            return ''
+
+        return `\nCustomizations:\n\t${spell.EffectCustomizations.getItems().map(effect => `${effect.getEffectName()}: ${effect.getSummary()}`).join('\n\t')}`
     }
 }

@@ -1,26 +1,51 @@
 <div *ngIf="Show">
-    <div class="row">
-        <div class="col border-end">
-            <h3>Stealthed</h3>
-            <p *ngIf="NonCodaEffects.length() == 0">No effects to alter.</p>
-            <div *ngIf="NonCodaEffects.length() > 0">
-                <select class="form-select" name="stealth-select" id="stealth-select">
-                    <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
-                </select>
-                <br>
-                <button type="button" class="btn confirm-add" (click)="setStealthed()">Update</button>
-                <hr>
-                <p *ngIf="!EffectForStealth">No effect selected. Update selection.</p>
-                <div *ngIf="EffectForStealth">
-                    <p>Name: {{EffectForStealth.Name}}</p>
-                    <p>Description: {{EffectForStealth.Description}}</p>
+    <div class="accordion" id="accordion-list">
+        <div class="accordion-item accordion-card">
+            <div class="row accordion-header" id="heading-stealthed">
+                <div class="accordion-button-color accordion-button collapsed" type="button" data-bs-target="#collapse-stealthed" data-bs-toggle="collapse">
+                    Stealthed
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <h3>Result</h3>
-            <p *ngIf="Stealthed">{{Stealthed.getSummary()}}</p>
+
+            <div id="collapse-stealthed" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h3>Stealthed</h3>
+                    <p *ngIf="NonCodaEffects.length() == 0">No effects to alter.</p>
+                    <div *ngIf="NonCodaEffects.length() > 0">
+                        <select class="form-select" name="stealth-select" id="stealth-select">
+                            <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
+                        </select>
+                        <br>
+                        <button type="button" class="btn confirm-add" (click)="setStealthed()">Update</button>
+                        <hr>
+                        <p class="error-message" *ngIf="!EffectForStealth">No effect selected. Update selection.</p>
+                        <div *ngIf="EffectForStealth">
+                            <div class="info-desktop">
+                                <p>Name: {{EffectForStealth.Name}}</p>
+                                <p>Description: {{EffectForStealth.Description}}</p>
+                            </div>
+                            <div class="info-mobile">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{EffectForStealth.Name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Description</th>
+                                            <td><button type="button" class="btn popup-button-show" (click)="showPopupForItem(EffectForStealth)">Show</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4>Result</h4>
+                    <p *ngIf="Stealthed">{{Stealthed.getSummary()}}</p>
+                </div>
+            </div>            
         </div>
     </div>
-    <hr>
+    <br>
 </div>

@@ -3,8 +3,8 @@ import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationContro
 import { Affinity, AffinityConverter } from "../../../Models/Affinity";
 import { AffinityCustomization } from "../../../Models/Cost/AffinityCustomization";
 import { EffectType, Effect, EffectCustomizationType } from "../../../Models/Effect";
-import { Data } from "../../../Services/Data/Data";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
+import { ArrayList } from "../../../Utils/List/ArrayList";
 
 @Component({
     selector: 'alter-aspect-control',
@@ -26,6 +26,13 @@ export class AlterAspectControl extends BaseEffectCustomizationControl {
     override resetCustomization() {
         this.Affinity = new AffinityCustomization(EffectType.Primary, "", Affinity.Mind, Affinity.Mind)
         this.EffectForAffinity = null
+    }
+
+    protected override showPopupForItem(_event: any): void {
+        var popupText = new ArrayList<string>()
+        popupText.add((_event as Effect).Name)
+        popupText.add((_event as Effect).Description)
+        this.popupShowEmitter.emit(popupText)
     }
 
     updateAffinityEffect() {

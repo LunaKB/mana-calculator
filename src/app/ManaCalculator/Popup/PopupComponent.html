@@ -1,0 +1,7 @@
+<div class="popup-overlay" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+	<h2>{{Title}}</h2>
+	<p class="popup-message">{{Message}}</p>
+	<button type="button" class="btn popup-button-close" (click)="closePopup()">Close</button>
+  </div>
+</div>

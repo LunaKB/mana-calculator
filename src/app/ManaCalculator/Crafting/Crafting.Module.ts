@@ -1,5 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
-import { CraftingComponent } from "./Crafting.Component";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { provideClientHydration } from "@angular/platform-browser";
@@ -17,8 +16,8 @@ import { CodaOutputModule } from "../Coda/Module/Output/Coda.Output.Module";
 import { EffectCustomizationCraftingModule } from "../EffectCustomization/Module/Crafting/EffectCustomization.Crafting.Module";
 import { SecondaryEffectOutputModule } from "../SecondaryEffect/Module/Output/SecondaryEffect.Output.Module";
 import { EffectCustomizationOutputModule } from "../EffectCustomization/Module/Output/EffectCustomization.Output.Module";
-import { ToastrModule } from "ngx-toastr";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PopupComponent } from "../Popup/Popup.Component";
+import { CraftingComponent } from "./Crafting.Component";
 
 @NgModule({
     declarations: [
@@ -34,6 +33,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         CommonModule,    
+        PopupComponent,
         CasterOutputModule,
         CodaOutputModule,
         EffectCustomizationCraftingModule,

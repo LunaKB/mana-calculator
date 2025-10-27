@@ -13,6 +13,7 @@ import { PowerWordControl } from "../../Crafting/PowerWord/PowerWord.Control";
 import { RicochetControl } from "../../Crafting/Ricochet/Ricochet.Control";
 import { AlterSavingThrowControl } from "../../Crafting/SavingThrow/AlterSavingThrow.Control";
 import { StealthedControl } from "../../Crafting/Stealthed/Stealthed.Control";
+import { PopupComponent } from "../../../Popup/Popup.Component";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { StealthedControl } from "../../Crafting/Stealthed/Stealthed.Control";
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
+        PopupComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

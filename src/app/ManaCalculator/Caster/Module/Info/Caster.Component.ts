@@ -13,7 +13,8 @@ import { DataService } from "../../../Services/Data/DataService";
 export class CasterComponent implements AfterContentInit, DataListener, OnDestroy {
     CasterFormGroup = new CasterFormGroup()
     Casters = new CasterList()
-    CurrentCaster: Caster    
+    CurrentCaster: Caster
+    RosterCaster: Caster
 
     constructor(private _dataService: DataService) { }
     
@@ -91,6 +92,11 @@ export class CasterComponent implements AfterContentInit, DataListener, OnDestro
             this.CurrentCaster.IsEditable = false
             this.CurrentCaster = null
         }
+    }
+
+    updateRosterSelection() {
+        var name = this._dataService.Data.getInputOrValue((document.getElementById('caster-roster-select') as any).value)
+        this.RosterCaster = this._dataService.Data.Casters.getItemByName(name)
     }
 
     getValueForAffinity(_caster: Caster, _affinity: string) : number {

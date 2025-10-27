@@ -1,25 +1,68 @@
 <h3>Spell Base Table</h3>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Cost</th>
-            <th>Casting Time</th>
-            <th>Range</th>
-            <th>Target</th>
-            <th>Area</th>
-            <th>Area Size</th>
-            <th>Duration</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let info of SpellBaseInfoList.getItems()">
-            <th>{{info.Cost}}</th>
-            <td>{{info.CastingTime}}</td>
-            <td>{{info.Range}}</td>
-            <td>{{info.Target}}</td>
-            <td>{{info.Area}}</td>
-            <td>{{info.AreaSize}}</td>
-            <td>{{info.Duration}}</td>        
-        </tr>
-    </tbody>
-</table>
+<div class="info-desktop reference">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cost</th>
+                <th>Casting Time</th>
+                <th>Range</th>
+                <th>Targets</th>
+                <th>Area</th>
+                <th>Area Size</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let info of SpellBaseInfoList.getItems()">
+                <th>{{info.Cost}}</th>
+                <td>{{info.CastingTime}}</td>
+                <td>{{info.Range}}</td>
+                <td>{{info.Target}}</td>
+                <td>{{info.Area}}</td>
+                <td>{{info.AreaSize}}</td>
+                <td>{{info.Duration}}</td>        
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="info-mobile reference">
+    <div *ngFor="let info of SpellBaseInfoList.getItems()">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Cost</th>
+                    <td>{{info.Cost}}</td>
+                </tr>
+                <tr>
+                    <th>Casting Time</th>
+                    <td *ngIf="info.CastingTime.trim() == ''">Any Prior Casting Time</td>
+                    <td *ngIf="info.CastingTime.trim() != ''">{{info.CastingTime}}</td>
+                </tr>
+                <tr>
+                    <th>Range</th>
+                    <td>{{info.Range}}</td>
+                </tr>
+                <tr>
+                    <th>Targets</th>
+                    <td>{{info.Target}}</td>
+                </tr>
+                <tr>
+                    <th>Area</th>
+                    <td *ngIf="info.Area.trim() != ''">{{info.Area}}</td>
+                    <td *ngIf="info.Area.trim() == ''">Any Prior Area</td>
+                </tr>
+                <tr>
+                    <th>Area Size</th>
+                    <td *ngIf="info.AreaSize.trim() != ''">{{info.AreaSize}}</td>
+                    <td *ngIf="info.AreaSize.trim() == ''">Any Prior Area Size</td>
+                </tr>
+                <tr>
+                    <th>Duration</th>
+                    <td *ngIf="info.Duration.trim() != ''">{{info.Duration}}</td> 
+                    <td *ngIf="info.Duration.trim() == ''">Any Prior Duration</td> 
+                </tr>              
+            </tbody>
+        </table>
+        <hr>
+    </div>
+</div>

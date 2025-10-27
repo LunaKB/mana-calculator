@@ -1,33 +1,29 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { SpellLevelInfo } from "../../Models/SpellLevel";
-import { Data } from "../../Services/Data/Data";
 import { Default } from "../../Utils/Default";
-import { DataService } from "../../Services/Data/DataService";
+import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
 
 @Component({
     selector: 'spell-level-crafting-control',
     templateUrl: './SpellLevel.Crafting.Control.html'
 })
-export class SpellLevelCraftingControlComponent implements OnChanges {
+export class SpellLevelCraftingControlComponent extends BaseCraftingComponent {
     SpellLevel: number = Default.SpellLevel
     CurrentInfo: SpellLevelInfo = null
-
-    @Input('parent-ready') ParentReady = false
 
     @Output('spell-info-selected')
     spellInfoEmitter = new EventEmitter<SpellLevelInfo>()
 
-    constructor(private _dataService: DataService) { }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-
-            if (this._dataService.Data.CustomSpell) {
-                this.SpellLevel = this._dataService.Data.CustomSpell.SpellLevel
-                this.onSpellLevelChange()
-            }
+    override onReadyChange() {
+        if (this._dataService.Data.CustomSpell) {
+            this.SpellLevel = this._dataService.Data.CustomSpell.SpellLevel
+            this.onSpellLevelChange()
         }
+    }
+
+    override onResetChange() {
+        this.SpellLevel = Default.SpellLevel
+        this.CurrentInfo = null
     }
 
     onSpellLevelChange() {

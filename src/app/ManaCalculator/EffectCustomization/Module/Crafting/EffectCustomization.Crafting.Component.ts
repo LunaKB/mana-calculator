@@ -2,12 +2,14 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { EffectCustomizationType } from "../../../Models/Effect";
 import { EffectList } from "../../../Utils/List/EffectList";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
+import { BaseCraftingComponent } from "../../../Crafting/BaseCraftingComponent";
+import { ArrayList } from "../../../Utils/List/ArrayList";
 
 @Component({
     selector: 'effect-customization-crafting-control',
     templateUrl: './EffectCustomization.Crafting.html',
 })
-export class EffectCustomizationCraftingControl implements OnChanges {
+export class EffectCustomizationCraftingControl extends BaseCraftingComponent {
     ShowAffinity = false
     ShowCurtailCapacity = false
     ShowDamageIncrease = false
@@ -31,7 +33,7 @@ export class EffectCustomizationCraftingControl implements OnChanges {
     @Output('effect-customization-removed')
     effectCustomizationRemoved = new EventEmitter<BaseEffectCustomization>()
 
-    ngOnChanges(changes: SimpleChanges): void {
+    override ngOnChanges(changes: SimpleChanges): void {
         var primaryEffectChange = changes['PrimaryEffectType']
         if (primaryEffectChange)
             this.onEffectCustomizationTypeChange(primaryEffectChange)
@@ -41,6 +43,14 @@ export class EffectCustomizationCraftingControl implements OnChanges {
         var codaTypeChanges = changes['CodaEffectTypes']
         if (codaTypeChanges)
             this.onEffectCustomizationTypesChange(codaTypeChanges)
+    }
+
+    override onReadyChange() {
+        
+    }
+
+    override onResetChange() {
+        
     }
 
     hasEffectCustomizationTypes() : boolean {
@@ -62,6 +72,12 @@ export class EffectCustomizationCraftingControl implements OnChanges {
 
     onEffectCustomizationRemoved(_event) {
         this.effectCustomizationRemoved.emit(_event)
+    }
+
+    onShowPopup(_event) {
+        this.PopupTitle = (_event as ArrayList<string>).get(0)
+        this.PopupMessage = (_event as ArrayList<string>).get(1)
+        this.showPopup()
     }
 
     private onEffectCustomizationTypeChange(change) {

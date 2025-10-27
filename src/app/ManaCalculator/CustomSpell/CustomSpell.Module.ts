@@ -10,6 +10,7 @@ import { PrimaryEffectOutputModule } from "../PrimaryEffect/Module/Output/Primar
 import { CodaOutputModule } from "../Coda/Module/Output/Coda.Output.Module";
 import { EffectCustomizationOutputModule } from "../EffectCustomization/Module/Output/EffectCustomization.Output.Module";
 import { SecondaryEffectOutputModule } from "../SecondaryEffect/Module/Output/SecondaryEffect.Output.Module";
+import { PopupComponent } from "../Popup/Popup.Component";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { SecondaryEffectOutputModule } from "../SecondaryEffect/Module/Output/Se
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
+        PopupComponent,
         CasterOutputModule,
         CodaOutputModule,
         EffectCustomizationOutputModule,

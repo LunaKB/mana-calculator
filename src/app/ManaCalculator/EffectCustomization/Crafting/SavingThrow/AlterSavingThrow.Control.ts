@@ -3,7 +3,6 @@ import { BaseEffectCustomizationControl } from "../BaseEffectCustomizationContro
 import { Ability, AbilityConverter } from "../../../Models/Ability";
 import { SavingThrowCustomization } from "../../../Models/Cost/SavingThrowCustomization";
 import { EffectType, Effect, EffectCustomizationType } from "../../../Models/Effect";
-import { Data } from "../../../Services/Data/Data";
 import { BaseEffectCustomization } from "../../../Models/Cost/BaseEffectCustomization";
 
 @Component({
@@ -27,7 +26,7 @@ export class AlterSavingThrowControl extends BaseEffectCustomizationControl {
         this.SavingThrow = new SavingThrowCustomization(EffectType.Primary, "", Ability.Str, Ability.Str)
         this.EffectForSavingThrow = null
     }
-
+    
     updateSavingThrowEffect() {
         var effect = this._dataService.Data.getEffectFromEvent((document.getElementById('alter-saving-throw-select') as any).value)
         this.EffectForSavingThrow = effect
