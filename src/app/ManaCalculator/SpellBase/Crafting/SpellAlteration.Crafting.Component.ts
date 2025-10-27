@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { SpellBaseInfo } from "../../Models/SpellBase";
-import { Data } from "../../Services/Data/Data";
 import { ArrayList } from "../../Utils/List/ArrayList";
-import { DataService } from "../../Services/Data/DataService";
+import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
 
 @Component({
     selector: 'spell-alteration-crafting-control',
     templateUrl: './SpellAlteration.Crafting.html'
 })
-export class SpellAlterationCraftingComponent implements OnChanges {
+export class SpellAlterationCraftingComponent extends BaseCraftingComponent {
     SpellBaseInfoList = new ArrayList<SpellBaseInfo>()
     AvailableInfo = new ArrayList<SpellBaseInfo>()
     CurrentInfo: SpellBaseInfo = null
@@ -32,25 +31,24 @@ export class SpellAlterationCraftingComponent implements OnChanges {
     AvailableDurations = new ArrayList<string>()
     CurrentDuration = ''
 
-    @Input('parent-ready') ParentReady = false
-
     @Output('spell-alteration-update')
     spellAlterationUpdateEmitter = new EventEmitter<SpellBaseInfo>()
-
-    constructor(private _dataService: DataService) { }
     
-    ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-            this.SpellBaseInfoList = this._dataService.Data.SpellBaseInfoList
-            this.fixDropdownSelections()
+    override onReadyChange() {
+        this.SpellBaseInfoList = this._dataService.Data.SpellBaseInfoList
+        this.fixDropdownSelections()
 
-            if (this._dataService.Data.CustomSpell) {
-                this.CurrentInfo = this._dataService.Data.CustomSpell.SpellAlteration
-                this.spellAlterationUpdateEmitter.emit(this.CurrentInfo)
-            } else
-                this.onCostChange()
-        }
+        if (this._dataService.Data.CustomSpell) {
+            this.CurrentInfo = this._dataService.Data.CustomSpell.SpellAlteration
+            this.spellAlterationUpdateEmitter.emit(this.CurrentInfo)
+        } else
+            this.onCostChange()
+    }
+
+    override onResetChange() {
+        this.CurrentInfo = null
+        this.Cost = 0
+        this.onCostChange()
     }
 
     updateSelection() {

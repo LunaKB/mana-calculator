@@ -1,5 +1,4 @@
 debug acessing from external ip adresses
-debug resetting spell crafter. all controls should reset as well.
 improve ui
     Layout
         Mobile layout

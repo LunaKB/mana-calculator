@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Effect } from "../../Models/Effect";
 import { EffectList } from "../../Utils/List/EffectList";
 import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
@@ -19,16 +19,19 @@ export class SecondaryEffectControlComponent extends BaseCraftingComponent {
     @Output("secondary-effect-removed")
     secondaryEffectRemovedEmitter = new EventEmitter<Effect>()
 
-    override ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-            this.SecondaryEffects = this._dataService.Data.SecondaryEffects
-           
-            if (this._dataService.Data.CustomSpell) {
-                this.SelectedSecondaryEffects = this._dataService.getSecondaryEffects(this._dataService.Data.CustomSpell.SecondaryEffectIdList)
-                this.SelectedSecondaryEffects.getItems().forEach(effect => this.secondaryEffectAddedEmitter.emit(effect))
-            }
+    override onReadyChange() {        
+        this.SecondaryEffects = this._dataService.Data.SecondaryEffects
+        
+        if (this._dataService.Data.CustomSpell) {
+            this.SelectedSecondaryEffects = this._dataService.getSecondaryEffects(this._dataService.Data.CustomSpell.SecondaryEffectIdList)
+            this.SelectedSecondaryEffects.getItems().forEach(effect => this.secondaryEffectAddedEmitter.emit(effect))
         }
+    }
+
+    override onResetChange() {
+        this.SelectedSecondaryEffects.clear()
+        this.SecondaryEffect = null
+        this.PreviewEffect = null
     }
 
     protected override showPopupForItem(_event: any): void {

@@ -6,6 +6,7 @@ import { DataService } from "../Services/Data/DataService";
 })
 export abstract class BaseCraftingComponent implements OnChanges {
     @Input('parent-ready') ParentReady = false
+    @Input('reset') Reset = false
     
     PopupTitle = ''
     PopupMessage = ''
@@ -14,8 +15,17 @@ export abstract class BaseCraftingComponent implements OnChanges {
     constructor(protected _dataService: DataService) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        // Implement in subclass
+        var readyChange = changes['ParentReady']
+        if (readyChange && readyChange.currentValue) 
+            this.onReadyChange()
+
+        var resetChange = changes['Reset']
+        if (resetChange && resetChange.currentValue)
+            this.onResetChange()
     }
+
+    abstract onReadyChange()
+    abstract onResetChange()
 
     protected showPopup() {
         this.IsPopupVisible = true;

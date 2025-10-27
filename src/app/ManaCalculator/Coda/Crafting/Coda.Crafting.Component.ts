@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Effect } from "../../Models/Effect";
 import { EffectList } from "../../Utils/List/EffectList";
 import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
@@ -8,6 +8,7 @@ import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
     templateUrl: './Coda.Crafting.html'
 })
 export class CodaCraftingComponent extends BaseCraftingComponent {
+
     CodaEffects = new EffectList()
     SelectedCodaEffects = new EffectList()
     CodaEffect: Effect = null
@@ -19,16 +20,19 @@ export class CodaCraftingComponent extends BaseCraftingComponent {
     @Output('coda-effect-removed')
     codaEffectRemovedEmitter = new EventEmitter<Effect>()
 
-    override ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-            this.CodaEffects = this._dataService.Data.CodaEffects
+    override onReadyChange() {
+        this.CodaEffects = this._dataService.Data.CodaEffects
 
-            if (this._dataService.Data.CustomSpell) {
-                this.SelectedCodaEffects = this._dataService.getCodas(this._dataService.Data.CustomSpell.CodaIdList) 
-                this.SelectedCodaEffects.getItems().forEach(effect => this.codaEffectAddedEmitter.emit(effect))
-            }
+        if (this._dataService.Data.CustomSpell) {
+            this.SelectedCodaEffects = this._dataService.getCodas(this._dataService.Data.CustomSpell.CodaIdList) 
+            this.SelectedCodaEffects.getItems().forEach(effect => this.codaEffectAddedEmitter.emit(effect))
         }
+    }
+
+    override onResetChange() {
+        this.SelectedCodaEffects.clear()
+        this.CodaEffect = null
+        this.PreviewEffect = null
     }
 
     protected override showPopupForItem(_event: any): void {

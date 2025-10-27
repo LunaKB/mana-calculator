@@ -16,10 +16,7 @@
                             <option *ngFor="let effect of NonCodaEffects.getItems()" (value)="effect">{{effect.Name}}</option>
                         </select>
                         <br>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn confirm-add" (click)="updateSavingThrowEffect()">Select</button>
-                            <button type="button" class="btn confirm-add" (click)="saveSavingThrowAlteration()">Update</button>
-                        </div>
+                        <button type="button" class="btn confirm-add" (click)="updateSavingThrowEffect()">Select</button>                        
                         <hr>
                         <p class="error-message" *ngIf="!EffectForSavingThrow">No effect selected. Update selection.</p>
                         <div *ngIf="EffectForSavingThrow">
@@ -53,6 +50,8 @@
                                     <option *ngFor="let ability  of getAbilityKeys()" (value)="ability">{{ability.valueOf()}}</option>
                                 </select>
                             </form>
+                            <br>
+                            <button type="button" class="btn confirm-add" (click)="saveSavingThrowAlteration()">Update</button>
                         </div>
                     </div>
                     <hr>

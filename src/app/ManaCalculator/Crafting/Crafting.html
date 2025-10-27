@@ -15,6 +15,7 @@
             <div class="carousel-item active">
                 <caster-crafting-control
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (origin-caster-changed)="onOriginCasterChange($event)"
                     (additional-casters-added)="onAdditionalCasterAdded($event)"
                     (additional-casters-removed)="onAdditionalCasterRemoved($event)" />
@@ -22,27 +23,32 @@
             <div class="carousel-item">
                 <spell-level-crafting-control 
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (spell-info-selected)="onSpellLevelInfoChange($event)" />
             </div>
             <div class="carousel-item">
                 <spell-alteration-crafting-control
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (spell-alteration-update)="onSpellAlterationInfoChange($event)" />
             </div>
             <div class="carousel-item">
                 <primary-effect-crafting-control
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (primary-effect-changed)="onPrimaryEffectChange($event)" />
             </div>
             <div class="carousel-item">
                 <secondary-effect-crafting-control
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (secondary-effect-added)="onSecondaryEffectAdded($event)"
                     (secondary-effect-removed)="onSecondaryEffectRemoved($event)" />
             </div>
             <div class="carousel-item">
                 <coda-crafting-control
                     [parent-ready]="Ready"
+                    [reset]="Reset"
                     (coda-effect-added)="onCodaEffectAdded($event)"
                     (coda-effect-removed)="onCodaEffectRemoved($event)" />
             </div>

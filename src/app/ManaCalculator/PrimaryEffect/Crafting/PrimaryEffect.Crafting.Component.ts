@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Effect } from "../../Models/Effect";
 import { EffectList } from "../../Utils/List/EffectList";
 import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
@@ -15,16 +15,17 @@ export class PrimaryEffectControlComponent extends BaseCraftingComponent {
     @Output('primary-effect-changed')
     primaryEffectEmitter = new EventEmitter<Effect>()
 
-    override ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-            this.PrimaryEffects = this._dataService.Data.PrimaryEffects
+    override onReadyChange() {
+        this.PrimaryEffects = this._dataService.Data.PrimaryEffects
             
-            if (this._dataService.Data.CustomSpell) {
-                this.PrimaryEffect = this._dataService.getPrimaryEffect(this._dataService.Data.CustomSpell.PrimaryEffectId)
-                this.primaryEffectEmitter.emit(this.PrimaryEffect)
-            }            
-        }
+        if (this._dataService.Data.CustomSpell) {
+            this.PrimaryEffect = this._dataService.getPrimaryEffect(this._dataService.Data.CustomSpell.PrimaryEffectId)
+            this.primaryEffectEmitter.emit(this.PrimaryEffect)
+        }   
+    }
+
+    override onResetChange() {
+        this.PrimaryEffect = null
     }
 
     updateSelection() {

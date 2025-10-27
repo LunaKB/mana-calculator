@@ -1,20 +1,18 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Caster } from "../../Models/Caster";
 import { CasterList } from "../../Utils/List/CasterList";
 import { AffinityConverter } from "../../Models/Affinity";
-import { DataService } from "../../Services/Data/DataService";
+import { BaseCraftingComponent } from "../../Crafting/BaseCraftingComponent";
 
 @Component({
     selector: 'caster-crafting-control',
     templateUrl: './Caster.Crafting.html'
 })
-export class CasterCraftingControlComponent implements OnChanges {
+export class CasterCraftingControlComponent extends BaseCraftingComponent {
     Casters = new CasterList()
     AdditionalCasters = new CasterList()
     CurrentAdditionalCaster: Caster = null
     OriginCaster: Caster = null
-
-    @Input('parent-ready') ParentReady = false
 
     @Output('origin-caster-changed')
     originCasterEventEmitter = new EventEmitter<Caster>()
@@ -25,21 +23,22 @@ export class CasterCraftingControlComponent implements OnChanges {
     @Output('additional-casters-removed')
     additionalCasterRemovedEmitter = new EventEmitter<Caster>()
 
-    constructor(private _dataService: DataService) { }
+    override onReadyChange() {
+        this.Casters = this._dataService.Data.Casters
 
-    ngOnChanges(changes: SimpleChanges): void {
-        var readyChange = changes['ParentReady']
-        if (readyChange) {
-            this.Casters = this._dataService.Data.Casters
+        if (this._dataService.Data.CustomSpell) {
+            this.OriginCaster = this._dataService.getOriginCaster(this._dataService.Data.CustomSpell.OriginCasterId)
+            this.originCasterEventEmitter.emit(this.OriginCaster)
 
-            if (this._dataService.Data.CustomSpell) {
-                this.OriginCaster = this._dataService.getOriginCaster(this._dataService.Data.CustomSpell.OriginCasterId)
-                this.originCasterEventEmitter.emit(this.OriginCaster)
-
-                this.AdditionalCasters = this._dataService.getAdditionalCasters(this._dataService.Data.CustomSpell.AdditionalCasterIdList)
-                this.AdditionalCasters.getItems().forEach(caster => this.additionalCasterAddedEmitter.emit(caster))
-            }
+            this.AdditionalCasters = this._dataService.getAdditionalCasters(this._dataService.Data.CustomSpell.AdditionalCasterIdList)
+            this.AdditionalCasters.getItems().forEach(caster => this.additionalCasterAddedEmitter.emit(caster))
         }
+    }
+
+    override onResetChange() {
+        this.AdditionalCasters.clear()
+        this.CurrentAdditionalCaster = null
+        this.OriginCaster = null
     }
 
     updateOriginCaster() {

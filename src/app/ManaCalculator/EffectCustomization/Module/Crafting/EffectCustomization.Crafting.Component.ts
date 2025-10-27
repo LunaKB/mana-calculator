@@ -45,6 +45,14 @@ export class EffectCustomizationCraftingControl extends BaseCraftingComponent {
             this.onEffectCustomizationTypesChange(codaTypeChanges)
     }
 
+    override onReadyChange() {
+        
+    }
+
+    override onResetChange() {
+        
+    }
+
     hasEffectCustomizationTypes() : boolean {
         return this.ShowAffinity ||
         this.ShowCurtailCapacity ||

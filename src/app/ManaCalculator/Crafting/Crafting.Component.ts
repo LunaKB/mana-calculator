@@ -41,7 +41,8 @@ export class CraftingComponent extends BaseParentComponent {
 
     CustomSpell: CustomSpell = null
     CastingInformation: CastingInfo = null
-    Ready = false    
+    Ready = false
+    Reset = false
 
     override ngAfterContentInit(): void {
         this._dataService.setListener(this)
@@ -199,6 +200,7 @@ export class CraftingComponent extends BaseParentComponent {
     }
 
     reset() {
+        this.Reset = true
         this.SpellName = "name of spell"
         this.Description = "description of spell"
 
@@ -219,6 +221,7 @@ export class CraftingComponent extends BaseParentComponent {
         this.NonCodaEffectsToCustomize = new EffectList()
     
         this.SpellEffectCustomizations = new BaseEffectCustomizationList()
+        this.CastingInformation = null
     
         this.CustomSpell = null
         if (this._dataService.Data.CustomSpell)
@@ -286,6 +289,8 @@ export class CraftingComponent extends BaseParentComponent {
     }
 
     private updateCastingInfo() {
+        if (this.Reset)
+            this.Reset = false
         if(!this.showSave())
             return
         this.CastingInformation = CastingCalculator.getCastingInfo(
