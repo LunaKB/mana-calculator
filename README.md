@@ -1,5 +1,9 @@
 # ManaCalculator
 
+The Mana Calculator project is the Angular front end for the Spell Forge: Aetherian Realm Spell Management web application. The Spell Forge allows the players in the Dungeons and Dragons game, The Aetherian Realm: Legacy of Destiny, to easily create and manage custom spells.
+
+This front end allows users to create, save, edit, and delete spells and spell casters. It also contains information on all currently allowed spell customizations.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
 
 ## Development server
@@ -25,3 +29,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
